@@ -82,6 +82,18 @@ main(int argc, char **argv)
 		[db release];
 		return 1;
 	}	
+	if(![db insertInto:@"ngdbtest" values:[NSArray arrayWithObjects:
+		[NSArray arrayWithObjects:@"id", @"name", nil],
+		[NSArray arrayWithObjects:@"10",@"Superman", nil],
+		[NSArray arrayWithObjects:@"11",@"Spider-Man", nil],
+		[NSArray arrayWithObjects:@"12",NGDBNull, nil],
+		[NSArray arrayWithObjects:@"13",@"Batman", nil],
+		nil] status:&err])
+	{
+		NSLog(@"Error: %@", err);
+		[db release];
+		return 1;
+	}	
 	rs = [db query:@"SELECT * FROM {ngdbtest} WHERE [id] > ? AND [name] IS NOT NULL" status:&err,
 		  @"1",
 		  nil];

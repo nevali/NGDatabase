@@ -525,7 +525,7 @@
 	NSString *targ, *sql;
 	NSArray *vlist, *klist;
 	NSMutableArray *sqllist;
-	NSDictionary *entry;
+	id entry;
 	BOOL first, r;
 	size_t n, count;
 	void *rp;
@@ -555,9 +555,32 @@
 		for(n = 0; n < count; n++)
 		{
 			entry = [values objectAtIndex:n];
-			if(![entry isKindOfClass:[NSDictionary class]])
+			if([entry isKindOfClass:[NSArray class]])
 			{
-				*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-1 reason:@"Cannot perform insertInto:values:status: where values: is an NSArray containing types other than NSDictionary" statement:nil];
+				if(first)
+				{
+					klist = [self _quoteKeys:entry quoted:quoted];
+					first = FALSE;
+					continue;
+				}
+				vlist = [self _quoteValues:entry quoted:quoted];
+				if([sqllist count])
+				{
+					sql = [[NSString alloc] initWithFormat:@"(%@)", [vlist componentsJoinedByString:@", "], nil];
+					[sqllist addObject:sql];
+					[sql release];
+				}
+				else
+				{
+					sql = [[NSString alloc] initWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)", targ, [klist componentsJoinedByString:@", "], [vlist componentsJoinedByString:@", "], nil];
+					[sqllist addObject:sql];
+					[sql release];
+				}
+				continue;
+			}
+			else if(![entry isKindOfClass:[NSDictionary class]])
+			{
+				*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-1 reason:@"Cannot perform insertInto:values:status: where values: is an NSArray containing types other than NSDictionary and NSArray" statement:nil];
 				[sqllist release];
 				if(klist)
 				{
