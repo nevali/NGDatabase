@@ -194,7 +194,7 @@
 	NSString *sql;
 	
 	sql = [self intersperseQuery:query withArray:params];
-	r = [self exec:sql status:&err];
+	r = [self exec:sql flags:NGDBEF_None status:&err];
 	if(r)
 	{
 		[self freeResult:r];
@@ -267,7 +267,7 @@
 	id rs;
 	
 	sql = [self intersperseQuery:query withArray:params];
-	result = [self exec:sql status:status];
+	result = [self exec:sql flags:NGDBEF_None status:status];
 	[sql release];
 	if(result)
 	{
@@ -735,7 +735,7 @@
 	return nil;
 }
 
-/** -exec:status:
+/** -exec:flags:status:
  *
  * Execute a pre-processed statement, possibly returning a driver-specific
  * result-set data pointer.
@@ -747,7 +747,7 @@
  * Drivers must override this method.
  */
 
-- (void *)exec:(NSString *)query status:(NSError **)status
+- (void *)exec:(NSString *)query flags:(NGDBExecFlags)flags status:(NSError **)status
 {
 	(void) query;
 	

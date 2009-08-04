@@ -190,7 +190,7 @@
 	return self;
 }
 
-- (void *)exec:(NSString *)query status:(NSError **)status
+- (void *)exec:(NSString *)query flags:(NGDBExecFlags)flags status:(NSError **)status
 {
 	const char *sql = [query UTF8String];
 	
@@ -202,7 +202,14 @@
 		}
 		if(mysql_field_count(conn))
 		{
-			return mysql_store_result(conn);
+			if(flags & NGDBEF_Unbuffered)
+			{
+				return mysql_use_result(conn);
+			}
+			else
+			{
+				return mysql_store_result(conn);
+			}
 		}
 		return NULL;
 	}
