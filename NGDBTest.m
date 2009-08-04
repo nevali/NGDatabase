@@ -69,7 +69,9 @@ main(int argc, char **argv)
 		[db release];
 		return 1;
 	}
-	if(![db insertInto:@"ngdbtest" values:[NSArray arrayWithObjects:
+	[db alias:@"TEST" forObject:@"ngdbtest"];
+	
+	if(![db insertInto:@"TEST" values:[NSArray arrayWithObjects:
 		[NSDictionary dictionaryWithObjectsAndKeys:@"1", @"id", @"Mr John Smith", @"name",nil],
 		[NSDictionary dictionaryWithObjectsAndKeys:@"5", @"id", @"Mr Fred Smith", @"name",nil],
 		[NSDictionary dictionaryWithObjectsAndKeys:@"4", @"id", NGDBNull, @"name",nil],
@@ -82,7 +84,7 @@ main(int argc, char **argv)
 		[db release];
 		return 1;
 	}	
-	if(![db insertInto:@"ngdbtest" values:[NSArray arrayWithObjects:
+	if(![db insertInto:@"TEST" values:[NSArray arrayWithObjects:
 		[NSArray arrayWithObjects:@"id", @"name", nil],
 		[NSArray arrayWithObjects:@"10",@"Superman", nil],
 		[NSArray arrayWithObjects:@"11",@"Spider-Man", nil],
@@ -94,7 +96,7 @@ main(int argc, char **argv)
 		[db release];
 		return 1;
 	}	
-	rs = [db query:@"SELECT * FROM {ngdbtest} WHERE [id] > ? AND [name] IS NOT NULL" status:&err,
+	rs = [db query:@"SELECT * FROM {TEST} WHERE [id] > ? AND [name] IS NOT NULL" status:&err,
 		  @"1",
 		  nil];
 	if(rs)

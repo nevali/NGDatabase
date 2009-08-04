@@ -34,17 +34,24 @@
 @implementation NGMySQLConnection
 {
 	MYSQL *conn;
+	NSString *databaseName;
 }
 
 - (void)dealloc
 {
 	if(conn) mysql_close(conn);
+	if(databaseName) [databaseName release];
 	[super dealloc];
 }
 
 - (NSString *)driverName
 {
 	return @"MySQL";
+}
+
+- (NSString *)databaseName
+{
+	return databaseName;
 }
 
 - (NSString *)quote:(id)object
@@ -165,6 +172,10 @@
 						db = p;
 					}
 				}
+			}
+			if(db)
+			{
+				databaseName = [[NSString alloc] initWithUTF8String:db];
 			}
 		}
 		if(NULL == mysql_real_connect(conn, host, user, pass, db, port, sock, flags))

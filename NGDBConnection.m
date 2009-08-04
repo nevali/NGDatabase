@@ -35,6 +35,7 @@
 {
 @protected
 	NSTimeZone *timeZone;
+	NSMutableDictionary *aliases;
 }
 
 /** +connectionWithURLString:options:status:
@@ -131,6 +132,7 @@
 - (void)dealloc
 {
 	if(timeZone) [timeZone release];
+	[aliases release];
 	[super dealloc];
 }
 
@@ -317,36 +319,63 @@
  * tables, views, and so on. In most cases, the result will be the object name,
  * surrounded by double quotation marks.
  *
- * Drivers may override this method.
+ * If the specified object name is an alias, the value of the qualify
+ * argument is ignored, as resolved aliases are always as fully-qualified
+ * as possible.
+ *
+ * Drivers should not need to override this method, but may if required.
  */
 - (NSString *)quoteObject:(NSString *)objectName qualify:(BOOL)qualify
 {
-	NSString *db, *schema;
+	NSString *s;
 	
 	if([objectName characterAtIndex:0] == '"')
 	{
 		return [objectName copy];
 	}
+	if((s = [self resolveAlias:objectName]))
+	{
+		return [s copy];
+	}
 	if(qualify)
 	{
-		db = [self databaseName];
-		schema = [self schemaName];
-		if(db && schema)
-		{
-			return [[NSString alloc] initWithFormat:@"\"%@\".\"%@\".\"%@\"", db, schema, objectName];
-		}
-		if(db)
-		{
-			return [[NSString alloc] initWithFormat:@"\"%@\".\"%@\"", db, objectName];
-		}
-		if(schema)
-		{
-			return [[NSString alloc] initWithFormat:@"\"%@\".\"%@\"", schema, objectName];
-		}
+		return [self quoteObject:objectName inSchema:nil inDatabase:nil];
 	}
 	return [[NSString alloc] initWithFormat:@"\"%@\"", objectName];
 }
 
+/** -quoteObject:inSchema:inDatabase:
+ *
+ * Given an unqualified, unquoted object name and optional schema and
+ * database names (defaulting to the current values if either are supplied
+ * as nil), generate as fully-qualified quoted name as possible.
+ *
+ * Drivers should not need to override this method, but may if required.
+ */
+- (NSString *)quoteObject:(NSString *)objectName inSchema:(NSString *)schema inDatabase:(NSString *)db
+{
+	if(!db)
+	{
+		db = [self databaseName];
+	}
+	if(!schema)
+	{
+		schema = [self schemaName];
+	}
+	if(db && schema)
+	{
+		return [[NSString alloc] initWithFormat:@"\"%@\".\"%@\".\"%@\"", db, schema, objectName];
+	}
+	if(db)
+	{
+		return [[NSString alloc] initWithFormat:@"\"%@\".\"%@\"", db, objectName];
+	}
+	if(schema)
+	{
+		return [[NSString alloc] initWithFormat:@"\"%@\".\"%@\"", schema, objectName];
+	}
+	return [[NSString alloc] initWithFormat:@"\"%@\"", objectName]; 
+}	
 
 /** -now
  *
@@ -635,7 +664,53 @@
 	}
 	return r;
 }
-		
+
+/** -alias:forObject:
+ *
+ * Add an alias for the given table name in the current database and schema.
+ *
+ * By convention, aliases should be specified in all-caps.
+ *
+ * Drivers should not override this method.
+ */
+
+- (BOOL)alias:(NSString *)alias forObject:(NSString *)obj
+{
+	return [self alias:alias forObject:obj inSchema:nil inDatabase:nil];
+}
+
+/** -alias:forObject:inSchema:inDatabase:
+ *
+ * Add an alias for the given table name in the specified database and schema.
+ * If schema and/or db are nil, the current schema and database names will be
+ * used, as per -quoteObject:inSchema:inDatabase:
+ *
+ * By convention, aliases should be specified in all-caps.
+ *
+ * Drivers should not override this method.
+ */
+
+- (BOOL)alias:(NSString *)alias forObject:(NSString *)obj inSchema:(NSString *)schema inDatabase:(NSString *)db
+{
+	NSString *target;
+	
+	target = [self quoteObject:obj inSchema:schema inDatabase:db];
+	[aliases setObject:target forKey:alias];
+	[target release];
+	return TRUE;
+}
+
+/** -resolveAlias:
+ *
+ * Return the fully-qualfied name corresponding to the specified alias.
+ *
+ * Returns nil if the given name has not been registered.
+ */
+- (NSString *)resolveAlias:(NSString *)alias
+{
+	return [aliases objectForKey:alias];
+}
+
 @end
 
 #pragma mark Driver methods
@@ -665,6 +740,7 @@
 		{
 			timeZone = [[NSTimeZone alloc] initWithName:@"UTC"];
 		}
+		aliases = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }

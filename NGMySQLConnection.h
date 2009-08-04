@@ -36,6 +36,7 @@
 @interface NGMySQLConnection: NGDBConnection {
 @private	
 	MYSQL *conn;
+	NSString *databaseName;
 }
 
 @end

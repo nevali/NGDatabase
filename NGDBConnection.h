@@ -37,6 +37,7 @@
 {
 @protected
 	NSTimeZone *timeZone;
+	NSMutableDictionary *aliases;
 }
 
 + (id)connectionWithURL:(NSURL *)url options:(NSDictionary *)options status:(NSError **)status;
@@ -55,6 +56,11 @@
 
 - (NSString *)quote:(id)value;
 - (NSString *)quoteObject:(NSString *)objectName qualify:(BOOL)qualify;
+- (NSString *)quoteObject:(NSString *)objectName inSchema:(NSString *)schema inDatabase:(NSString *)db;
+
+- (BOOL)alias:(NSString *)alias forObject:(NSString *)obj;
+- (BOOL)alias:(NSString *)alias forObject:(NSString *)obj inSchema:(NSString *)schema inDatabase:(NSString *)db;
+- (NSString *)resolveAlias:(NSString *)alias;
 
 - (NSString *)now;
 - (NSString *)driverName;
