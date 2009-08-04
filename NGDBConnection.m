@@ -195,7 +195,7 @@
 	NSError *err = NULL;
 	NSString *sql;
 	
-	sql = [self intersperseQuery:query withArray:params];
+	sql = [self intersperseQuery:query withArray:params addSuffix:nil];
 	r = [self exec:sql flags:NGDBEF_None status:&err];
 	if(r)
 	{
@@ -268,7 +268,7 @@
 	void *result;
 	id rs;
 	
-	sql = [self intersperseQuery:query withArray:params];
+	sql = [self intersperseQuery:query withArray:params addSuffix:nil];
 	result = [self exec:sql flags:NGDBEF_None status:status];
 	[sql release];
 	if(result)
@@ -711,6 +711,60 @@
 	return [aliases objectForKey:alias];
 }
 
+/** -getRow:status:, ...
+ *
+ * Perform the specified query and return the first row of the results as an
+ * associative array (NSDictionary instance).
+ * 
+ * If an error occurs, or the query produced no results, nil will be returned.
+ * In the former case, if status is non-NULL, it will be set to point to an
+ * NSError instance describing the error condition.
+ *
+ * Drivers should not override this method, override -getRow:withArray:status:
+ * instead.
+ */
+
+- (NSDictionary *)getRow:(NSString *)query status:(NSError **)status, ...
+{
+	NSMutableArray *params;
+	NSDictionary *r;
+	
+	VA_TO_NSARRAY(status, params);
+	r = [self getRow:query withArray:params status:status];
+	[params release];
+	return r;
+}
+
+/** -getRow:withArray:status:
+ *
+ * Perform the specified query and return the first row of the results as an
+ * associative array (NSDictionary instance).
+ *
+ * Drivers should override this method to be more efficient (specifically: not
+ * require the construction of an NGDBResultSet, and to modify the query to
+ * add a "LIMIT"-style specifier).
+ *
+ * If an error occurs, or the query produced no results, nil will be returned.
+ * In the former case, if status is non-NULL, it will be set to point to an
+ * NSError instance describing the error condition.
+ */
+- (NSDictionary *)getRow:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
+{
+	NSDictionary *dict;
+	NGDBResultSet *rs;
+	
+	dict = nil;
+	if((rs = [self query:query withArray:params status:status]))
+	{
+		if((dict = [rs nextAsDict]))
+		{
+			dict = [dict copy];
+		}
+		[rs release];
+	}
+	return dict;
+}
+
 @end
 
 #pragma mark Driver methods
@@ -800,7 +854,7 @@
  * withArray: argument specifies a single NSString parameter with the value
  * "widgets".
  */
-- (NSString *)intersperseQuery:(NSString *)query withArray:(NSArray *)array
+- (NSString *)intersperseQuery:(NSString *)query withArray:(NSArray *)array addSuffix:(NSString *)suffix
 {
 	NSMutableArray *tarray;
 	NSString *ret, *tmp;
@@ -970,6 +1024,10 @@
 		}
 		[tarray addObject:tmp];
 		[tmp release];
+	}
+	if(suffix)
+	{
+		[tarray addObject:suffix];
 	}
 	ret = [[tarray componentsJoinedByString:@""] copy];
 	[tarray release];

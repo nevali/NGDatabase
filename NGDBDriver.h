@@ -44,7 +44,7 @@ typedef enum {
 - (void *) exec:(NSString *)query flags:(NGDBExecFlags)flags status:(NSError **)status;
 - (id) createResultSet:(void *)result status:(NSError **)status;
 - (void) freeResult:(void *)result;
-- (NSString *) intersperseQuery:(NSString *)query withArray:(NSArray *)array;
+- (NSString *) intersperseQuery:(NSString *)query withArray:(NSArray *)array addSuffix:(NSString *)suffix;
 
 @end
 

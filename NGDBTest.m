@@ -104,7 +104,7 @@ main(int argc, char **argv)
 		NSLog(@"Result-set has %llu rows", [rs rowCount]);
 		while((row = [rs nextAsDict]))
 		{
-			NSLog(@"Row: %@", row);
+			NSLog(@"RS Row: %@", row);
 		}
 		[rs release];
 	}
@@ -112,6 +112,22 @@ main(int argc, char **argv)
 	{
 		NSLog(@"No result-set returned: %@", err);
 	}
+	
+	if(!(row = [db getRow:@"SELECT * FROM {TEST} WHERE [id] = ?" status:&err, @"3", nil]) && !err)
+	{
+		NSLog(@"Error: %@", err);
+		[db release];
+		return 1;
+	}
+	else if(!row)
+	{
+		NSLog(@"-getRow:status: produced no results");
+	}
+	else
+	{
+		NSLog(@"Single row: %@", row);
+	}
+	
 	[db executeSQL:@"DROP TEMPORARY TABLE {ngdbtest}" withArray:nil status:NULL];
 	
 	[db release];
