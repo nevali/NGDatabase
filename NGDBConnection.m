@@ -499,6 +499,34 @@
  * qualified quoted table names, substituting aliased table names as required.
  *
  * Drivers should not need to override this method.
+ *
+ * Nanosecond SQL syntax guide:
+ *
+ * SELECT [field] FROM {table} WHERE [field] = ? ORDER BY [field] ASC
+ *
+ * or, if you enjoy typing backslashes in C-style strings:
+ *
+ * SELECT "field" FROM {table} WHERE "field" = ? ORDER BY "field" ASC 
+ *
+ * Object names contained within square brackets will be replaced with quoted
+ * object names (by -quoteObject:qualfied:, with qualfied:FALSE).
+ *
+ * Object names contained within curly braces are assumed to be table or view
+ * names which should have alias matching performed upon them (where possible)
+ * and fully-qualified (again, where possible).
+ *
+ * Question marks denote parameters, whose (raw) values will be taken from
+ * the withArray: argument and quoted (via -quote:) before insertion into
+ * the final result.
+ *
+ * A typical result of interspersing the above statement would be:
+ *
+ * SELECT "field" FROM "mydb"."public"."sometable" WHERE "field" = 'widgets' ORDER BY "field" ASC
+ *
+ * Where "mydb" is the current database name (returned by -databaseName), 
+ * "public" is the current schema name (returned by -schemaName), and the
+ * withArray: argument specifies a single NSString parameter with the value
+ * "widgets".
  */
 - (NSString *)intersperseQuery:(NSString *)query withArray:(NSArray *)array
 {
@@ -524,10 +552,25 @@
 	n = 0;
 	while(src[e])
 	{
-		if(q && src[e] == q)
+		if(q == '{' && src[e] == '}')
 		{
 			q = 0;
+			if(!(tmp = [[NSString alloc] initWithBytes:&(src[s + 1]) length:(e - s - 1) encoding:NSUTF8StringEncoding]))
+			{
+				failed = TRUE;
+				break;
+			}
+			if(!(ret = [self quoteObject:tmp qualify:TRUE]))
+			{
+				[tmp release];
+				failed = TRUE;
+				break;
+			}
+			[tmp release];
+			[tarray addObject:ret];
+			[ret release];
 			e++;
+			s = e;
 			continue;
 		}
 		if(q == '[' && src[e] == ']')
@@ -581,12 +624,18 @@
 			s = e;
 			continue;
 		}
+		if(q && src[e] == q)
+		{
+			q = 0;
+			e++;
+			continue;
+		}		
 		if(q)
 		{
 			e++;
 			continue;
 		}
-		if(src[e] == '"' || src[e] == '\'' || src[e] == '`' || src[e] == '[')
+		if(src[e] == '"' || src[e] == '\'' || src[e] == '`' || src[e] == '[' || src[e] == '{')
 		{
 			if(e - s)
 			{
