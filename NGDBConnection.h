@@ -51,6 +51,8 @@
 - (id)query:(NSString *)query status:(NSError **)status, ...;
 - (id)query:(NSString *)query withArray:(NSArray *)params status:(NSError **)result;
 
+- (BOOL)insertInto:(NSString *)target values:(id)values status:(NSError **)status;
+
 - (NSString *)quote:(id)value;
 - (NSString *)quoteObject:(NSString *)objectName qualify:(BOOL)qualify;
 

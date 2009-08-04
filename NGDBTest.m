@@ -69,16 +69,16 @@ main(int argc, char **argv)
 		[db release];
 		return 1;
 	}
-	if(![db executeSQL:@"INSERT INTO {ngdbtest} ([id],[name]) VALUES (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?)" status:&err,
-		@"1", @"Mr John Smith",
-		@"5", @"Mr Fred Smith",
-		@"4", NGDBNull,
-		@"2", @"Mrs Harriet Jones",
-		@"3", @"Ms Sandra Shaw",
-		@"6", NGDBNull,
-		nil])
+	if(![db insertInto:@"ngdbtest" values:[NSArray arrayWithObjects:
+		[NSDictionary dictionaryWithObjectsAndKeys:@"1", @"id", @"Mr John Smith", @"name",nil],
+		[NSDictionary dictionaryWithObjectsAndKeys:@"5", @"id", @"Mr Fred Smith", @"name",nil],
+		[NSDictionary dictionaryWithObjectsAndKeys:@"4", @"id", NGDBNull, @"name",nil],
+		[NSDictionary dictionaryWithObjectsAndKeys:@"2", @"id", @"Mrs Harriet Jones", @"name",nil],
+		[NSDictionary dictionaryWithObjectsAndKeys:@"3", @"id", @"Ms Sandra Shaw", @"name",nil],
+		[NSDictionary dictionaryWithObjectsAndKeys:@"6", @"id", NGDBNull, @"name",nil],
+		nil] status:&err])
 	{
-		NSLog(@"%@", err);
+		NSLog(@"Error: %@", err);
 		[db release];
 		return 1;
 	}	

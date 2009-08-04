@@ -323,6 +323,10 @@
 {
 	NSString *db, *schema;
 	
+	if([objectName characterAtIndex:0] == '"')
+	{
+		return [objectName copy];
+	}
 	if(qualify)
 	{
 		db = [self databaseName];
@@ -440,6 +444,175 @@
 	return nil;
 }
 
+/** -insertInto:values:status:
+ *
+ * Insert one or more sets of values into the specified object (typically a
+ * database table).
+ *
+ * values: may either be an NSDictionary (containing a single set of key-value
+ * pairs) or an NSArray (containing one or more NSDictionary objects).
+ *
+ * Note that in the latter case (where an NSArray instance is passed to
+ * insertInto:) the keys in each contained instance of NSDictionary must be
+ * identical. Behaviour is undefined if this requirement is not met.
+ *
+ * If a dictionary key begins with an at-sign (@), the corresponding value
+ * will be inserted into the query literally rather than quoted.
+ *
+ * There is a hard limit of 64 values per row.
+ */
+
+- (NSArray *)_quoteKeys:(NSArray *)keys quoted:(char *)quoted
+{
+	const char *cstr;
+	size_t count, c;
+	NSMutableArray *knames;
+	NSString *s, *t, *k;
+	
+	count = [keys count];
+	if(count > 64) return nil;
+	knames = [[NSMutableArray alloc] initWithCapacity:count];
+	for(c = 0; c < count; c++)
+	{
+		k = [keys objectAtIndex:c];
+		cstr = [k UTF8String];
+		if(cstr[0] == '@')
+		{
+			cstr++;
+			quoted[c] = 0;
+			t = [[NSString alloc] initWithUTF8String:cstr];
+		}
+		else
+		{
+			quoted[c] = 1;
+			t = k;
+		}
+		s = [self quoteObject:t qualify:FALSE];
+		if(t != k) [t release];
+		[knames addObject:s];
+		[s release];
+	}
+	return knames;
+}
+
+- (NSArray *)_quoteValues:(NSArray *)values quoted:(const char *)quoted
+{
+	size_t count, c;
+	NSMutableArray *vlist;
+	NSString *s;
+	
+	count = [values count];
+	vlist = [[NSMutableArray alloc] initWithCapacity:count];
+	for(c = 0; c < count; c++)
+	{
+		if(quoted[c])
+		{
+			s = [self quote:[values objectAtIndex:c]];
+			[vlist addObject:s];
+			[s release];
+		}
+		else
+		{
+			[vlist addObject:[values objectAtIndex:c]];
+		}
+	}
+	return vlist;
+}
+
+- (BOOL)insertInto:(NSString *)target values:(id)values status:(NSError **)status
+{
+	char quoted[64];
+	NSString *targ, *sql;
+	NSArray *vlist, *klist;
+	NSMutableArray *sqllist;
+	NSDictionary *entry;
+	BOOL first, r;
+	size_t n, count;
+	void *rp;
+	NSError *err = NULL;
+	
+	targ = [self quoteObject:target qualify:TRUE];
+	if([values isKindOfClass:[NSDictionary class]])
+	{
+		/* A simple set of key-value pairs, where the keys are field names */
+		klist = [self _quoteKeys:[values allKeys] quoted:quoted];
+		vlist = [self _quoteValues:[values allValues] quoted:quoted];
+		sql = [[NSString alloc] initWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)",
+			   targ, [klist componentsJoinedByString:@", "], [vlist componentsJoinedByString:@", "], nil];
+		[klist release];
+		[vlist release];
+	}
+	else if([values isKindOfClass:[NSArray class]])
+	{
+		count = [values count];
+		if(!count)
+		{
+			return TRUE;
+		}
+		sqllist = [[NSMutableArray alloc] initWithCapacity:count + 1];
+		first = TRUE;
+		klist = NULL;
+		for(n = 0; n < count; n++)
+		{
+			entry = [values objectAtIndex:n];
+			if(![entry isKindOfClass:[NSDictionary class]])
+			{
+				*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-1 reason:@"Cannot perform insertInto:values:status: where values: is an NSArray containing types other than NSDictionary" statement:nil];
+				[sqllist release];
+				if(klist)
+				{
+					[klist release];
+				}
+				return FALSE;
+			}
+			if(first)
+			{
+				klist = [self _quoteKeys:[entry allKeys] quoted:quoted];
+				vlist = [self _quoteValues:[entry allValues] quoted:quoted];
+				first = FALSE;
+				sql = [[NSString alloc] initWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)", targ, [klist componentsJoinedByString:@", "], [vlist componentsJoinedByString:@", "], nil];
+				[sqllist addObject:sql];
+				[sql release];
+			}
+			else
+			{
+				vlist = [self _quoteValues:[entry allValues] quoted:quoted];
+				sql = [[NSString alloc] initWithFormat:@"(%@)", [vlist componentsJoinedByString:@", "], nil];
+				[sqllist addObject:sql];
+				[sql release];
+			}
+			[vlist release];
+		}
+		[klist release];
+		sql = [sqllist componentsJoinedByString:@", "];
+		[sqllist release];
+	}
+	else
+	{
+		if(status)
+		{
+			*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-1 reason:@"Cannot perform insertInto:values:status: where values: is neither an NSDictionary nor an NSArray" statement:nil];
+		}
+		return FALSE;
+	}
+	[targ release];
+	rp = [self exec:sql flags:NGDBEF_None status:&err];
+	if(rp || !err)
+	{
+		r = TRUE;
+		[self freeResult:rp];
+	}
+	else
+	{
+		r = FALSE;
+		if(status)
+		{
+			*status = err;
+		}
+	}
+	return r;
+}
+		
 @end
 
 #pragma mark Driver methods
