@@ -39,6 +39,7 @@ main(int argc, char **argv)
 	NGDBConnection *db;
 	NGDBResultSet *rs;
 	NSDictionary *row;
+	NSArray *rows;
 	NSError *err = nil;
 	NSString *url;
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -127,6 +128,15 @@ main(int argc, char **argv)
 	{
 		NSLog(@"Single row: %@", row);
 	}
+	
+	if(!(rows = [db getAll:@"SELECT * FROM {TEST} WHERE [id] BETWEEN ? AND ?" status:&err, @"3", @"6", nil]))
+	{
+		NSLog(@"Error: %@", err);
+		[db release];
+		return 1;
+	}
+	NSLog(@"Rows: %@", rows);
+	[rows release];
 	
 	[db executeSQL:@"DROP TEMPORARY TABLE {ngdbtest}" withArray:nil status:NULL];
 	

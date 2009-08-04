@@ -54,6 +54,8 @@
 
 - (NSDictionary *)getRow:(NSString *)query status:(NSError **)status, ...;
 - (NSDictionary *)getRow:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
+- (NSArray *)getAll:(NSString *)query status:(NSError **)status, ...;
+- (NSArray *)getAll:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
 
 - (BOOL)insertInto:(NSString *)target values:(id)values status:(NSError **)status;
 

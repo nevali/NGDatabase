@@ -765,6 +765,64 @@
 	return dict;
 }
 
+/** -getAll:status:, ...
+ *
+ * Perform the specified query and return the all rows of the results as an
+ * array (NSArray instance) of associative arrays (NSDictionary instances).
+ * 
+ * If an error occurs, or the query produced no results, nil will be returned.
+ * In the former case, if status is non-NULL, it will be set to point to an
+ * NSError instance describing the error condition.
+ *
+ * Drivers should not override this method, override -getRow:withArray:status:
+ * instead.
+ */
+
+- (NSArray *)getAll:(NSString *)query status:(NSError **)status, ...
+{
+	NSMutableArray *params;
+	NSArray *r;
+	
+	VA_TO_NSARRAY(status, params);
+	r = [self getAll:query withArray:params status:status];
+	[params release];
+	return r;
+}
+
+/** -getAll:withArray:status:
+ *
+ * Perform the specified query and return the all rows of the results as an
+ * array (NSArray instance) of associative arrays (NSDictionary instances).
+ *
+ * Drivers should override this method to be more efficient (specifically: not
+ * require the construction of an intermediate NGDBResultSet).
+ *
+ * If an error occurs, nil will be returned and if status is non-NULL, it will
+ * be set to point to an NSError instance describing the error condition.
+ *
+ * If the query was successful but the result-set was empty, an empty NSArray
+ * will be returned.
+ */
+- (NSArray *)getAll:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
+{
+	NSDictionary *dict;
+	NSMutableArray *results;
+	NGDBResultSet *rs;
+	
+	results = nil;
+	if((rs = [self query:query withArray:params status:status]))
+	{
+		results = [[NSMutableArray alloc] initWithCapacity:[rs rowCount]];
+		while((dict = [rs nextAsDict]))
+		{
+			[results addObject:dict];
+		}
+		[rs release];
+	}
+	return results;
+}
+
+
 @end
 
 #pragma mark Driver methods
