@@ -310,7 +310,7 @@
 	return nil;
 }
 
-/** -quoteObject:
+/** -quoteObject:qualify:
  *
  * Return the quoted form of an object name within the database suitable for
  * inclusion within a statement. Typical objects are databases, schemata,
@@ -319,8 +319,27 @@
  *
  * Drivers may override this method.
  */
-- (NSString *)quoteObject:(NSString *)objectName
+- (NSString *)quoteObject:(NSString *)objectName qualify:(BOOL)qualify
 {
+	NSString *db, *schema;
+	
+	if(qualify)
+	{
+		db = [self databaseName];
+		schema = [self schemaName];
+		if(db && schema)
+		{
+			return [[NSString alloc] initWithFormat:@"\"%@\".\"%@\".\"%@\"", db, schema, objectName];
+		}
+		if(db)
+		{
+			return [[NSString alloc] initWithFormat:@"\"%@\".\"%@\"", db, objectName];
+		}
+		if(schema)
+		{
+			return [[NSString alloc] initWithFormat:@"\"%@\".\"%@\"", schema, objectName];
+		}
+	}
 	return [[NSString alloc] initWithFormat:@"\"%@\"", objectName];
 }
 
@@ -486,9 +505,9 @@
 	NSMutableArray *tarray;
 	NSString *ret, *tmp;
 	const char *src;
-	size_t s, e, n, nobjs;
+	size_t s, e, n, p, nobjs;
 	int q;
-	BOOL failed = FALSE;
+	BOOL failed = FALSE, a;
 	
 	if(array)
 	{
@@ -514,20 +533,50 @@
 		if(q == '[' && src[e] == ']')
 		{
 			q = 0;
-			if(!(tmp = [[NSString alloc] initWithBytes:&(src[s + 1]) length:(e - s - 1) encoding:NSUTF8StringEncoding]))
+			/* Detect array suffixes, which can be empty, or contain colon-
+			 * separated lists of digits. We're flexible about the format, to
+			 * allow the database server to deal with any errors. We can assume
+			 * that something consisting entirely of digits and colons is not
+			 * going to be a valid object name in its own right, whether or not
+			 * it's a valid array specifier for the server.
+			 */
+			a = TRUE;
+			for(p = s + 1; p < e; p++)
 			{
-				failed = TRUE;
-				break;
+				if(!isdigit(src[p]) && src[p] != ':')
+				{
+					a = FALSE;
+					break;
+				}
 			}
-			if(!(ret = [self quoteObject:tmp]))
+			if(a)
 			{
+				/* Add the original string as a literal */
+				if(!(tmp = [[NSString alloc] initWithBytes:&(src[s]) length:(e - s) encoding:NSUTF8StringEncoding]))
+				{
+					failed = TRUE;
+					break;
+				}
+				[tarray addObject:tmp];
 				[tmp release];
-				failed = TRUE;
-				break;
 			}
-			[tmp release];
-			[tarray addObject:ret];
-			[ret release];
+			else
+			{
+				if(!(tmp = [[NSString alloc] initWithBytes:&(src[s + 1]) length:(e - s - 1) encoding:NSUTF8StringEncoding]))
+				{
+					failed = TRUE;
+					break;
+				}
+				if(!(ret = [self quoteObject:tmp qualify:FALSE]))
+				{
+					[tmp release];
+					failed = TRUE;
+					break;
+				}
+				[tmp release];
+				[tarray addObject:ret];
+				[ret release];
+			}
 			e++;
 			s = e;
 			continue;

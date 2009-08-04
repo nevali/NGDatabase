@@ -52,7 +52,7 @@
 - (id)query:(NSString *)query withArray:(NSArray *)params status:(NSError **)result;
 
 - (NSString *)quote:(id)value;
-- (NSString *)quoteObject:(NSString *)objectName;
+- (NSString *)quoteObject:(NSString *)objectName qualify:(BOOL)qualify;
 
 - (NSString *)now;
 - (NSString *)driverName;
