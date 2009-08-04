@@ -328,6 +328,7 @@
 					"\"/usr/local/mysql-5.1.32-osx10.5-x86_64/lib\"",
 				);
 				PRODUCT_NAME = NGDatabase;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -352,6 +353,7 @@
 					"\"/usr/local/mysql-5.1.32-osx10.5-x86_64/lib\"",
 				);
 				PRODUCT_NAME = NGDatabase;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
