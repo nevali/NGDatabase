@@ -113,8 +113,11 @@
 - (id) initDriverWithURL:(NSURL *)url options:(NSDictionary *)options status:(NSError **)status
 {
 	const char *host = NULL, *user = NULL, *pass = NULL, *db = NULL, *sock = NULL;
+	const char *p;
 	unsigned int port = 0;
 	unsigned long flags;
+	size_t c;
+	NSArray *dbn;
 	
 	if([super initWithOptions:options status:status])
 	{
@@ -146,8 +149,23 @@
 		}
 		if([url path])
 		{
-			db = [[url path] UTF8String];
-			while(db[0] == '/') db++;
+			dbn = [[url path] componentsSeparatedByString:@"/"];
+			for(c = 0; c < [dbn count]; c++)
+			{
+				p = [[dbn objectAtIndex:c] UTF8String];
+				if(p && p[0])
+				{
+					if(db)
+					{
+						NSLog(@"MySQL: warning: ignored additional non-empty path components following '%s'", db);
+						break;
+					}
+					else
+					{
+						db = p;
+					}
+				}
+			}
 		}
 		if(NULL == mysql_real_connect(conn, host, user, pass, db, port, sock, flags))
 		{
