@@ -1,0 +1,468 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		CDE038611025A9AA000243F1 /* NGDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE038601025A9AA000243F1 /* NGDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDE038641025ABA6000243F1 /* NGDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE038631025ABA6000243F1 /* NGDatabase.m */; };
+		CDE038671025ABF2000243F1 /* NGMySQLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE038651025ABF2000243F1 /* NGMySQLConnection.h */; };
+		CDE038681025ABF2000243F1 /* NGMySQLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE038661025ABF2000243F1 /* NGMySQLConnection.m */; };
+		CDE038921025BDAC000243F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE038911025BDAC000243F1 /* Foundation.framework */; };
+		CDE039241025BE57000243F1 /* NGDBTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE039231025BE57000243F1 /* NGDBTest.m */; };
+		CDE039271025BF11000243F1 /* NGDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* NGDatabase.framework */; };
+		CDE039281025BF17000243F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE038911025BDAC000243F1 /* Foundation.framework */; };
+		CDE039791025C6DE000243F1 /* libmysqlclient_r.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE039781025C6DE000243F1 /* libmysqlclient_r.dylib */; };
+		CDE03A331025D02C000243F1 /* NGDBError.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE03A321025D02C000243F1 /* NGDBError.m */; };
+		CDE25A9A10279608009BBBED /* NGMySQLResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE25A9910279608009BBBED /* NGMySQLResultSet.m */; };
+		CDE25AB71028180D009BBBED /* NGDBResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE25AB61028180D009BBBED /* NGDBResultSet.m */; };
+		CDF90A461027138F00240ACD /* NGDBDriver.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A451027138F00240ACD /* NGDBDriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDF90A49102713F600240ACD /* NGDBConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A48102713F600240ACD /* NGDBConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDF90A4B102714AE00240ACD /* NGDBError.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A4A102714AE00240ACD /* NGDBError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDF90A4D1027152A00240ACD /* NGDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A4C1027152A00240ACD /* NGDBResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDF90A4F1027156C00240ACD /* NGDBConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF90A4E1027156C00240ACD /* NGDBConnection.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CDE038A11025BE08000243F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = DBCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32DBCF5E0370ADEE00C91783 /* p_ngdatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = p_ngdatabase.h; sourceTree = "<group>"; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* NGDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NGDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDE038601025A9AA000243F1 /* NGDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDatabase.h; sourceTree = "<group>"; };
+		CDE038631025ABA6000243F1 /* NGDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDatabase.m; sourceTree = "<group>"; };
+		CDE038651025ABF2000243F1 /* NGMySQLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGMySQLConnection.h; sourceTree = "<group>"; };
+		CDE038661025ABF2000243F1 /* NGMySQLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGMySQLConnection.m; sourceTree = "<group>"; };
+		CDE038911025BDAC000243F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CDE0389D1025BE03000243F1 /* NGDBTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NGDBTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDE039231025BE57000243F1 /* NGDBTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBTest.m; sourceTree = "<group>"; };
+		CDE039781025C6DE000243F1 /* libmysqlclient_r.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysqlclient_r.dylib; path = "/usr/local/mysql-5.1.32-osx10.5-x86_64/lib/libmysqlclient_r.dylib"; sourceTree = "<absolute>"; };
+		CDE03A321025D02C000243F1 /* NGDBError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBError.m; sourceTree = "<group>"; };
+		CDE25A9910279608009BBBED /* NGMySQLResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGMySQLResultSet.m; sourceTree = "<group>"; };
+		CDE25AB61028180D009BBBED /* NGDBResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBResultSet.m; sourceTree = "<group>"; };
+		CDF90A451027138F00240ACD /* NGDBDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBDriver.h; sourceTree = "<group>"; };
+		CDF90A48102713F600240ACD /* NGDBConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBConnection.h; sourceTree = "<group>"; };
+		CDF90A4A102714AE00240ACD /* NGDBError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBError.h; sourceTree = "<group>"; };
+		CDF90A4C1027152A00240ACD /* NGDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBResultSet.h; sourceTree = "<group>"; };
+		CDF90A4E1027156C00240ACD /* NGDBConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBConnection.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE038921025BDAC000243F1 /* Foundation.framework in Frameworks */,
+				CDE039791025C6DE000243F1 /* libmysqlclient_r.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDE0389B1025BE03000243F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE039271025BF11000243F1 /* NGDatabase.framework in Frameworks */,
+				CDE039281025BF17000243F1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* NGDatabase.framework */,
+				CDE0389D1025BE03000243F1 /* NGDBTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* DBCore */ = {
+			isa = PBXGroup;
+			children = (
+				CDE038A31025BE14000243F1 /* NGDatabase */,
+				CDE038991025BDEE000243F1 /* NGDBTest */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = DBCore;
+			sourceTree = "<group>";
+		};
+		CDE038991025BDEE000243F1 /* NGDBTest */ = {
+			isa = PBXGroup;
+			children = (
+				CDE039231025BE57000243F1 /* NGDBTest.m */,
+				CDE038911025BDAC000243F1 /* Foundation.framework */,
+			);
+			name = NGDBTest;
+			sourceTree = "<group>";
+		};
+		CDE038A31025BE14000243F1 /* NGDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				CDF90AAD1027294E00240ACD /* Public Headers */,
+				CDF90AAC1027294600240ACD /* Core */,
+				CDF90A9C1027289B00240ACD /* MySQL */,
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+				CDE039781025C6DE000243F1 /* libmysqlclient_r.dylib */,
+			);
+			name = NGDatabase;
+			sourceTree = "<group>";
+		};
+		CDF90A9C1027289B00240ACD /* MySQL */ = {
+			isa = PBXGroup;
+			children = (
+				CDE038651025ABF2000243F1 /* NGMySQLConnection.h */,
+				CDE038661025ABF2000243F1 /* NGMySQLConnection.m */,
+				CDE25A9910279608009BBBED /* NGMySQLResultSet.m */,
+			);
+			name = MySQL;
+			sourceTree = "<group>";
+		};
+		CDF90AAC1027294600240ACD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF5E0370ADEE00C91783 /* p_ngdatabase.h */,
+				CDE038631025ABA6000243F1 /* NGDatabase.m */,
+				CDE03A321025D02C000243F1 /* NGDBError.m */,
+				CDF90A4E1027156C00240ACD /* NGDBConnection.m */,
+				CDE25AB61028180D009BBBED /* NGDBResultSet.m */,
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		CDF90AAD1027294E00240ACD /* Public Headers */ = {
+			isa = PBXGroup;
+			children = (
+				CDF90A451027138F00240ACD /* NGDBDriver.h */,
+				CDF90A48102713F600240ACD /* NGDBConnection.h */,
+				CDF90A4A102714AE00240ACD /* NGDBError.h */,
+				CDF90A4C1027152A00240ACD /* NGDBResultSet.h */,
+				CDE038601025A9AA000243F1 /* NGDatabase.h */,
+			);
+			name = "Public Headers";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE038611025A9AA000243F1 /* NGDatabase.h in Headers */,
+				CDE038671025ABF2000243F1 /* NGMySQLConnection.h in Headers */,
+				CDF90A461027138F00240ACD /* NGDBDriver.h in Headers */,
+				CDF90A49102713F600240ACD /* NGDBConnection.h in Headers */,
+				CDF90A4B102714AE00240ACD /* NGDBError.h in Headers */,
+				CDF90A4D1027152A00240ACD /* NGDBResultSet.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8DC2EF4F0486A6940098B216 /* NGDatabase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "NGDatabase" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NGDatabase;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = DBCore;
+			productReference = 8DC2EF5B0486A6940098B216 /* NGDatabase.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CDE0389C1025BE03000243F1 /* NGDBTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDE038A41025BE14000243F1 /* Build configuration list for PBXNativeTarget "NGDBTest" */;
+			buildPhases = (
+				CDE0389A1025BE03000243F1 /* Sources */,
+				CDE0389B1025BE03000243F1 /* Frameworks */,
+				CDE25D2A10284284009BBBED /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDE038A21025BE08000243F1 /* PBXTargetDependency */,
+			);
+			name = NGDBTest;
+			productName = iSQL;
+			productReference = CDE0389D1025BE03000243F1 /* NGDBTest */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "NGDatabase" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* DBCore */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* NGDatabase */,
+				CDE0389C1025BE03000243F1 /* NGDBTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CDE25D2A10284284009BBBED /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "install_name_tool -change \"@loader_path/../Frameworks/NGDatabase.framework/Versions/A/NGDatabase\" \"@executable_path/NGDatabase.framework/Versions/A/NGDatabase\" \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE038641025ABA6000243F1 /* NGDatabase.m in Sources */,
+				CDE038681025ABF2000243F1 /* NGMySQLConnection.m in Sources */,
+				CDE03A331025D02C000243F1 /* NGDBError.m in Sources */,
+				CDF90A4F1027156C00240ACD /* NGDBConnection.m in Sources */,
+				CDE25A9A10279608009BBBED /* NGMySQLResultSet.m in Sources */,
+				CDE25AB71028180D009BBBED /* NGDBResultSet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDE0389A1025BE03000243F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE039241025BE57000243F1 /* NGDBTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CDE038A21025BE08000243F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* NGDatabase */;
+			targetProxy = CDE038A11025BE08000243F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1667FE841158C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = p_ngdatabase.h;
+				HEADER_SEARCH_PATHS = "$(MYSQL_INCLUDES)";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(MYSQL_LIBDIR)",
+					"\"/usr/local/mysql-5.1.32-osx10.5-x86_64/lib\"",
+				);
+				PRODUCT_NAME = NGDatabase;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = p_ngdatabase.h;
+				HEADER_SEARCH_PATHS = "$(MYSQL_INCLUDES)";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(MYSQL_LIBDIR)",
+					"\"/usr/local/mysql-5.1.32-osx10.5-x86_64/lib\"",
+				);
+				PRODUCT_NAME = NGDatabase;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MYSQL_INCLUDES = "$(MYSQL_PREFIX)/include/mysql";
+				MYSQL_LIBDIR = "$(MYSQL_PREFIX)/lib/mysql";
+				MYSQL_LIBS = "-lmysqlclient_r";
+				MYSQL_PREFIX = /opt/mysql5;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MYSQL_INCLUDES = "$(MYSQL_PREFIX)/include/mysql";
+				MYSQL_LIBDIR = "$(MYSQL_PREFIX)/lib/mysql";
+				MYSQL_LIBS = "-lmysqlclient_r";
+				MYSQL_PREFIX = /opt/mysql5;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+		CDE0389F1025BE03000243F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = NGDBTest;
+			};
+			name = Debug;
+		};
+		CDE038A01025BE03000243F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = iSQL;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "NGDatabase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "NGDatabase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDE038A41025BE14000243F1 /* Build configuration list for PBXNativeTarget "NGDBTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDE0389F1025BE03000243F1 /* Debug */,
+				CDE038A01025BE03000243F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
