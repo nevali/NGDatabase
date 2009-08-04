@@ -46,6 +46,7 @@ main(int argc, char **argv)
 	if(argc < 2)
 	{
 		fprintf(stderr, "Usage: %s URL\n", argv[0]);
+		fprintf(stderr, "  For example: mysql://yourname:password@localhost/dbname\n");
 		return 1;
 	}
 	url = [[NSString alloc] initWithUTF8String:argv[1]];
@@ -58,7 +59,7 @@ main(int argc, char **argv)
 	}
 
 	NSLog(@"Creating a temporary table");
-	if(![db executeSQL:@"CREATE TEMPORARY TABLE [ngdbtest] ("
+	if(![db executeSQL:@"CREATE TEMPORARY TABLE {ngdbtest} ("
 		" [id] INT NOT NULL, "
 		" [name] VARCHAR(64), "
 		" PRIMARY KEY([id]) "
@@ -68,7 +69,7 @@ main(int argc, char **argv)
 		[db release];
 		return 1;
 	}
-	if(![db executeSQL:@"INSERT INTO [ngdbtest] ([id],[name]) VALUES (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?)" status:&err,
+	if(![db executeSQL:@"INSERT INTO {ngdbtest} ([id],[name]) VALUES (?, ?), (?, ?), (?, ?), (?, ?), (?, ?), (?, ?)" status:&err,
 		@"1", @"Mr John Smith",
 		@"5", @"Mr Fred Smith",
 		@"4", NGDBNull,
@@ -81,7 +82,7 @@ main(int argc, char **argv)
 		[db release];
 		return 1;
 	}	
-	rs = [db query:@"SELECT * FROM [ngdbtest] WHERE [id] > ? AND [name] IS NOT NULL" status:&err,
+	rs = [db query:@"SELECT * FROM {ngdbtest} WHERE [id] > ? AND [name] IS NOT NULL" status:&err,
 		  @"1",
 		  nil];
 	if(rs)
@@ -97,7 +98,7 @@ main(int argc, char **argv)
 	{
 		NSLog(@"No result-set returned: %@", err);
 	}
-	[db executeSQL:@"DROP TEMPORARY TABLE [ngdbtest]" withArray:nil status:NULL];
+	[db executeSQL:@"DROP TEMPORARY TABLE {ngdbtest}" withArray:nil status:NULL];
 	
 	[db release];
 	
