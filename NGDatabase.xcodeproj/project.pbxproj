@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		CDDDF4C4102988BC001AC050 /* NGDBStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = CDDDF4C2102988BC001AC050 /* NGDBStatement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDDDF4C5102988BC001AC050 /* NGDBStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDDF4C3102988BC001AC050 /* NGDBStatement.m */; };
 		CDE038611025A9AA000243F1 /* NGDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE038601025A9AA000243F1 /* NGDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDE038641025ABA6000243F1 /* NGDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE038631025ABA6000243F1 /* NGDatabase.m */; };
 		CDE038671025ABF2000243F1 /* NGMySQLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE038651025ABF2000243F1 /* NGMySQLConnection.h */; };
@@ -20,7 +22,7 @@
 		CDE03A331025D02C000243F1 /* NGDBError.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE03A321025D02C000243F1 /* NGDBError.m */; };
 		CDE25A9A10279608009BBBED /* NGMySQLResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE25A9910279608009BBBED /* NGMySQLResultSet.m */; };
 		CDE25AB71028180D009BBBED /* NGDBResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE25AB61028180D009BBBED /* NGDBResultSet.m */; };
-		CDF90A461027138F00240ACD /* NGDBDriver.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A451027138F00240ACD /* NGDBDriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDF90A461027138F00240ACD /* NGDBDriver.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A451027138F00240ACD /* NGDBDriver.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CDF90A49102713F600240ACD /* NGDBConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A48102713F600240ACD /* NGDBConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDF90A4B102714AE00240ACD /* NGDBError.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A4A102714AE00240ACD /* NGDBError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDF90A4D1027152A00240ACD /* NGDBResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A4C1027152A00240ACD /* NGDBResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,6 +45,8 @@
 		32DBCF5E0370ADEE00C91783 /* p_ngdatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = p_ngdatabase.h; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* NGDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NGDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDDDF4C2102988BC001AC050 /* NGDBStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBStatement.h; sourceTree = "<group>"; };
+		CDDDF4C3102988BC001AC050 /* NGDBStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBStatement.m; sourceTree = "<group>"; };
 		CDE038601025A9AA000243F1 /* NGDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDatabase.h; sourceTree = "<group>"; };
 		CDE038631025ABA6000243F1 /* NGDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDatabase.m; sourceTree = "<group>"; };
 		CDE038651025ABF2000243F1 /* NGMySQLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGMySQLConnection.h; sourceTree = "<group>"; };
@@ -102,6 +106,14 @@
 			name = DBCore;
 			sourceTree = "<group>";
 		};
+		CDDDF5151029A97C001AC050 /* Private Headers */ = {
+			isa = PBXGroup;
+			children = (
+				CDF90A451027138F00240ACD /* NGDBDriver.h */,
+			);
+			name = "Private Headers";
+			sourceTree = "<group>";
+		};
 		CDE038991025BDEE000243F1 /* NGDBTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +126,7 @@
 		CDE038A31025BE14000243F1 /* NGDatabase */ = {
 			isa = PBXGroup;
 			children = (
+				CDDDF5151029A97C001AC050 /* Private Headers */,
 				CDF90AAD1027294E00240ACD /* Public Headers */,
 				CDF90AAC1027294600240ACD /* Core */,
 				CDF90A9C1027289B00240ACD /* MySQL */,
@@ -140,6 +153,7 @@
 				CDE038631025ABA6000243F1 /* NGDatabase.m */,
 				CDE03A321025D02C000243F1 /* NGDBError.m */,
 				CDF90A4E1027156C00240ACD /* NGDBConnection.m */,
+				CDDDF4C3102988BC001AC050 /* NGDBStatement.m */,
 				CDE25AB61028180D009BBBED /* NGDBResultSet.m */,
 				8DC2EF5A0486A6940098B216 /* Info.plist */,
 				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
@@ -150,11 +164,11 @@
 		CDF90AAD1027294E00240ACD /* Public Headers */ = {
 			isa = PBXGroup;
 			children = (
-				CDF90A451027138F00240ACD /* NGDBDriver.h */,
 				CDF90A48102713F600240ACD /* NGDBConnection.h */,
 				CDF90A4A102714AE00240ACD /* NGDBError.h */,
 				CDF90A4C1027152A00240ACD /* NGDBResultSet.h */,
 				CDE038601025A9AA000243F1 /* NGDatabase.h */,
+				CDDDF4C2102988BC001AC050 /* NGDBStatement.h */,
 			);
 			name = "Public Headers";
 			sourceTree = "<group>";
@@ -172,6 +186,7 @@
 				CDF90A49102713F600240ACD /* NGDBConnection.h in Headers */,
 				CDF90A4B102714AE00240ACD /* NGDBError.h in Headers */,
 				CDF90A4D1027152A00240ACD /* NGDBResultSet.h in Headers */,
+				CDDDF4C4102988BC001AC050 /* NGDBStatement.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +287,7 @@
 				CDF90A4F1027156C00240ACD /* NGDBConnection.m in Sources */,
 				CDE25A9A10279608009BBBED /* NGMySQLResultSet.m in Sources */,
 				CDE25AB71028180D009BBBED /* NGDBResultSet.m in Sources */,
+				CDDDF4C5102988BC001AC050 /* NGDBStatement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

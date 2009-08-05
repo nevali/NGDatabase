@@ -32,11 +32,6 @@
 
 # include "NGDBConnection.h"
 
-typedef enum {
-	NGDBEF_None = 0,
-	NGDBEF_Unbuffered = (1<<0)
-} NGDBExecFlags;
-
 @interface NGDBConnection (NGDBDriverMethods)
 
 - (id) initWithOptions:(NSDictionary *)options status:(NSError **)status;
@@ -44,7 +39,14 @@ typedef enum {
 - (void *) exec:(NSString *)query flags:(NGDBExecFlags)flags status:(NSError **)status;
 - (id) createResultSet:(void *)result status:(NSError **)status;
 - (void) freeResult:(void *)result;
-- (NSString *) intersperseQuery:(NSString *)query withArray:(NSArray *)array addSuffix:(NSString *)suffix;
+- (NSString *) intersperseQuery:(NSString *)query substituteParams:(BOOL)subParams paramsArray:(NSArray *)array addSuffix:(NSString *)suffix status:(NSError **)status;
+- (NGDBExecFlags) execFlags;
+
+@end
+
+@interface NGDBStatement (NGDBDriverMethods)
+
+- (void *)exec:(NSArray *)params flags:(NGDBExecFlags)flags status:(NSError **)status;
 
 @end
 

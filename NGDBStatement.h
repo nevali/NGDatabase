@@ -25,37 +25,28 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef NGDATABASE_H_
-# define NGDATABASE_H_                 1
+#ifndef NGDATABASE_NGDBSTATEMENT_H_
+# define NGDATABASE_NGDBSTATEMENT_H_   1
 
-# import <Foundation/Foundation.h>
-
-typedef enum {
-	NGDBEF_None = 0,
-	NGDBEF_Unbuffered = (1<<0),
-	NGDBEF_Uncached = (1<<1)
-} NGDBExecFlags;
-
-# include "NGDBError.h"
-# include "NGDBResultSet.h"
-# include "NGDBConnection.h"
-# include "NGDBStatement.h"
-
-extern NSString *const NGDBErrorDomain; 
-extern NSString *const NGDBNull; 
-extern NSString *const NGDBDefault;
-
-@interface NGDatabase : NSObject
+@interface NGDBStatement : NSObject
 {
-@private
-	NSMutableDictionary *drivers;
+@protected
+	NGDBConnection *connection;
+	NSString *statement;
+	NGDBExecFlags execFlags;
 }
 
-+ (NGDatabase *)sharedDatabaseManager;
+- (id)initWithStatement:(NSString *)statement connection:(NGDBConnection *)conn status:(NSError **)status;
 
-- (BOOL)addDriverClass:(NSString *)className forScheme:(NSString *)scheme;
-- (Class)driverForScheme:(NSString *)scheme;
+- (BOOL)execute:(NSError **)status, ...;
+- (BOOL)executeWithArray:(NSArray *)params status:(NSError **)status;
+
+- (id)query:(NSError **)status, ...;
+- (id)queryWithArray:(NSArray *)params status:(NSError **)status;
+
+- (NGDBConnection *)connection;
+- (NSString *)statement;
 
 @end
 
-#endif /* !NGDATABASE_H_ */
+#endif /* !NGDATABASE_NGDBSTATEMENT_H_ */

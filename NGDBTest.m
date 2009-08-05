@@ -38,6 +38,7 @@ main(int argc, char **argv)
 {
 	NGDBConnection *db;
 	NGDBResultSet *rs;
+	NGDBStatement *st;
 	NSDictionary *row;
 	NSArray *rows;
 	NSError *err = nil;
@@ -112,8 +113,7 @@ main(int argc, char **argv)
 	else
 	{
 		NSLog(@"No result-set returned: %@", err);
-	}
-	
+	}	
 	if(!(row = [db getRow:@"SELECT * FROM {TEST} WHERE [id] = ?" status:&err, @"3", nil]) && !err)
 	{
 		NSLog(@"Error: %@", err);
@@ -137,7 +137,39 @@ main(int argc, char **argv)
 	}
 	NSLog(@"Rows: %@", rows);
 	[rows release];
+
+	if(!(st = [db prepare:@"UPDATE {TEST} SET [name] = ? WHERE [id] = ?" status:&err]))
+	{
+		NSLog(@"Error during prepare: %@", err);
+		[db release];
+		return 1;
+	}
+	if(![st execute:&err, @"The Joker", @"13"])
+	{
+		NSLog(@"Error during prepared exec: %@", err);
+		[st release];
+		[db release];
+		return 1;
+	}
+	if(![st execute:&err, @"Lex Luthor", @"10"])
+	{
+		NSLog(@"Error during prepared exec: %@", err);
+		[st release];
+		[db release];
+		return 1;
+	}		
+	[st release];
+
+	if(!(rows = [db getAll:@"SELECT * FROM {TEST} WHERE [id] BETWEEN ? AND ?" status:&err, @"10", @"13", nil]))
+	{
+		NSLog(@"Error: %@", err);
+		[db release];
+		return 1;
+	}
+	NSLog(@"Rows: %@", rows);
+	[rows release];
 	
+		
 	[db executeSQL:@"DROP TEMPORARY TABLE {ngdbtest}" withArray:nil status:NULL];
 	
 	[db release];

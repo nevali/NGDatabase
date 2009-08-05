@@ -36,6 +36,7 @@
 @protected
 	NSTimeZone *timeZone;
 	NSMutableDictionary *aliases;
+	NGDBExecFlags execFlags;
 }
 
 /** +connectionWithURLString:options:status:
@@ -136,20 +137,6 @@
 	[super dealloc];
 }
 
-#define VA_TO_NSARRAY(rest, array) { \
-	int c; \
-	va_list ap; \
-	id *objs; \
-	va_start(ap, rest); \
-	for(c = 0; c < 64 && va_arg(ap, id); c++); \
-	va_end(ap); \
-	objs = (NSObject **) alloca((c + 1) * sizeof(id)); \
-	va_start(ap, rest); \
-	for(c = 0; c < 64 && (objs[c] = va_arg(ap, id)); c++); \
-	va_end(ap); \
-	array = [[NSArray alloc] initWithObjects:objs count:c]; \
-}
-
 /** -executeSQL:status:, ...
  *
  * Execute a (possibly parametised) statement, returning TRUE if it executed
@@ -195,8 +182,11 @@
 	NSError *err = NULL;
 	NSString *sql;
 	
-	sql = [self intersperseQuery:query withArray:params addSuffix:nil];
-	r = [self exec:sql flags:NGDBEF_None status:&err];
+	if(!(sql = [self intersperseQuery:query substituteParams:TRUE paramsArray:params addSuffix:nil status:status]))
+	{
+		return FALSE;
+	}
+	r = [self exec:sql flags:execFlags status:&err];
 	if(r)
 	{
 		[self freeResult:r];
@@ -204,14 +194,7 @@
 	}
 	else if(err)
 	{
-		if(status)
-		{
-			*status = err;
-		}
-		else
-		{
-			[err release];
-		}
+		ASSIGN_ERROR(err, status);
 		return FALSE;
 	}
 	return TRUE;
@@ -265,20 +248,30 @@
 - (id) query:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
 {
 	NSString *sql;
+	NSError *err = NULL;
 	void *result;
 	id rs;
 	
-	sql = [self intersperseQuery:query withArray:params addSuffix:nil];
-	result = [self exec:sql flags:NGDBEF_None status:status];
+	if(!(sql = [self intersperseQuery:query substituteParams:TRUE paramsArray:params addSuffix:nil status:&err]))
+	{
+		ASSIGN_ERROR(err, status);
+		return nil;
+	}
+	result = [self exec:sql flags:execFlags status:&err];
 	[sql release];
 	if(result)
 	{
-		if((rs = [self createResultSet:result status:status]))
+		if((rs = [self createResultSet:result status:&err]))
 		{
+			ASSIGN_ERROR(err, status);
 			return rs;
 		}
 		[self freeResult:result];
 		return nil;
+	}
+	else
+	{
+		ASSIGN_ERROR(err, status);
 	}
 	return nil;
 }
@@ -648,7 +641,7 @@
 		return FALSE;
 	}
 	[targ release];
-	rp = [self exec:sql flags:NGDBEF_None status:&err];
+	rp = [self exec:sql flags:execFlags status:&err];
 	if(rp || !err)
 	{
 		r = TRUE;
@@ -673,7 +666,6 @@
  *
  * Drivers should not override this method.
  */
-
 - (BOOL)alias:(NSString *)alias forObject:(NSString *)obj
 {
 	return [self alias:alias forObject:obj inSchema:nil inDatabase:nil];
@@ -689,7 +681,6 @@
  *
  * Drivers should not override this method.
  */
-
 - (BOOL)alias:(NSString *)alias forObject:(NSString *)obj inSchema:(NSString *)schema inDatabase:(NSString *)db
 {
 	NSString *target;
@@ -822,6 +813,121 @@
 	return results;
 }
 
+/** - setUnbuffered:
+ *
+ * If TRUE, request that future queries be unbuffered if appropriate.
+ * If FALSE, request that future queries should be buffered (the default).
+ *
+ * Typically, a driver's underlying implementation will buffer the results of
+ * queries. This allows multiple queries to be interspersed with one another
+ * in a single connection and also allows information, such as the total
+ * number of rows in a result-set, to be returned before the end of the set
+ * has been reached.
+ *
+ * In unbuffered mode, data is returned to the client by the database server
+ * on a row-by-row basis, and generally only one query may be active at a time.
+ * Attempting to execute a second query while an NGDBResultSet instance
+ * resulting from an unbuffered query exists will cause an error.
+ *
+ * Note that the precise interpretation of this flag is implementation-defined,
+ * and it may have no effect at all. Assuming that the above constraints apply
+ * ensures that users of this framework will be portable between database
+ * systems.
+ *
+ * Drivers should not override this method.
+ */
+- (void)setUnbuffered:(BOOL)flag
+{
+	if(flag)
+	{
+		execFlags |= NGDBEF_Unbuffered;
+	}
+	else
+	{
+		execFlags &= ~NGDBEF_Unbuffered;
+	}
+}
+
+/** - isUnbuffered
+ *
+ * Return TRUE if the connection is in unbuffered mode, FALSE otherwise.
+ *
+ * Drivers should not override this method.
+ *
+ */
+- (BOOL)isUnbuffered
+{
+	return (execFlags & NGDBEF_Unbuffered ? TRUE : FALSE);
+}
+
+/** - setUncached:
+ *
+ * If a database server has been configured to cache the results of identical
+ * queries where the underlying objects have not caused the cache to become
+ * invalidated, the default is to permit this to occur.
+ *
+ * If TRUE, request that future queries ignore any query-caching mechanisms.
+ * If FALSE, request that future queries make use of available query caches
+ * (the default).
+ *
+ * Note that the precise interpretation of this flag is implementation-defined,
+ * and it may have no effect at all. Assuming that the above constraints apply
+ * ensures that users of this framework will be portable between database
+ * systems.
+ *
+ * Drivers should not override this method.
+ */
+- (void)setUncached:(BOOL)flag
+{
+	if(flag)
+	{
+		execFlags |= NGDBEF_Uncached;
+	}
+	else
+	{
+		execFlags &= ~NGDBEF_Uncached;
+	}
+}
+
+/** - isUncached
+ *
+ * Return TRUE if the connection is in uncached mode, FALSE otherwise.
+ *
+ * Drivers should not override this method.
+ *
+ */
+- (BOOL)isUncached
+{
+	return (execFlags & NGDBEF_Uncached ? TRUE : FALSE);
+}
+
+/** - prepare:status:
+ *
+ * Prepare a statement for later execution.
+ *
+ * A prepared statement is one which can be repeatedly executed, passing
+ * alternative sets of parameters with each invocation. A database server
+ * may make it possible to optimise this operation, where the query itself
+ * is only parsed once and the parameters are substituted by the server at
+ * invocation time.
+ *
+ * Upon success, an NGDBStatement instance will be returned representing
+ * the statement.
+ *
+ * If an error occurs, nil will be returned and status:, if provided, will
+ * be modified to point to an NSError instance describing the error condition.
+ *
+ * Note that aliases are resolved immediately upon calling this method
+ * (rather than at statement invocation time), and that the returned
+ * NGDBStatement instance will maintain the state of the unbuffered and
+ * uncached flags and apply them consistently to any queries it executes.
+ *
+ * Drivers should override this method where they subclass NGDBStatement.
+ */
+- (id)prepare:(NSString *)stmt status:(NSError **)status
+{
+	return [[NGDBStatement alloc] initWithStatement:stmt connection:self status:status];
+}
 
 @end
 
@@ -841,6 +947,7 @@
 	
 	if((self = [super init]))
 	{
+		execFlags = NGDBEF_None;
 		if(options)
 		{
 			if((tzname = [options objectForKey:@"timeZone"]))
@@ -874,7 +981,7 @@
 	return nil;
 }
 
-/** -intersperseQuery:withArray:
+/** -intersperseQuery:substituteParams:paramsArray:addSuffix:status:
  *
  * Replaces unquoted instances of the '?' character with successive quoted
  * values taken from the specified array.
@@ -899,9 +1006,13 @@
  * names which should have alias matching performed upon them (where possible)
  * and fully-qualified (again, where possible).
  *
- * Question marks denote parameters, whose (raw) values will be taken from
- * the withArray: argument and quoted (via -quote:) before insertion into
- * the final result.
+ * If substituteParams is TRUE, question marks denote parameters whose (raw)
+ * values will be taken from the paramsArray: argument and quoted (via -quote:)
+ * before insertion into the final result. If too few parameters are provided
+ * for substitution, an error will occur and nil will be returned.
+ *
+ * If substituteParams is FALSE, question marks will be included literally
+ * in the result and paramsArray: will be ignored.
  *
  * A typical result of interspersing the above statement would be:
  *
@@ -912,7 +1023,7 @@
  * withArray: argument specifies a single NSString parameter with the value
  * "widgets".
  */
-- (NSString *)intersperseQuery:(NSString *)query withArray:(NSArray *)array addSuffix:(NSString *)suffix
+- (NSString *)intersperseQuery:(NSString *)query substituteParams:(BOOL)substituteParams paramsArray:(NSArray *)array addSuffix:(NSString *)suffix status:(NSError **)status
 {
 	NSMutableArray *tarray;
 	NSString *ret, *tmp;
@@ -1036,7 +1147,7 @@
 			e++;
 			continue;
 		}
-		if(src[e] == '?')
+		if(substituteParams && src[e] == '?')
 		{
 			if(e - s)
 			{
@@ -1050,7 +1161,10 @@
 			}
 			if(!array || n >= nobjs)
 			{
-				NSLog(@"Number of parameter placeholders exceeds number of supplied parameters");
+				if(status)
+				{
+					*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-2 reason:@"Number of parameter placeholders exceeds number of supplied parameters" statement:query];
+				}
 				failed = TRUE;
 				break;
 			}
@@ -1134,7 +1248,6 @@
  *
  * Drivers must override this method.
  */
-
 - (void *)exec:(NSString *)query flags:(NGDBExecFlags)flags status:(NSError **)status
 {
 	(void) query;
@@ -1144,6 +1257,11 @@
 		*status = [[NGDBError alloc] initWithDriver:nil sqlState:nil code:-1 reason:@"Cannot execute query: not connected to a database" statement:query];
 	}
 	return NULL;
+}
+
+- (NGDBExecFlags) execFlags
+{
+	return execFlags;
 }
 
 @end

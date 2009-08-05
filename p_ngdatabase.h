@@ -34,4 +34,28 @@
 #  import "NGDBDriver.h"
 # endif
 
+#define VA_TO_NSARRAY(rest, array) { \
+int c; \
+va_list ap; \
+id *objs; \
+va_start(ap, rest); \
+for(c = 0; c < 64 && va_arg(ap, id); c++); \
+va_end(ap); \
+objs = (NSObject **) alloca((c + 1) * sizeof(id)); \
+va_start(ap, rest); \
+for(c = 0; c < 64 && (objs[c] = va_arg(ap, id)); c++); \
+va_end(ap); \
+array = [[NSArray alloc] initWithObjects:objs count:c]; \
+}
+
+#define ASSIGN_ERROR(src, dest) \
+if(dest) \
+{ \
+	*dest = src; \
+} \
+else if(src) \
+{ \
+	[src release]; \
+}
+
 #endif /* !P_NGDATABASE_H_ */

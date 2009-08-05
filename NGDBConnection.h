@@ -38,6 +38,7 @@
 @protected
 	NSTimeZone *timeZone;
 	NSMutableDictionary *aliases;
+	NGDBExecFlags execFlags;
 }
 
 + (id)connectionWithURL:(NSURL *)url options:(NSDictionary *)options status:(NSError **)status;
@@ -51,6 +52,8 @@
 
 - (id)query:(NSString *)query status:(NSError **)status, ...;
 - (id)query:(NSString *)query withArray:(NSArray *)params status:(NSError **)result;
+
+- (id)prepare:(NSString *)statement status:(NSError **)status;
 
 - (NSDictionary *)getRow:(NSString *)query status:(NSError **)status, ...;
 - (NSDictionary *)getRow:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
@@ -75,6 +78,10 @@
 - (BOOL)connected;
 
 - (void)setTimeZone:(NSTimeZone *)newTimeZone;
+- (void)setUnbuffered:(BOOL)flag;
+- (BOOL)isUnbuffered;
+- (void)setUncached:(BOOL)flag;
+- (BOOL)isUncached;
 
 @end
 
