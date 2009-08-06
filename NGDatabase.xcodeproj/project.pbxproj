@@ -8,19 +8,182 @@
 
 /* Begin PBXBuildFile section */
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		CDD2A75E102B861700D00011 /* NGMySQLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE038661025ABF2000243F1 /* NGMySQLConnection.m */; };
+		CDD2A75F102B861700D00011 /* NGMySQLResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE25A9910279608009BBBED /* NGMySQLResultSet.m */; };
+		CDD2A77C102B87B100D00011 /* libmysqlclient_r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE10FE5102AFCE50021D162 /* libmysqlclient_r.a */; };
+		CDD2A78F102B890D00D00011 /* vio.c in Sources */ = {isa = PBXBuildFile; fileRef = CDD2A78B102B890D00D00011 /* vio.c */; };
+		CDD2A790102B890D00D00011 /* viosocket.c in Sources */ = {isa = PBXBuildFile; fileRef = CDD2A78C102B890D00D00011 /* viosocket.c */; };
+		CDD2A791102B890D00D00011 /* viossl.c in Sources */ = {isa = PBXBuildFile; fileRef = CDD2A78D102B890D00D00011 /* viossl.c */; };
+		CDD2A792102B890D00D00011 /* viosslfactories.c in Sources */ = {isa = PBXBuildFile; fileRef = CDD2A78E102B890D00D00011 /* viosslfactories.c */; };
+		CDD2A79B102B895800D00011 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = CDD2A798102B895800D00011 /* client.c */; };
+		CDD2A79C102B895800D00011 /* my_time.c in Sources */ = {isa = PBXBuildFile; fileRef = CDD2A799102B895800D00011 /* my_time.c */; };
+		CDD2A79D102B895800D00011 /* pack.c in Sources */ = {isa = PBXBuildFile; fileRef = CDD2A79A102B895800D00011 /* pack.c */; };
+		CDD2A7A0102B897400D00011 /* vio_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A79F102B897400D00011 /* vio_priv.h */; };
+		CDD2A7AD102B8A0500D00011 /* net_serv.cc in Sources */ = {isa = PBXBuildFile; fileRef = CDD2A7AC102B8A0500D00011 /* net_serv.cc */; };
+		CDD2A7BA102B8A8900D00011 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD2A7B9102B8A8900D00011 /* libz.dylib */; };
+		CDD2A7E5102B8B8B00D00011 /* errmsg.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7C3102B8B8B00D00011 /* errmsg.h */; };
+		CDD2A7E6102B8B8B00D00011 /* hash.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7C4102B8B8B00D00011 /* hash.h */; };
+		CDD2A7E7102B8B8B00D00011 /* help_end.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7C5102B8B8B00D00011 /* help_end.h */; };
+		CDD2A7E8102B8B8B00D00011 /* help_start.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7C6102B8B8B00D00011 /* help_start.h */; };
+		CDD2A7E9102B8B8B00D00011 /* m_ctype.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7C7102B8B8B00D00011 /* m_ctype.h */; };
+		CDD2A7EA102B8B8B00D00011 /* m_string.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7C8102B8B8B00D00011 /* m_string.h */; };
+		CDD2A7EB102B8B8B00D00011 /* my_alarm.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7C9102B8B8B00D00011 /* my_alarm.h */; };
+		CDD2A7EC102B8B8B00D00011 /* my_alloc.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7CA102B8B8B00D00011 /* my_alloc.h */; };
+		CDD2A7ED102B8B8B00D00011 /* my_attribute.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7CB102B8B8B00D00011 /* my_attribute.h */; };
+		CDD2A7EE102B8B8B00D00011 /* my_base.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7CC102B8B8B00D00011 /* my_base.h */; };
+		CDD2A7EF102B8B8B00D00011 /* my_dbug.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7CD102B8B8B00D00011 /* my_dbug.h */; };
+		CDD2A7F0102B8B8B00D00011 /* my_dir.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7CE102B8B8B00D00011 /* my_dir.h */; };
+		CDD2A7F1102B8B8B00D00011 /* my_getopt.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7CF102B8B8B00D00011 /* my_getopt.h */; };
+		CDD2A7F2102B8B8B00D00011 /* my_global.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7D0102B8B8B00D00011 /* my_global.h */; };
+		CDD2A7F3102B8B8B00D00011 /* my_list.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7D1102B8B8B00D00011 /* my_list.h */; };
+		CDD2A7F4102B8B8B00D00011 /* my_md5.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7D2102B8B8B00D00011 /* my_md5.h */; };
+		CDD2A7F5102B8B8B00D00011 /* my_net.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7D3102B8B8B00D00011 /* my_net.h */; };
+		CDD2A7F6102B8B8B00D00011 /* my_pthread.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7D4102B8B8B00D00011 /* my_pthread.h */; };
+		CDD2A7F7102B8B8B00D00011 /* my_sys.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7D5102B8B8B00D00011 /* my_sys.h */; };
+		CDD2A7F8102B8B8B00D00011 /* my_time.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7D6102B8B8B00D00011 /* my_time.h */; };
+		CDD2A7F9102B8B8B00D00011 /* my_uctype.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7D7102B8B8B00D00011 /* my_uctype.h */; };
+		CDD2A7FA102B8B8B00D00011 /* my_xml.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7D8102B8B8B00D00011 /* my_xml.h */; };
+		CDD2A7FB102B8B8B00D00011 /* mysql.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7D9102B8B8B00D00011 /* mysql.h */; };
+		CDD2A7FC102B8B8B00D00011 /* mysql_com.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7DA102B8B8B00D00011 /* mysql_com.h */; };
+		CDD2A7FD102B8B8B00D00011 /* mysql_embed.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7DB102B8B8B00D00011 /* mysql_embed.h */; };
+		CDD2A7FE102B8B8B00D00011 /* mysql_time.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7DC102B8B8B00D00011 /* mysql_time.h */; };
+		CDD2A7FF102B8B8B00D00011 /* mysqld_error.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7DD102B8B8B00D00011 /* mysqld_error.h */; };
+		CDD2A800102B8B8B00D00011 /* mysys_err.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7DE102B8B8B00D00011 /* mysys_err.h */; };
+		CDD2A801102B8B8B00D00011 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7DF102B8B8B00D00011 /* sha1.h */; };
+		CDD2A802102B8B8B00D00011 /* sql_common.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7E0102B8B8B00D00011 /* sql_common.h */; };
+		CDD2A803102B8B8B00D00011 /* t_ctype.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7E1102B8B8B00D00011 /* t_ctype.h */; };
+		CDD2A804102B8B8B00D00011 /* thr_alarm.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7E2102B8B8B00D00011 /* thr_alarm.h */; };
+		CDD2A805102B8B8B00D00011 /* typelib.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7E3102B8B8B00D00011 /* typelib.h */; };
+		CDD2A806102B8B8B00D00011 /* violite.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A7E4102B8B8B00D00011 /* violite.h */; };
+		CDD2A80A102B8BA000D00011 /* my_config.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A808102B8BA000D00011 /* my_config.h */; };
+		CDD2A80B102B8BA000D00011 /* mysql_version.h in Headers */ = {isa = PBXBuildFile; fileRef = CDD2A809102B8BA000D00011 /* mysql_version.h */; };
 		CDDDF4C4102988BC001AC050 /* NGDBStatement.h in Headers */ = {isa = PBXBuildFile; fileRef = CDDDF4C2102988BC001AC050 /* NGDBStatement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDDDF4C5102988BC001AC050 /* NGDBStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDDF4C3102988BC001AC050 /* NGDBStatement.m */; };
 		CDE038611025A9AA000243F1 /* NGDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE038601025A9AA000243F1 /* NGDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDE038641025ABA6000243F1 /* NGDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE038631025ABA6000243F1 /* NGDatabase.m */; };
-		CDE038671025ABF2000243F1 /* NGMySQLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE038651025ABF2000243F1 /* NGMySQLConnection.h */; };
-		CDE038681025ABF2000243F1 /* NGMySQLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE038661025ABF2000243F1 /* NGMySQLConnection.m */; };
 		CDE038921025BDAC000243F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE038911025BDAC000243F1 /* Foundation.framework */; };
 		CDE039241025BE57000243F1 /* NGDBTest.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE039231025BE57000243F1 /* NGDBTest.m */; };
 		CDE039271025BF11000243F1 /* NGDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* NGDatabase.framework */; };
 		CDE039281025BF17000243F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE038911025BDAC000243F1 /* Foundation.framework */; };
-		CDE039791025C6DE000243F1 /* libmysqlclient_r.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE039781025C6DE000243F1 /* libmysqlclient_r.dylib */; };
 		CDE03A331025D02C000243F1 /* NGDBError.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE03A321025D02C000243F1 /* NGDBError.m */; };
-		CDE25A9A10279608009BBBED /* NGMySQLResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE25A9910279608009BBBED /* NGMySQLResultSet.m */; };
+		CDE11002102AFD340021D162 /* client_settings.h in Headers */ = {isa = PBXBuildFile; fileRef = CDE10FFA102AFD340021D162 /* client_settings.h */; };
+		CDE11005102AFD340021D162 /* errmsg.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE10FFD102AFD340021D162 /* errmsg.c */; };
+		CDE11006102AFD340021D162 /* get_password.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE10FFE102AFD340021D162 /* get_password.c */; };
+		CDE11007102AFD340021D162 /* libmysql.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE10FFF102AFD340021D162 /* libmysql.c */; };
+		CDE11008102AFD340021D162 /* manager.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11000102AFD340021D162 /* manager.c */; };
+		CDE11009102AFD340021D162 /* password.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11001102AFD340021D162 /* password.c */; };
+		CDE1105F102B077B0021D162 /* bchange.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11030102B077B0021D162 /* bchange.c */; };
+		CDE11060102B077B0021D162 /* bcmp.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11031102B077B0021D162 /* bcmp.c */; };
+		CDE11061102B077B0021D162 /* bmove.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11032102B077B0021D162 /* bmove.c */; };
+		CDE11062102B077B0021D162 /* bmove_upp.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11033102B077B0021D162 /* bmove_upp.c */; };
+		CDE11063102B077B0021D162 /* ctype-big5.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11034102B077B0021D162 /* ctype-big5.c */; };
+		CDE11064102B077B0021D162 /* ctype-bin.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11035102B077B0021D162 /* ctype-bin.c */; };
+		CDE11065102B077B0021D162 /* ctype-cp932.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11036102B077B0021D162 /* ctype-cp932.c */; };
+		CDE11066102B077B0021D162 /* ctype-czech.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11037102B077B0021D162 /* ctype-czech.c */; };
+		CDE11067102B077B0021D162 /* ctype-euc_kr.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11038102B077B0021D162 /* ctype-euc_kr.c */; };
+		CDE11068102B077B0021D162 /* ctype-eucjpms.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11039102B077B0021D162 /* ctype-eucjpms.c */; };
+		CDE11069102B077B0021D162 /* ctype-extra.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1103A102B077B0021D162 /* ctype-extra.c */; };
+		CDE1106A102B077B0021D162 /* ctype-gb2312.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1103B102B077B0021D162 /* ctype-gb2312.c */; };
+		CDE1106B102B077B0021D162 /* ctype-gbk.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1103C102B077B0021D162 /* ctype-gbk.c */; };
+		CDE1106C102B077B0021D162 /* ctype-latin1.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1103D102B077B0021D162 /* ctype-latin1.c */; };
+		CDE1106D102B077B0021D162 /* ctype-mb.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1103E102B077B0021D162 /* ctype-mb.c */; };
+		CDE1106E102B077B0021D162 /* ctype-simple.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1103F102B077B0021D162 /* ctype-simple.c */; };
+		CDE1106F102B077B0021D162 /* ctype-sjis.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11040102B077B0021D162 /* ctype-sjis.c */; };
+		CDE11070102B077B0021D162 /* ctype-tis620.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11041102B077B0021D162 /* ctype-tis620.c */; };
+		CDE11071102B077B0021D162 /* ctype-uca.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11042102B077B0021D162 /* ctype-uca.c */; };
+		CDE11072102B077B0021D162 /* ctype-ucs2.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11043102B077B0021D162 /* ctype-ucs2.c */; };
+		CDE11073102B077B0021D162 /* ctype-ujis.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11044102B077B0021D162 /* ctype-ujis.c */; };
+		CDE11074102B077B0021D162 /* ctype-utf8.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11045102B077B0021D162 /* ctype-utf8.c */; };
+		CDE11075102B077B0021D162 /* ctype-win1250ch.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11046102B077B0021D162 /* ctype-win1250ch.c */; };
+		CDE11076102B077B0021D162 /* ctype.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11047102B077B0021D162 /* ctype.c */; };
+		CDE11077102B077B0021D162 /* int2str.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11048102B077B0021D162 /* int2str.c */; };
+		CDE11078102B077B0021D162 /* is_prefix.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11049102B077B0021D162 /* is_prefix.c */; };
+		CDE11079102B077B0021D162 /* llstr.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1104A102B077B0021D162 /* llstr.c */; };
+		CDE1107A102B077B0021D162 /* longlong2str.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1104B102B077B0021D162 /* longlong2str.c */; };
+		CDE1107B102B077B0021D162 /* my_strtoll10.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1104C102B077B0021D162 /* my_strtoll10.c */; };
+		CDE1107C102B077B0021D162 /* my_vsnprintf.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1104D102B077B0021D162 /* my_vsnprintf.c */; };
+		CDE1107D102B077B0021D162 /* str2int.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1104E102B077B0021D162 /* str2int.c */; };
+		CDE1107E102B077B0021D162 /* str_alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1104F102B077B0021D162 /* str_alloc.c */; };
+		CDE1107F102B077B0021D162 /* strcend.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11050102B077B0021D162 /* strcend.c */; };
+		CDE11080102B077B0021D162 /* strcont.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11051102B077B0021D162 /* strcont.c */; };
+		CDE11081102B077B0021D162 /* strend.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11052102B077B0021D162 /* strend.c */; };
+		CDE11082102B077B0021D162 /* strfill.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11053102B077B0021D162 /* strfill.c */; };
+		CDE11083102B077B0021D162 /* strinstr.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11054102B077B0021D162 /* strinstr.c */; };
+		CDE11084102B077B0021D162 /* strmake.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11055102B077B0021D162 /* strmake.c */; };
+		CDE11085102B077B0021D162 /* strmov.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11056102B077B0021D162 /* strmov.c */; };
+		CDE11086102B077B0021D162 /* strnlen.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11057102B077B0021D162 /* strnlen.c */; };
+		CDE11087102B077B0021D162 /* strnmov.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11058102B077B0021D162 /* strnmov.c */; };
+		CDE11088102B077B0021D162 /* strtod.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11059102B077B0021D162 /* strtod.c */; };
+		CDE11089102B077B0021D162 /* strtoll.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1105A102B077B0021D162 /* strtoll.c */; };
+		CDE1108A102B077B0021D162 /* strtoull.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1105B102B077B0021D162 /* strtoull.c */; };
+		CDE1108B102B077B0021D162 /* strxmov.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1105C102B077B0021D162 /* strxmov.c */; };
+		CDE1108C102B077B0021D162 /* strxnmov.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1105D102B077B0021D162 /* strxnmov.c */; };
+		CDE1108D102B077B0021D162 /* xml.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1105E102B077B0021D162 /* xml.c */; };
+		CDE11094102B08230021D162 /* dbug.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11092102B08230021D162 /* dbug.c */; };
+		CDE11095102B08230021D162 /* sanity.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11093102B08230021D162 /* sanity.c */; };
+		CDE110D7102B16830021D162 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11098102B16830021D162 /* array.c */; };
+		CDE110D8102B16830021D162 /* charset-def.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE11099102B16830021D162 /* charset-def.c */; };
+		CDE110D9102B16830021D162 /* charset.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1109A102B16830021D162 /* charset.c */; };
+		CDE110DA102B16830021D162 /* default.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1109B102B16830021D162 /* default.c */; };
+		CDE110DB102B16830021D162 /* default_modify.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1109C102B16830021D162 /* default_modify.c */; };
+		CDE110DC102B16830021D162 /* errors.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1109D102B16830021D162 /* errors.c */; };
+		CDE110DD102B16830021D162 /* hash.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1109E102B16830021D162 /* hash.c */; };
+		CDE110DE102B16830021D162 /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE1109F102B16830021D162 /* list.c */; };
+		CDE110DF102B16830021D162 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110A0102B16830021D162 /* md5.c */; };
+		CDE110E0102B16830021D162 /* mf_arr_appstr.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110A1102B16830021D162 /* mf_arr_appstr.c */; };
+		CDE110E1102B16830021D162 /* mf_cache.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110A2102B16830021D162 /* mf_cache.c */; };
+		CDE110E2102B16830021D162 /* mf_dirname.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110A3102B16830021D162 /* mf_dirname.c */; };
+		CDE110E3102B16830021D162 /* mf_fn_ext.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110A4102B16830021D162 /* mf_fn_ext.c */; };
+		CDE110E4102B16830021D162 /* mf_format.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110A5102B16830021D162 /* mf_format.c */; };
+		CDE110E5102B16830021D162 /* mf_iocache.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110A6102B16830021D162 /* mf_iocache.c */; };
+		CDE110E6102B16830021D162 /* mf_iocache2.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110A7102B16830021D162 /* mf_iocache2.c */; };
+		CDE110E7102B16830021D162 /* mf_loadpath.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110A8102B16830021D162 /* mf_loadpath.c */; };
+		CDE110E8102B16830021D162 /* mf_pack.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110A9102B16830021D162 /* mf_pack.c */; };
+		CDE110E9102B16830021D162 /* mf_path.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110AA102B16830021D162 /* mf_path.c */; };
+		CDE110EA102B16830021D162 /* mf_qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110AB102B16830021D162 /* mf_qsort.c */; };
+		CDE110EB102B16830021D162 /* mf_tempfile.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110AC102B16830021D162 /* mf_tempfile.c */; };
+		CDE110EC102B16830021D162 /* mf_unixpath.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110AD102B16830021D162 /* mf_unixpath.c */; };
+		CDE110ED102B16830021D162 /* mf_wcomp.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110AE102B16830021D162 /* mf_wcomp.c */; };
+		CDE110EE102B16830021D162 /* mulalloc.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110AF102B16830021D162 /* mulalloc.c */; };
+		CDE110EF102B16830021D162 /* my_alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110B0102B16830021D162 /* my_alloc.c */; };
+		CDE110F0102B16830021D162 /* my_chsize.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110B1102B16830021D162 /* my_chsize.c */; };
+		CDE110F1102B16830021D162 /* my_compress.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110B2102B16830021D162 /* my_compress.c */; };
+		CDE110F2102B16830021D162 /* my_create.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110B3102B16830021D162 /* my_create.c */; };
+		CDE110F3102B16830021D162 /* my_delete.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110B4102B16830021D162 /* my_delete.c */; };
+		CDE110F4102B16830021D162 /* my_div.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110B5102B16830021D162 /* my_div.c */; };
+		CDE110F5102B16830021D162 /* my_error.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110B6102B16830021D162 /* my_error.c */; };
+		CDE110F6102B16830021D162 /* my_file.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110B7102B16830021D162 /* my_file.c */; };
+		CDE110F7102B16830021D162 /* my_fopen.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110B8102B16830021D162 /* my_fopen.c */; };
+		CDE110F8102B16830021D162 /* my_fstream.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110B9102B16830021D162 /* my_fstream.c */; };
+		CDE110F9102B16830021D162 /* my_gethostbyname.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110BA102B16830021D162 /* my_gethostbyname.c */; };
+		CDE110FA102B16830021D162 /* my_getopt.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110BB102B16830021D162 /* my_getopt.c */; };
+		CDE110FB102B16830021D162 /* my_getsystime.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110BC102B16830021D162 /* my_getsystime.c */; };
+		CDE110FC102B16830021D162 /* my_getwd.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110BD102B16830021D162 /* my_getwd.c */; };
+		CDE110FD102B16830021D162 /* my_init.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110BE102B16830021D162 /* my_init.c */; };
+		CDE110FE102B16830021D162 /* my_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110BF102B16830021D162 /* my_lib.c */; };
+		CDE110FF102B16830021D162 /* my_malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110C0102B16830021D162 /* my_malloc.c */; };
+		CDE11100102B16830021D162 /* my_messnc.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110C1102B16830021D162 /* my_messnc.c */; };
+		CDE11101102B16830021D162 /* my_net.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110C2102B16830021D162 /* my_net.c */; };
+		CDE11102102B16830021D162 /* my_once.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110C3102B16830021D162 /* my_once.c */; };
+		CDE11103102B16830021D162 /* my_open.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110C4102B16830021D162 /* my_open.c */; };
+		CDE11104102B16830021D162 /* my_port.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110C5102B16830021D162 /* my_port.c */; };
+		CDE11105102B16830021D162 /* my_pread.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110C6102B16830021D162 /* my_pread.c */; };
+		CDE11106102B16830021D162 /* my_pthread.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110C7102B16830021D162 /* my_pthread.c */; };
+		CDE11107102B16830021D162 /* my_read.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110C8102B16830021D162 /* my_read.c */; };
+		CDE11108102B16830021D162 /* my_realloc.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110C9102B16830021D162 /* my_realloc.c */; };
+		CDE11109102B16830021D162 /* my_rename.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110CA102B16830021D162 /* my_rename.c */; };
+		CDE1110A102B16830021D162 /* my_seek.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110CB102B16830021D162 /* my_seek.c */; };
+		CDE1110B102B16830021D162 /* my_sleep.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110CC102B16830021D162 /* my_sleep.c */; };
+		CDE1110C102B16830021D162 /* my_static.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110CD102B16830021D162 /* my_static.c */; };
+		CDE1110D102B16830021D162 /* my_symlink.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110CE102B16830021D162 /* my_symlink.c */; };
+		CDE1110E102B16830021D162 /* my_sync.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110CF102B16830021D162 /* my_sync.c */; };
+		CDE1110F102B16830021D162 /* my_thr_init.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110D0102B16830021D162 /* my_thr_init.c */; };
+		CDE11110102B16830021D162 /* my_write.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110D1102B16830021D162 /* my_write.c */; };
+		CDE11111102B16830021D162 /* safemalloc.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110D2102B16830021D162 /* safemalloc.c */; };
+		CDE11112102B16830021D162 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110D3102B16830021D162 /* sha1.c */; };
+		CDE11113102B16830021D162 /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110D4102B16830021D162 /* string.c */; };
+		CDE11114102B16830021D162 /* thr_mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110D5102B16830021D162 /* thr_mutex.c */; };
+		CDE11115102B16830021D162 /* typelib.c in Sources */ = {isa = PBXBuildFile; fileRef = CDE110D6102B16830021D162 /* typelib.c */; };
 		CDE25AB71028180D009BBBED /* NGDBResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE25AB61028180D009BBBED /* NGDBResultSet.m */; };
 		CDF90A461027138F00240ACD /* NGDBDriver.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A451027138F00240ACD /* NGDBDriver.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		CDF90A49102713F600240ACD /* NGDBConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = CDF90A48102713F600240ACD /* NGDBConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,6 +193,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CDD2A778102B879800D00011 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* NGDatabase */;
+			remoteInfo = NGDatabase;
+		};
+		CDD2A77A102B879A00D00011 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDE10FE4102AFCE50021D162 /* mysqlclient_r */;
+			remoteInfo = mysqlclient_r;
+		};
 		CDE038A11025BE08000243F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -45,6 +222,58 @@
 		32DBCF5E0370ADEE00C91783 /* p_ngdatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = p_ngdatabase.h; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* NGDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NGDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDD2A757102B85C300D00011 /* MySQL.dbplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySQL.dbplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDD2A78B102B890D00D00011 /* vio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vio.c; sourceTree = "<group>"; };
+		CDD2A78C102B890D00D00011 /* viosocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = viosocket.c; sourceTree = "<group>"; };
+		CDD2A78D102B890D00D00011 /* viossl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = viossl.c; sourceTree = "<group>"; };
+		CDD2A78E102B890D00D00011 /* viosslfactories.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = viosslfactories.c; sourceTree = "<group>"; };
+		CDD2A798102B895800D00011 /* client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = client.c; sourceTree = "<group>"; };
+		CDD2A799102B895800D00011 /* my_time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_time.c; sourceTree = "<group>"; };
+		CDD2A79A102B895800D00011 /* pack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pack.c; sourceTree = "<group>"; };
+		CDD2A79F102B897400D00011 /* vio_priv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vio_priv.h; sourceTree = "<group>"; };
+		CDD2A7A9102B89C600D00011 /* strto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strto.c; sourceTree = "<group>"; };
+		CDD2A7AC102B8A0500D00011 /* net_serv.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = net_serv.cc; sourceTree = "<group>"; };
+		CDD2A7B9102B8A8900D00011 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CDD2A7C3102B8B8B00D00011 /* errmsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = errmsg.h; sourceTree = "<group>"; };
+		CDD2A7C4102B8B8B00D00011 /* hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hash.h; sourceTree = "<group>"; };
+		CDD2A7C5102B8B8B00D00011 /* help_end.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = help_end.h; sourceTree = "<group>"; };
+		CDD2A7C6102B8B8B00D00011 /* help_start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = help_start.h; sourceTree = "<group>"; };
+		CDD2A7C7102B8B8B00D00011 /* m_ctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_ctype.h; sourceTree = "<group>"; };
+		CDD2A7C8102B8B8B00D00011 /* m_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_string.h; sourceTree = "<group>"; };
+		CDD2A7C9102B8B8B00D00011 /* my_alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_alarm.h; sourceTree = "<group>"; };
+		CDD2A7CA102B8B8B00D00011 /* my_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_alloc.h; sourceTree = "<group>"; };
+		CDD2A7CB102B8B8B00D00011 /* my_attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_attribute.h; sourceTree = "<group>"; };
+		CDD2A7CC102B8B8B00D00011 /* my_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_base.h; sourceTree = "<group>"; };
+		CDD2A7CD102B8B8B00D00011 /* my_dbug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_dbug.h; sourceTree = "<group>"; };
+		CDD2A7CE102B8B8B00D00011 /* my_dir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_dir.h; sourceTree = "<group>"; };
+		CDD2A7CF102B8B8B00D00011 /* my_getopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_getopt.h; sourceTree = "<group>"; };
+		CDD2A7D0102B8B8B00D00011 /* my_global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_global.h; sourceTree = "<group>"; };
+		CDD2A7D1102B8B8B00D00011 /* my_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_list.h; sourceTree = "<group>"; };
+		CDD2A7D2102B8B8B00D00011 /* my_md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_md5.h; sourceTree = "<group>"; };
+		CDD2A7D3102B8B8B00D00011 /* my_net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_net.h; sourceTree = "<group>"; };
+		CDD2A7D4102B8B8B00D00011 /* my_pthread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_pthread.h; sourceTree = "<group>"; };
+		CDD2A7D5102B8B8B00D00011 /* my_sys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_sys.h; sourceTree = "<group>"; };
+		CDD2A7D6102B8B8B00D00011 /* my_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_time.h; sourceTree = "<group>"; };
+		CDD2A7D7102B8B8B00D00011 /* my_uctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_uctype.h; sourceTree = "<group>"; };
+		CDD2A7D8102B8B8B00D00011 /* my_xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_xml.h; sourceTree = "<group>"; };
+		CDD2A7D9102B8B8B00D00011 /* mysql.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mysql.h; sourceTree = "<group>"; };
+		CDD2A7DA102B8B8B00D00011 /* mysql_com.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mysql_com.h; sourceTree = "<group>"; };
+		CDD2A7DB102B8B8B00D00011 /* mysql_embed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mysql_embed.h; sourceTree = "<group>"; };
+		CDD2A7DC102B8B8B00D00011 /* mysql_time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mysql_time.h; sourceTree = "<group>"; };
+		CDD2A7DD102B8B8B00D00011 /* mysqld_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mysqld_error.h; sourceTree = "<group>"; };
+		CDD2A7DE102B8B8B00D00011 /* mysys_err.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mysys_err.h; sourceTree = "<group>"; };
+		CDD2A7DF102B8B8B00D00011 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
+		CDD2A7E0102B8B8B00D00011 /* sql_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sql_common.h; sourceTree = "<group>"; };
+		CDD2A7E1102B8B8B00D00011 /* t_ctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = t_ctype.h; sourceTree = "<group>"; };
+		CDD2A7E2102B8B8B00D00011 /* thr_alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = thr_alarm.h; sourceTree = "<group>"; };
+		CDD2A7E3102B8B8B00D00011 /* typelib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = typelib.h; sourceTree = "<group>"; };
+		CDD2A7E4102B8B8B00D00011 /* violite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = violite.h; sourceTree = "<group>"; };
+		CDD2A808102B8BA000D00011 /* my_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = my_config.h; sourceTree = "<group>"; };
+		CDD2A809102B8BA000D00011 /* mysql_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mysql_version.h; sourceTree = "<group>"; };
+		CDD2A80C102B8BAA00D00011 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		CDD2A80D102B8BAA00D00011 /* EXCEPTIONS-CLIENT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "EXCEPTIONS-CLIENT"; sourceTree = "<group>"; };
+		CDD2A812102B956200D00011 /* MySQL-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MySQL-Info.plist"; path = "Drivers/MySQL/MySQL-Info.plist"; sourceTree = SOURCE_ROOT; };
+		CDD2C440102B9CAF00D00011 /* plugin.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = plugin.icns; sourceTree = "<group>"; };
 		CDDDF4C2102988BC001AC050 /* NGDBStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBStatement.h; sourceTree = "<group>"; };
 		CDDDF4C3102988BC001AC050 /* NGDBStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBStatement.m; sourceTree = "<group>"; };
 		CDE038601025A9AA000243F1 /* NGDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDatabase.h; sourceTree = "<group>"; };
@@ -52,10 +281,129 @@
 		CDE038651025ABF2000243F1 /* NGMySQLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGMySQLConnection.h; sourceTree = "<group>"; };
 		CDE038661025ABF2000243F1 /* NGMySQLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGMySQLConnection.m; sourceTree = "<group>"; };
 		CDE038911025BDAC000243F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		CDE0389D1025BE03000243F1 /* NGDBTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NGDBTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDE0389D1025BE03000243F1 /* NGDBTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = NGDBTest; path = build/Debug/bin/NGDBTest; sourceTree = "<group>"; };
 		CDE039231025BE57000243F1 /* NGDBTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBTest.m; sourceTree = "<group>"; };
 		CDE039781025C6DE000243F1 /* libmysqlclient_r.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysqlclient_r.dylib; path = "/usr/local/mysql-5.1.32-osx10.5-x86_64/lib/libmysqlclient_r.dylib"; sourceTree = "<absolute>"; };
 		CDE03A321025D02C000243F1 /* NGDBError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBError.m; sourceTree = "<group>"; };
+		CDE10FE5102AFCE50021D162 /* libmysqlclient_r.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libmysqlclient_r.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDE10FFA102AFD340021D162 /* client_settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = client_settings.h; sourceTree = "<group>"; };
+		CDE10FFD102AFD340021D162 /* errmsg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = errmsg.c; sourceTree = "<group>"; };
+		CDE10FFE102AFD340021D162 /* get_password.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = get_password.c; sourceTree = "<group>"; };
+		CDE10FFF102AFD340021D162 /* libmysql.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = libmysql.c; sourceTree = "<group>"; };
+		CDE11000102AFD340021D162 /* manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = manager.c; sourceTree = "<group>"; };
+		CDE11001102AFD340021D162 /* password.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = password.c; sourceTree = "<group>"; };
+		CDE11030102B077B0021D162 /* bchange.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bchange.c; sourceTree = "<group>"; };
+		CDE11031102B077B0021D162 /* bcmp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bcmp.c; sourceTree = "<group>"; };
+		CDE11032102B077B0021D162 /* bmove.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bmove.c; sourceTree = "<group>"; };
+		CDE11033102B077B0021D162 /* bmove_upp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bmove_upp.c; sourceTree = "<group>"; };
+		CDE11034102B077B0021D162 /* ctype-big5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-big5.c"; sourceTree = "<group>"; };
+		CDE11035102B077B0021D162 /* ctype-bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-bin.c"; sourceTree = "<group>"; };
+		CDE11036102B077B0021D162 /* ctype-cp932.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-cp932.c"; sourceTree = "<group>"; };
+		CDE11037102B077B0021D162 /* ctype-czech.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-czech.c"; sourceTree = "<group>"; };
+		CDE11038102B077B0021D162 /* ctype-euc_kr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-euc_kr.c"; sourceTree = "<group>"; };
+		CDE11039102B077B0021D162 /* ctype-eucjpms.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-eucjpms.c"; sourceTree = "<group>"; };
+		CDE1103A102B077B0021D162 /* ctype-extra.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-extra.c"; sourceTree = "<group>"; };
+		CDE1103B102B077B0021D162 /* ctype-gb2312.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-gb2312.c"; sourceTree = "<group>"; };
+		CDE1103C102B077B0021D162 /* ctype-gbk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-gbk.c"; sourceTree = "<group>"; };
+		CDE1103D102B077B0021D162 /* ctype-latin1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-latin1.c"; sourceTree = "<group>"; };
+		CDE1103E102B077B0021D162 /* ctype-mb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-mb.c"; sourceTree = "<group>"; };
+		CDE1103F102B077B0021D162 /* ctype-simple.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-simple.c"; sourceTree = "<group>"; };
+		CDE11040102B077B0021D162 /* ctype-sjis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-sjis.c"; sourceTree = "<group>"; };
+		CDE11041102B077B0021D162 /* ctype-tis620.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-tis620.c"; sourceTree = "<group>"; };
+		CDE11042102B077B0021D162 /* ctype-uca.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-uca.c"; sourceTree = "<group>"; };
+		CDE11043102B077B0021D162 /* ctype-ucs2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-ucs2.c"; sourceTree = "<group>"; };
+		CDE11044102B077B0021D162 /* ctype-ujis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-ujis.c"; sourceTree = "<group>"; };
+		CDE11045102B077B0021D162 /* ctype-utf8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-utf8.c"; sourceTree = "<group>"; };
+		CDE11046102B077B0021D162 /* ctype-win1250ch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ctype-win1250ch.c"; sourceTree = "<group>"; };
+		CDE11047102B077B0021D162 /* ctype.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ctype.c; sourceTree = "<group>"; };
+		CDE11048102B077B0021D162 /* int2str.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = int2str.c; sourceTree = "<group>"; };
+		CDE11049102B077B0021D162 /* is_prefix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = is_prefix.c; sourceTree = "<group>"; };
+		CDE1104A102B077B0021D162 /* llstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = llstr.c; sourceTree = "<group>"; };
+		CDE1104B102B077B0021D162 /* longlong2str.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = longlong2str.c; sourceTree = "<group>"; };
+		CDE1104C102B077B0021D162 /* my_strtoll10.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_strtoll10.c; sourceTree = "<group>"; };
+		CDE1104D102B077B0021D162 /* my_vsnprintf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_vsnprintf.c; sourceTree = "<group>"; };
+		CDE1104E102B077B0021D162 /* str2int.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = str2int.c; sourceTree = "<group>"; };
+		CDE1104F102B077B0021D162 /* str_alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = str_alloc.c; sourceTree = "<group>"; };
+		CDE11050102B077B0021D162 /* strcend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strcend.c; sourceTree = "<group>"; };
+		CDE11051102B077B0021D162 /* strcont.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strcont.c; sourceTree = "<group>"; };
+		CDE11052102B077B0021D162 /* strend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strend.c; sourceTree = "<group>"; };
+		CDE11053102B077B0021D162 /* strfill.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strfill.c; sourceTree = "<group>"; };
+		CDE11054102B077B0021D162 /* strinstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strinstr.c; sourceTree = "<group>"; };
+		CDE11055102B077B0021D162 /* strmake.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strmake.c; sourceTree = "<group>"; };
+		CDE11056102B077B0021D162 /* strmov.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strmov.c; sourceTree = "<group>"; };
+		CDE11057102B077B0021D162 /* strnlen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strnlen.c; sourceTree = "<group>"; };
+		CDE11058102B077B0021D162 /* strnmov.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strnmov.c; sourceTree = "<group>"; };
+		CDE11059102B077B0021D162 /* strtod.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strtod.c; sourceTree = "<group>"; };
+		CDE1105A102B077B0021D162 /* strtoll.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strtoll.c; sourceTree = "<group>"; };
+		CDE1105B102B077B0021D162 /* strtoull.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strtoull.c; sourceTree = "<group>"; };
+		CDE1105C102B077B0021D162 /* strxmov.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strxmov.c; sourceTree = "<group>"; };
+		CDE1105D102B077B0021D162 /* strxnmov.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strxnmov.c; sourceTree = "<group>"; };
+		CDE1105E102B077B0021D162 /* xml.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xml.c; sourceTree = "<group>"; };
+		CDE11092102B08230021D162 /* dbug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dbug.c; sourceTree = "<group>"; };
+		CDE11093102B08230021D162 /* sanity.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sanity.c; sourceTree = "<group>"; };
+		CDE11098102B16830021D162 /* array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = array.c; sourceTree = "<group>"; };
+		CDE11099102B16830021D162 /* charset-def.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "charset-def.c"; sourceTree = "<group>"; };
+		CDE1109A102B16830021D162 /* charset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = charset.c; sourceTree = "<group>"; };
+		CDE1109B102B16830021D162 /* default.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = default.c; sourceTree = "<group>"; };
+		CDE1109C102B16830021D162 /* default_modify.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = default_modify.c; sourceTree = "<group>"; };
+		CDE1109D102B16830021D162 /* errors.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = errors.c; sourceTree = "<group>"; };
+		CDE1109E102B16830021D162 /* hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash.c; sourceTree = "<group>"; };
+		CDE1109F102B16830021D162 /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = list.c; sourceTree = "<group>"; };
+		CDE110A0102B16830021D162 /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
+		CDE110A1102B16830021D162 /* mf_arr_appstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_arr_appstr.c; sourceTree = "<group>"; };
+		CDE110A2102B16830021D162 /* mf_cache.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_cache.c; sourceTree = "<group>"; };
+		CDE110A3102B16830021D162 /* mf_dirname.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_dirname.c; sourceTree = "<group>"; };
+		CDE110A4102B16830021D162 /* mf_fn_ext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_fn_ext.c; sourceTree = "<group>"; };
+		CDE110A5102B16830021D162 /* mf_format.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_format.c; sourceTree = "<group>"; };
+		CDE110A6102B16830021D162 /* mf_iocache.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_iocache.c; sourceTree = "<group>"; };
+		CDE110A7102B16830021D162 /* mf_iocache2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_iocache2.c; sourceTree = "<group>"; };
+		CDE110A8102B16830021D162 /* mf_loadpath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_loadpath.c; sourceTree = "<group>"; };
+		CDE110A9102B16830021D162 /* mf_pack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_pack.c; sourceTree = "<group>"; };
+		CDE110AA102B16830021D162 /* mf_path.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_path.c; sourceTree = "<group>"; };
+		CDE110AB102B16830021D162 /* mf_qsort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_qsort.c; sourceTree = "<group>"; };
+		CDE110AC102B16830021D162 /* mf_tempfile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_tempfile.c; sourceTree = "<group>"; };
+		CDE110AD102B16830021D162 /* mf_unixpath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_unixpath.c; sourceTree = "<group>"; };
+		CDE110AE102B16830021D162 /* mf_wcomp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mf_wcomp.c; sourceTree = "<group>"; };
+		CDE110AF102B16830021D162 /* mulalloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mulalloc.c; sourceTree = "<group>"; };
+		CDE110B0102B16830021D162 /* my_alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_alloc.c; sourceTree = "<group>"; };
+		CDE110B1102B16830021D162 /* my_chsize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_chsize.c; sourceTree = "<group>"; };
+		CDE110B2102B16830021D162 /* my_compress.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_compress.c; sourceTree = "<group>"; };
+		CDE110B3102B16830021D162 /* my_create.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_create.c; sourceTree = "<group>"; };
+		CDE110B4102B16830021D162 /* my_delete.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_delete.c; sourceTree = "<group>"; };
+		CDE110B5102B16830021D162 /* my_div.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_div.c; sourceTree = "<group>"; };
+		CDE110B6102B16830021D162 /* my_error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_error.c; sourceTree = "<group>"; };
+		CDE110B7102B16830021D162 /* my_file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_file.c; sourceTree = "<group>"; };
+		CDE110B8102B16830021D162 /* my_fopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_fopen.c; sourceTree = "<group>"; };
+		CDE110B9102B16830021D162 /* my_fstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_fstream.c; sourceTree = "<group>"; };
+		CDE110BA102B16830021D162 /* my_gethostbyname.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_gethostbyname.c; sourceTree = "<group>"; };
+		CDE110BB102B16830021D162 /* my_getopt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_getopt.c; sourceTree = "<group>"; };
+		CDE110BC102B16830021D162 /* my_getsystime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_getsystime.c; sourceTree = "<group>"; };
+		CDE110BD102B16830021D162 /* my_getwd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_getwd.c; sourceTree = "<group>"; };
+		CDE110BE102B16830021D162 /* my_init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_init.c; sourceTree = "<group>"; };
+		CDE110BF102B16830021D162 /* my_lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_lib.c; sourceTree = "<group>"; };
+		CDE110C0102B16830021D162 /* my_malloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_malloc.c; sourceTree = "<group>"; };
+		CDE110C1102B16830021D162 /* my_messnc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_messnc.c; sourceTree = "<group>"; };
+		CDE110C2102B16830021D162 /* my_net.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_net.c; sourceTree = "<group>"; };
+		CDE110C3102B16830021D162 /* my_once.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_once.c; sourceTree = "<group>"; };
+		CDE110C4102B16830021D162 /* my_open.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_open.c; sourceTree = "<group>"; };
+		CDE110C5102B16830021D162 /* my_port.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_port.c; sourceTree = "<group>"; };
+		CDE110C6102B16830021D162 /* my_pread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_pread.c; sourceTree = "<group>"; };
+		CDE110C7102B16830021D162 /* my_pthread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_pthread.c; sourceTree = "<group>"; };
+		CDE110C8102B16830021D162 /* my_read.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_read.c; sourceTree = "<group>"; };
+		CDE110C9102B16830021D162 /* my_realloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_realloc.c; sourceTree = "<group>"; };
+		CDE110CA102B16830021D162 /* my_rename.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_rename.c; sourceTree = "<group>"; };
+		CDE110CB102B16830021D162 /* my_seek.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_seek.c; sourceTree = "<group>"; };
+		CDE110CC102B16830021D162 /* my_sleep.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_sleep.c; sourceTree = "<group>"; };
+		CDE110CD102B16830021D162 /* my_static.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_static.c; sourceTree = "<group>"; };
+		CDE110CE102B16830021D162 /* my_symlink.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_symlink.c; sourceTree = "<group>"; };
+		CDE110CF102B16830021D162 /* my_sync.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_sync.c; sourceTree = "<group>"; };
+		CDE110D0102B16830021D162 /* my_thr_init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_thr_init.c; sourceTree = "<group>"; };
+		CDE110D1102B16830021D162 /* my_write.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = my_write.c; sourceTree = "<group>"; };
+		CDE110D2102B16830021D162 /* safemalloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = safemalloc.c; sourceTree = "<group>"; };
+		CDE110D3102B16830021D162 /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
+		CDE110D4102B16830021D162 /* string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string.c; sourceTree = "<group>"; };
+		CDE110D5102B16830021D162 /* thr_mutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = thr_mutex.c; sourceTree = "<group>"; };
+		CDE110D6102B16830021D162 /* typelib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = typelib.c; sourceTree = "<group>"; };
 		CDE25A9910279608009BBBED /* NGMySQLResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGMySQLResultSet.m; sourceTree = "<group>"; };
 		CDE25AB61028180D009BBBED /* NGDBResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBResultSet.m; sourceTree = "<group>"; };
 		CDF90A451027138F00240ACD /* NGDBDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBDriver.h; sourceTree = "<group>"; };
@@ -71,7 +419,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDE038921025BDAC000243F1 /* Foundation.framework in Frameworks */,
-				CDE039791025C6DE000243F1 /* libmysqlclient_r.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDD2A755102B85C300D00011 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDD2A77C102B87B100D00011 /* libmysqlclient_r.a in Frameworks */,
+				CDD2A7BA102B8A8900D00011 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,26 +440,143 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CDE10FE3102AFCE50021D162 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		034768DFFF38A50411DB9C8B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8DC2EF5B0486A6940098B216 /* NGDatabase.framework */,
-				CDE0389D1025BE03000243F1 /* NGDBTest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		0867D691FE84028FC02AAC07 /* DBCore */ = {
 			isa = PBXGroup;
 			children = (
-				CDE038A31025BE14000243F1 /* NGDatabase */,
-				CDE038991025BDEE000243F1 /* NGDBTest */,
-				034768DFFF38A50411DB9C8B /* Products */,
+				CDD2C440102B9CAF00D00011 /* plugin.icns */,
+				CDE038A31025BE14000243F1 /* NGDatabase.framework */,
+				CD8FB262102B841D00E3BEC5 /* Drivers */,
+				CDD2A741102B858600D00011 /* Command-line utilities */,
+				CDD2A7B9102B8A8900D00011 /* libz.dylib */,
 			);
 			name = DBCore;
+			sourceTree = "<group>";
+		};
+		CD8FB262102B841D00E3BEC5 /* Drivers */ = {
+			isa = PBXGroup;
+			children = (
+				CDF90A9C1027289B00240ACD /* MySQL */,
+			);
+			path = Drivers;
+			sourceTree = "<group>";
+		};
+		CDD2A741102B858600D00011 /* Command-line utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CDE038991025BDEE000243F1 /* NGDBTest */,
+			);
+			name = "Command-line utilities";
+			sourceTree = "<group>";
+		};
+		CDD2A76F102B867300D00011 /* MySQL client library */ = {
+			isa = PBXGroup;
+			children = (
+				CDD2A80C102B8BAA00D00011 /* COPYING */,
+				CDD2A80D102B8BAA00D00011 /* EXCEPTIONS-CLIENT */,
+				CDD2A807102B8B8E00D00011 /* darwin */,
+				CDD2A7C2102B8B7B00D00011 /* include */,
+				CDD2A7AB102B89F700D00011 /* sql */,
+				CDD2A797102B894A00D00011 /* sql-common */,
+				CDE10FE5102AFCE50021D162 /* libmysqlclient_r.a */,
+				CDE11097102B166D0021D162 /* mysys */,
+				CDE11091102B080A0021D162 /* dbug */,
+				CDE1102E102B06AB0021D162 /* strings */,
+				CDE10FE8102AFCF80021D162 /* libmysql */,
+				CDE10FDB102AFCBE0021D162 /* libmysql_r */,
+				CDD2A78A102B88F100D00011 /* vio */,
+			);
+			name = "MySQL client library";
+			path = mysql;
+			sourceTree = "<group>";
+		};
+		CDD2A78A102B88F100D00011 /* vio */ = {
+			isa = PBXGroup;
+			children = (
+				CDD2A79F102B897400D00011 /* vio_priv.h */,
+				CDD2A78B102B890D00D00011 /* vio.c */,
+				CDD2A78C102B890D00D00011 /* viosocket.c */,
+				CDD2A78D102B890D00D00011 /* viossl.c */,
+				CDD2A78E102B890D00D00011 /* viosslfactories.c */,
+			);
+			path = vio;
+			sourceTree = "<group>";
+		};
+		CDD2A797102B894A00D00011 /* sql-common */ = {
+			isa = PBXGroup;
+			children = (
+				CDD2A798102B895800D00011 /* client.c */,
+				CDD2A799102B895800D00011 /* my_time.c */,
+				CDD2A79A102B895800D00011 /* pack.c */,
+			);
+			path = "sql-common";
+			sourceTree = "<group>";
+		};
+		CDD2A7AB102B89F700D00011 /* sql */ = {
+			isa = PBXGroup;
+			children = (
+				CDD2A7AC102B8A0500D00011 /* net_serv.cc */,
+			);
+			path = sql;
+			sourceTree = "<group>";
+		};
+		CDD2A7C2102B8B7B00D00011 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				CDD2A7C3102B8B8B00D00011 /* errmsg.h */,
+				CDD2A7C4102B8B8B00D00011 /* hash.h */,
+				CDD2A7C5102B8B8B00D00011 /* help_end.h */,
+				CDD2A7C6102B8B8B00D00011 /* help_start.h */,
+				CDD2A7C7102B8B8B00D00011 /* m_ctype.h */,
+				CDD2A7C8102B8B8B00D00011 /* m_string.h */,
+				CDD2A7C9102B8B8B00D00011 /* my_alarm.h */,
+				CDD2A7CA102B8B8B00D00011 /* my_alloc.h */,
+				CDD2A7CB102B8B8B00D00011 /* my_attribute.h */,
+				CDD2A7CC102B8B8B00D00011 /* my_base.h */,
+				CDD2A7CD102B8B8B00D00011 /* my_dbug.h */,
+				CDD2A7CE102B8B8B00D00011 /* my_dir.h */,
+				CDD2A7CF102B8B8B00D00011 /* my_getopt.h */,
+				CDD2A7D0102B8B8B00D00011 /* my_global.h */,
+				CDD2A7D1102B8B8B00D00011 /* my_list.h */,
+				CDD2A7D2102B8B8B00D00011 /* my_md5.h */,
+				CDD2A7D3102B8B8B00D00011 /* my_net.h */,
+				CDD2A7D4102B8B8B00D00011 /* my_pthread.h */,
+				CDD2A7D5102B8B8B00D00011 /* my_sys.h */,
+				CDD2A7D6102B8B8B00D00011 /* my_time.h */,
+				CDD2A7D7102B8B8B00D00011 /* my_uctype.h */,
+				CDD2A7D8102B8B8B00D00011 /* my_xml.h */,
+				CDD2A7D9102B8B8B00D00011 /* mysql.h */,
+				CDD2A7DA102B8B8B00D00011 /* mysql_com.h */,
+				CDD2A7DB102B8B8B00D00011 /* mysql_embed.h */,
+				CDD2A7DC102B8B8B00D00011 /* mysql_time.h */,
+				CDD2A7DD102B8B8B00D00011 /* mysqld_error.h */,
+				CDD2A7DE102B8B8B00D00011 /* mysys_err.h */,
+				CDD2A7DF102B8B8B00D00011 /* sha1.h */,
+				CDD2A7E0102B8B8B00D00011 /* sql_common.h */,
+				CDD2A7E1102B8B8B00D00011 /* t_ctype.h */,
+				CDD2A7E2102B8B8B00D00011 /* thr_alarm.h */,
+				CDD2A7E3102B8B8B00D00011 /* typelib.h */,
+				CDD2A7E4102B8B8B00D00011 /* violite.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		CDD2A807102B8B8E00D00011 /* darwin */ = {
+			isa = PBXGroup;
+			children = (
+				CDD2A808102B8BA000D00011 /* my_config.h */,
+				CDD2A809102B8BA000D00011 /* mysql_version.h */,
+			);
+			path = darwin;
 			sourceTree = "<group>";
 		};
 		CDDDF5151029A97C001AC050 /* Private Headers */ = {
@@ -117,34 +590,191 @@
 		CDE038991025BDEE000243F1 /* NGDBTest */ = {
 			isa = PBXGroup;
 			children = (
+				CDE0389D1025BE03000243F1 /* NGDBTest */,
 				CDE039231025BE57000243F1 /* NGDBTest.m */,
 				CDE038911025BDAC000243F1 /* Foundation.framework */,
 			);
 			name = NGDBTest;
 			sourceTree = "<group>";
 		};
-		CDE038A31025BE14000243F1 /* NGDatabase */ = {
+		CDE038A31025BE14000243F1 /* NGDatabase.framework */ = {
 			isa = PBXGroup;
 			children = (
+				8DC2EF5B0486A6940098B216 /* NGDatabase.framework */,
 				CDDDF5151029A97C001AC050 /* Private Headers */,
 				CDF90AAD1027294E00240ACD /* Public Headers */,
 				CDF90AAC1027294600240ACD /* Core */,
-				CDF90A9C1027289B00240ACD /* MySQL */,
 				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
 				CDE039781025C6DE000243F1 /* libmysqlclient_r.dylib */,
 			);
-			name = NGDatabase;
+			name = NGDatabase.framework;
+			sourceTree = "<group>";
+		};
+		CDE10FDB102AFCBE0021D162 /* libmysql_r */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = libmysql_r;
+			sourceTree = "<group>";
+		};
+		CDE10FE8102AFCF80021D162 /* libmysql */ = {
+			isa = PBXGroup;
+			children = (
+				CDE10FFA102AFD340021D162 /* client_settings.h */,
+				CDE10FFD102AFD340021D162 /* errmsg.c */,
+				CDE10FFE102AFD340021D162 /* get_password.c */,
+				CDE10FFF102AFD340021D162 /* libmysql.c */,
+				CDE11000102AFD340021D162 /* manager.c */,
+				CDE11001102AFD340021D162 /* password.c */,
+			);
+			path = libmysql;
+			sourceTree = "<group>";
+		};
+		CDE1102E102B06AB0021D162 /* strings */ = {
+			isa = PBXGroup;
+			children = (
+				CDD2A7A9102B89C600D00011 /* strto.c */,
+				CDE11030102B077B0021D162 /* bchange.c */,
+				CDE11031102B077B0021D162 /* bcmp.c */,
+				CDE11032102B077B0021D162 /* bmove.c */,
+				CDE11033102B077B0021D162 /* bmove_upp.c */,
+				CDE11034102B077B0021D162 /* ctype-big5.c */,
+				CDE11035102B077B0021D162 /* ctype-bin.c */,
+				CDE11036102B077B0021D162 /* ctype-cp932.c */,
+				CDE11037102B077B0021D162 /* ctype-czech.c */,
+				CDE11038102B077B0021D162 /* ctype-euc_kr.c */,
+				CDE11039102B077B0021D162 /* ctype-eucjpms.c */,
+				CDE1103A102B077B0021D162 /* ctype-extra.c */,
+				CDE1103B102B077B0021D162 /* ctype-gb2312.c */,
+				CDE1103C102B077B0021D162 /* ctype-gbk.c */,
+				CDE1103D102B077B0021D162 /* ctype-latin1.c */,
+				CDE1103E102B077B0021D162 /* ctype-mb.c */,
+				CDE1103F102B077B0021D162 /* ctype-simple.c */,
+				CDE11040102B077B0021D162 /* ctype-sjis.c */,
+				CDE11041102B077B0021D162 /* ctype-tis620.c */,
+				CDE11042102B077B0021D162 /* ctype-uca.c */,
+				CDE11043102B077B0021D162 /* ctype-ucs2.c */,
+				CDE11044102B077B0021D162 /* ctype-ujis.c */,
+				CDE11045102B077B0021D162 /* ctype-utf8.c */,
+				CDE11046102B077B0021D162 /* ctype-win1250ch.c */,
+				CDE11047102B077B0021D162 /* ctype.c */,
+				CDE11048102B077B0021D162 /* int2str.c */,
+				CDE11049102B077B0021D162 /* is_prefix.c */,
+				CDE1104A102B077B0021D162 /* llstr.c */,
+				CDE1104B102B077B0021D162 /* longlong2str.c */,
+				CDE1104C102B077B0021D162 /* my_strtoll10.c */,
+				CDE1104D102B077B0021D162 /* my_vsnprintf.c */,
+				CDE1104E102B077B0021D162 /* str2int.c */,
+				CDE1104F102B077B0021D162 /* str_alloc.c */,
+				CDE11050102B077B0021D162 /* strcend.c */,
+				CDE11051102B077B0021D162 /* strcont.c */,
+				CDE11052102B077B0021D162 /* strend.c */,
+				CDE11053102B077B0021D162 /* strfill.c */,
+				CDE11054102B077B0021D162 /* strinstr.c */,
+				CDE11055102B077B0021D162 /* strmake.c */,
+				CDE11056102B077B0021D162 /* strmov.c */,
+				CDE11057102B077B0021D162 /* strnlen.c */,
+				CDE11058102B077B0021D162 /* strnmov.c */,
+				CDE11059102B077B0021D162 /* strtod.c */,
+				CDE1105A102B077B0021D162 /* strtoll.c */,
+				CDE1105B102B077B0021D162 /* strtoull.c */,
+				CDE1105C102B077B0021D162 /* strxmov.c */,
+				CDE1105D102B077B0021D162 /* strxnmov.c */,
+				CDE1105E102B077B0021D162 /* xml.c */,
+			);
+			path = strings;
+			sourceTree = "<group>";
+		};
+		CDE11091102B080A0021D162 /* dbug */ = {
+			isa = PBXGroup;
+			children = (
+				CDE11092102B08230021D162 /* dbug.c */,
+				CDE11093102B08230021D162 /* sanity.c */,
+			);
+			path = dbug;
+			sourceTree = "<group>";
+		};
+		CDE11097102B166D0021D162 /* mysys */ = {
+			isa = PBXGroup;
+			children = (
+				CDE11098102B16830021D162 /* array.c */,
+				CDE11099102B16830021D162 /* charset-def.c */,
+				CDE1109A102B16830021D162 /* charset.c */,
+				CDE1109B102B16830021D162 /* default.c */,
+				CDE1109C102B16830021D162 /* default_modify.c */,
+				CDE1109D102B16830021D162 /* errors.c */,
+				CDE1109E102B16830021D162 /* hash.c */,
+				CDE1109F102B16830021D162 /* list.c */,
+				CDE110A0102B16830021D162 /* md5.c */,
+				CDE110A1102B16830021D162 /* mf_arr_appstr.c */,
+				CDE110A2102B16830021D162 /* mf_cache.c */,
+				CDE110A3102B16830021D162 /* mf_dirname.c */,
+				CDE110A4102B16830021D162 /* mf_fn_ext.c */,
+				CDE110A5102B16830021D162 /* mf_format.c */,
+				CDE110A6102B16830021D162 /* mf_iocache.c */,
+				CDE110A7102B16830021D162 /* mf_iocache2.c */,
+				CDE110A8102B16830021D162 /* mf_loadpath.c */,
+				CDE110A9102B16830021D162 /* mf_pack.c */,
+				CDE110AA102B16830021D162 /* mf_path.c */,
+				CDE110AB102B16830021D162 /* mf_qsort.c */,
+				CDE110AC102B16830021D162 /* mf_tempfile.c */,
+				CDE110AD102B16830021D162 /* mf_unixpath.c */,
+				CDE110AE102B16830021D162 /* mf_wcomp.c */,
+				CDE110AF102B16830021D162 /* mulalloc.c */,
+				CDE110B0102B16830021D162 /* my_alloc.c */,
+				CDE110B1102B16830021D162 /* my_chsize.c */,
+				CDE110B2102B16830021D162 /* my_compress.c */,
+				CDE110B3102B16830021D162 /* my_create.c */,
+				CDE110B4102B16830021D162 /* my_delete.c */,
+				CDE110B5102B16830021D162 /* my_div.c */,
+				CDE110B6102B16830021D162 /* my_error.c */,
+				CDE110B7102B16830021D162 /* my_file.c */,
+				CDE110B8102B16830021D162 /* my_fopen.c */,
+				CDE110B9102B16830021D162 /* my_fstream.c */,
+				CDE110BA102B16830021D162 /* my_gethostbyname.c */,
+				CDE110BB102B16830021D162 /* my_getopt.c */,
+				CDE110BC102B16830021D162 /* my_getsystime.c */,
+				CDE110BD102B16830021D162 /* my_getwd.c */,
+				CDE110BE102B16830021D162 /* my_init.c */,
+				CDE110BF102B16830021D162 /* my_lib.c */,
+				CDE110C0102B16830021D162 /* my_malloc.c */,
+				CDE110C1102B16830021D162 /* my_messnc.c */,
+				CDE110C2102B16830021D162 /* my_net.c */,
+				CDE110C3102B16830021D162 /* my_once.c */,
+				CDE110C4102B16830021D162 /* my_open.c */,
+				CDE110C5102B16830021D162 /* my_port.c */,
+				CDE110C6102B16830021D162 /* my_pread.c */,
+				CDE110C7102B16830021D162 /* my_pthread.c */,
+				CDE110C8102B16830021D162 /* my_read.c */,
+				CDE110C9102B16830021D162 /* my_realloc.c */,
+				CDE110CA102B16830021D162 /* my_rename.c */,
+				CDE110CB102B16830021D162 /* my_seek.c */,
+				CDE110CC102B16830021D162 /* my_sleep.c */,
+				CDE110CD102B16830021D162 /* my_static.c */,
+				CDE110CE102B16830021D162 /* my_symlink.c */,
+				CDE110CF102B16830021D162 /* my_sync.c */,
+				CDE110D0102B16830021D162 /* my_thr_init.c */,
+				CDE110D1102B16830021D162 /* my_write.c */,
+				CDE110D2102B16830021D162 /* safemalloc.c */,
+				CDE110D3102B16830021D162 /* sha1.c */,
+				CDE110D4102B16830021D162 /* string.c */,
+				CDE110D5102B16830021D162 /* thr_mutex.c */,
+				CDE110D6102B16830021D162 /* typelib.c */,
+			);
+			path = mysys;
 			sourceTree = "<group>";
 		};
 		CDF90A9C1027289B00240ACD /* MySQL */ = {
 			isa = PBXGroup;
 			children = (
+				CDD2A812102B956200D00011 /* MySQL-Info.plist */,
+				CDD2A757102B85C300D00011 /* MySQL.dbplugin */,
+				CDD2A76F102B867300D00011 /* MySQL client library */,
 				CDE038651025ABF2000243F1 /* NGMySQLConnection.h */,
 				CDE038661025ABF2000243F1 /* NGMySQLConnection.m */,
 				CDE25A9910279608009BBBED /* NGMySQLResultSet.m */,
 			);
-			name = MySQL;
-			path = Drivers/MySQL;
+			path = MySQL;
 			sourceTree = "<group>";
 		};
 		CDF90AAC1027294600240ACD /* Core */ = {
@@ -182,12 +812,56 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDE038611025A9AA000243F1 /* NGDatabase.h in Headers */,
-				CDE038671025ABF2000243F1 /* NGMySQLConnection.h in Headers */,
 				CDF90A461027138F00240ACD /* NGDBDriver.h in Headers */,
 				CDF90A49102713F600240ACD /* NGDBConnection.h in Headers */,
 				CDF90A4B102714AE00240ACD /* NGDBError.h in Headers */,
 				CDF90A4D1027152A00240ACD /* NGDBResultSet.h in Headers */,
 				CDDDF4C4102988BC001AC050 /* NGDBStatement.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDE10FE1102AFCE50021D162 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE11002102AFD340021D162 /* client_settings.h in Headers */,
+				CDD2A7A0102B897400D00011 /* vio_priv.h in Headers */,
+				CDD2A7E5102B8B8B00D00011 /* errmsg.h in Headers */,
+				CDD2A7E6102B8B8B00D00011 /* hash.h in Headers */,
+				CDD2A7E7102B8B8B00D00011 /* help_end.h in Headers */,
+				CDD2A7E8102B8B8B00D00011 /* help_start.h in Headers */,
+				CDD2A7E9102B8B8B00D00011 /* m_ctype.h in Headers */,
+				CDD2A7EA102B8B8B00D00011 /* m_string.h in Headers */,
+				CDD2A7EB102B8B8B00D00011 /* my_alarm.h in Headers */,
+				CDD2A7EC102B8B8B00D00011 /* my_alloc.h in Headers */,
+				CDD2A7ED102B8B8B00D00011 /* my_attribute.h in Headers */,
+				CDD2A7EE102B8B8B00D00011 /* my_base.h in Headers */,
+				CDD2A7EF102B8B8B00D00011 /* my_dbug.h in Headers */,
+				CDD2A7F0102B8B8B00D00011 /* my_dir.h in Headers */,
+				CDD2A7F1102B8B8B00D00011 /* my_getopt.h in Headers */,
+				CDD2A7F2102B8B8B00D00011 /* my_global.h in Headers */,
+				CDD2A7F3102B8B8B00D00011 /* my_list.h in Headers */,
+				CDD2A7F4102B8B8B00D00011 /* my_md5.h in Headers */,
+				CDD2A7F5102B8B8B00D00011 /* my_net.h in Headers */,
+				CDD2A7F6102B8B8B00D00011 /* my_pthread.h in Headers */,
+				CDD2A7F7102B8B8B00D00011 /* my_sys.h in Headers */,
+				CDD2A7F8102B8B8B00D00011 /* my_time.h in Headers */,
+				CDD2A7F9102B8B8B00D00011 /* my_uctype.h in Headers */,
+				CDD2A7FA102B8B8B00D00011 /* my_xml.h in Headers */,
+				CDD2A7FB102B8B8B00D00011 /* mysql.h in Headers */,
+				CDD2A7FC102B8B8B00D00011 /* mysql_com.h in Headers */,
+				CDD2A7FD102B8B8B00D00011 /* mysql_embed.h in Headers */,
+				CDD2A7FE102B8B8B00D00011 /* mysql_time.h in Headers */,
+				CDD2A7FF102B8B8B00D00011 /* mysqld_error.h in Headers */,
+				CDD2A800102B8B8B00D00011 /* mysys_err.h in Headers */,
+				CDD2A801102B8B8B00D00011 /* sha1.h in Headers */,
+				CDD2A802102B8B8B00D00011 /* sql_common.h in Headers */,
+				CDD2A803102B8B8B00D00011 /* t_ctype.h in Headers */,
+				CDD2A804102B8B8B00D00011 /* thr_alarm.h in Headers */,
+				CDD2A805102B8B8B00D00011 /* typelib.h in Headers */,
+				CDD2A806102B8B8B00D00011 /* violite.h in Headers */,
+				CDD2A80A102B8BA000D00011 /* my_config.h in Headers */,
+				CDD2A80B102B8BA000D00011 /* mysql_version.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,13 +887,32 @@
 			productReference = 8DC2EF5B0486A6940098B216 /* NGDatabase.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		CDD2A756102B85C300D00011 /* MySQL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDD2A75B102B85C300D00011 /* Build configuration list for PBXNativeTarget "MySQL" */;
+			buildPhases = (
+				CDD2A753102B85C300D00011 /* Resources */,
+				CDD2A754102B85C300D00011 /* Sources */,
+				CDD2A755102B85C300D00011 /* Frameworks */,
+				CDD2C448102B9D1A00D00011 /* Set custom icon */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CDD2A779102B879800D00011 /* PBXTargetDependency */,
+				CDD2A77B102B879A00D00011 /* PBXTargetDependency */,
+			);
+			name = MySQL;
+			productName = MySQL;
+			productReference = CDD2A757102B85C300D00011 /* MySQL.dbplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
 		CDE0389C1025BE03000243F1 /* NGDBTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDE038A41025BE14000243F1 /* Build configuration list for PBXNativeTarget "NGDBTest" */;
 			buildPhases = (
 				CDE0389A1025BE03000243F1 /* Sources */,
 				CDE0389B1025BE03000243F1 /* Frameworks */,
-				CDE25D2A10284284009BBBED /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -231,6 +924,23 @@
 			productReference = CDE0389D1025BE03000243F1 /* NGDBTest */;
 			productType = "com.apple.product-type.tool";
 		};
+		CDE10FE4102AFCE50021D162 /* mysqlclient_r */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDE10FE9102AFCF80021D162 /* Build configuration list for PBXNativeTarget "mysqlclient_r" */;
+			buildPhases = (
+				CDE10FE1102AFCE50021D162 /* Headers */,
+				CDE10FE2102AFCE50021D162 /* Sources */,
+				CDE10FE3102AFCE50021D162 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mysqlclient_r;
+			productName = libmysqlclient_r;
+			productReference = CDE10FE5102AFCE50021D162 /* libmysqlclient_r.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -240,12 +950,14 @@
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 0867D691FE84028FC02AAC07 /* DBCore */;
-			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			productRefGroup = 0867D691FE84028FC02AAC07 /* DBCore */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				8DC2EF4F0486A6940098B216 /* NGDatabase */,
 				CDE0389C1025BE03000243F1 /* NGDBTest */,
+				CDE10FE4102AFCE50021D162 /* mysqlclient_r */,
+				CDD2A756102B85C300D00011 /* MySQL */,
 			);
 		};
 /* End PBXProject section */
@@ -259,21 +971,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CDD2A753102B85C300D00011 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		CDE25D2A10284284009BBBED /* ShellScript */ = {
+		CDD2C448102B9D1A00D00011 /* Set custom icon */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/plugin.icns",
 			);
+			name = "Set custom icon";
 			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(WRAPPER_NAME)",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "install_name_tool -change \"@loader_path/../Frameworks/NGDatabase.framework/Versions/A/NGDatabase\" \"@executable_path/NGDatabase.framework/Versions/A/NGDatabase\" \"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"";
+			shellScript = "${SRCROOT}/setPluginIcon.sh";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -283,12 +1006,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDE038641025ABA6000243F1 /* NGDatabase.m in Sources */,
-				CDE038681025ABF2000243F1 /* NGMySQLConnection.m in Sources */,
 				CDE03A331025D02C000243F1 /* NGDBError.m in Sources */,
 				CDF90A4F1027156C00240ACD /* NGDBConnection.m in Sources */,
-				CDE25A9A10279608009BBBED /* NGMySQLResultSet.m in Sources */,
 				CDE25AB71028180D009BBBED /* NGDBResultSet.m in Sources */,
 				CDDDF4C5102988BC001AC050 /* NGDBStatement.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CDD2A754102B85C300D00011 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDD2A75E102B861700D00011 /* NGMySQLConnection.m in Sources */,
+				CDD2A75F102B861700D00011 /* NGMySQLResultSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,9 +1030,151 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CDE10FE2102AFCE50021D162 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDE11005102AFD340021D162 /* errmsg.c in Sources */,
+				CDE11006102AFD340021D162 /* get_password.c in Sources */,
+				CDE11007102AFD340021D162 /* libmysql.c in Sources */,
+				CDE11008102AFD340021D162 /* manager.c in Sources */,
+				CDE11009102AFD340021D162 /* password.c in Sources */,
+				CDE1105F102B077B0021D162 /* bchange.c in Sources */,
+				CDE11060102B077B0021D162 /* bcmp.c in Sources */,
+				CDE11061102B077B0021D162 /* bmove.c in Sources */,
+				CDE11062102B077B0021D162 /* bmove_upp.c in Sources */,
+				CDE11063102B077B0021D162 /* ctype-big5.c in Sources */,
+				CDE11064102B077B0021D162 /* ctype-bin.c in Sources */,
+				CDE11065102B077B0021D162 /* ctype-cp932.c in Sources */,
+				CDE11066102B077B0021D162 /* ctype-czech.c in Sources */,
+				CDE11067102B077B0021D162 /* ctype-euc_kr.c in Sources */,
+				CDE11068102B077B0021D162 /* ctype-eucjpms.c in Sources */,
+				CDE11069102B077B0021D162 /* ctype-extra.c in Sources */,
+				CDE1106A102B077B0021D162 /* ctype-gb2312.c in Sources */,
+				CDE1106B102B077B0021D162 /* ctype-gbk.c in Sources */,
+				CDE1106C102B077B0021D162 /* ctype-latin1.c in Sources */,
+				CDE1106D102B077B0021D162 /* ctype-mb.c in Sources */,
+				CDE1106E102B077B0021D162 /* ctype-simple.c in Sources */,
+				CDE1106F102B077B0021D162 /* ctype-sjis.c in Sources */,
+				CDE11070102B077B0021D162 /* ctype-tis620.c in Sources */,
+				CDE11071102B077B0021D162 /* ctype-uca.c in Sources */,
+				CDE11072102B077B0021D162 /* ctype-ucs2.c in Sources */,
+				CDE11073102B077B0021D162 /* ctype-ujis.c in Sources */,
+				CDE11074102B077B0021D162 /* ctype-utf8.c in Sources */,
+				CDE11075102B077B0021D162 /* ctype-win1250ch.c in Sources */,
+				CDE11076102B077B0021D162 /* ctype.c in Sources */,
+				CDE11077102B077B0021D162 /* int2str.c in Sources */,
+				CDE11078102B077B0021D162 /* is_prefix.c in Sources */,
+				CDE11079102B077B0021D162 /* llstr.c in Sources */,
+				CDE1107A102B077B0021D162 /* longlong2str.c in Sources */,
+				CDE1107B102B077B0021D162 /* my_strtoll10.c in Sources */,
+				CDE1107C102B077B0021D162 /* my_vsnprintf.c in Sources */,
+				CDE1107D102B077B0021D162 /* str2int.c in Sources */,
+				CDE1107E102B077B0021D162 /* str_alloc.c in Sources */,
+				CDE1107F102B077B0021D162 /* strcend.c in Sources */,
+				CDE11080102B077B0021D162 /* strcont.c in Sources */,
+				CDE11081102B077B0021D162 /* strend.c in Sources */,
+				CDE11082102B077B0021D162 /* strfill.c in Sources */,
+				CDE11083102B077B0021D162 /* strinstr.c in Sources */,
+				CDE11084102B077B0021D162 /* strmake.c in Sources */,
+				CDE11085102B077B0021D162 /* strmov.c in Sources */,
+				CDE11086102B077B0021D162 /* strnlen.c in Sources */,
+				CDE11087102B077B0021D162 /* strnmov.c in Sources */,
+				CDE11088102B077B0021D162 /* strtod.c in Sources */,
+				CDE11089102B077B0021D162 /* strtoll.c in Sources */,
+				CDE1108A102B077B0021D162 /* strtoull.c in Sources */,
+				CDE1108B102B077B0021D162 /* strxmov.c in Sources */,
+				CDE1108C102B077B0021D162 /* strxnmov.c in Sources */,
+				CDE1108D102B077B0021D162 /* xml.c in Sources */,
+				CDE11094102B08230021D162 /* dbug.c in Sources */,
+				CDE11095102B08230021D162 /* sanity.c in Sources */,
+				CDE110D7102B16830021D162 /* array.c in Sources */,
+				CDE110D8102B16830021D162 /* charset-def.c in Sources */,
+				CDE110D9102B16830021D162 /* charset.c in Sources */,
+				CDE110DA102B16830021D162 /* default.c in Sources */,
+				CDE110DB102B16830021D162 /* default_modify.c in Sources */,
+				CDE110DC102B16830021D162 /* errors.c in Sources */,
+				CDE110DD102B16830021D162 /* hash.c in Sources */,
+				CDE110DE102B16830021D162 /* list.c in Sources */,
+				CDE110DF102B16830021D162 /* md5.c in Sources */,
+				CDE110E0102B16830021D162 /* mf_arr_appstr.c in Sources */,
+				CDE110E1102B16830021D162 /* mf_cache.c in Sources */,
+				CDE110E2102B16830021D162 /* mf_dirname.c in Sources */,
+				CDE110E3102B16830021D162 /* mf_fn_ext.c in Sources */,
+				CDE110E4102B16830021D162 /* mf_format.c in Sources */,
+				CDE110E5102B16830021D162 /* mf_iocache.c in Sources */,
+				CDE110E6102B16830021D162 /* mf_iocache2.c in Sources */,
+				CDE110E7102B16830021D162 /* mf_loadpath.c in Sources */,
+				CDE110E8102B16830021D162 /* mf_pack.c in Sources */,
+				CDE110E9102B16830021D162 /* mf_path.c in Sources */,
+				CDE110EA102B16830021D162 /* mf_qsort.c in Sources */,
+				CDE110EB102B16830021D162 /* mf_tempfile.c in Sources */,
+				CDE110EC102B16830021D162 /* mf_unixpath.c in Sources */,
+				CDE110ED102B16830021D162 /* mf_wcomp.c in Sources */,
+				CDE110EE102B16830021D162 /* mulalloc.c in Sources */,
+				CDE110EF102B16830021D162 /* my_alloc.c in Sources */,
+				CDE110F0102B16830021D162 /* my_chsize.c in Sources */,
+				CDE110F1102B16830021D162 /* my_compress.c in Sources */,
+				CDE110F2102B16830021D162 /* my_create.c in Sources */,
+				CDE110F3102B16830021D162 /* my_delete.c in Sources */,
+				CDE110F4102B16830021D162 /* my_div.c in Sources */,
+				CDE110F5102B16830021D162 /* my_error.c in Sources */,
+				CDE110F6102B16830021D162 /* my_file.c in Sources */,
+				CDE110F7102B16830021D162 /* my_fopen.c in Sources */,
+				CDE110F8102B16830021D162 /* my_fstream.c in Sources */,
+				CDE110F9102B16830021D162 /* my_gethostbyname.c in Sources */,
+				CDE110FA102B16830021D162 /* my_getopt.c in Sources */,
+				CDE110FB102B16830021D162 /* my_getsystime.c in Sources */,
+				CDE110FC102B16830021D162 /* my_getwd.c in Sources */,
+				CDE110FD102B16830021D162 /* my_init.c in Sources */,
+				CDE110FE102B16830021D162 /* my_lib.c in Sources */,
+				CDE110FF102B16830021D162 /* my_malloc.c in Sources */,
+				CDE11100102B16830021D162 /* my_messnc.c in Sources */,
+				CDE11101102B16830021D162 /* my_net.c in Sources */,
+				CDE11102102B16830021D162 /* my_once.c in Sources */,
+				CDE11103102B16830021D162 /* my_open.c in Sources */,
+				CDE11104102B16830021D162 /* my_port.c in Sources */,
+				CDE11105102B16830021D162 /* my_pread.c in Sources */,
+				CDE11106102B16830021D162 /* my_pthread.c in Sources */,
+				CDE11107102B16830021D162 /* my_read.c in Sources */,
+				CDE11108102B16830021D162 /* my_realloc.c in Sources */,
+				CDE11109102B16830021D162 /* my_rename.c in Sources */,
+				CDE1110A102B16830021D162 /* my_seek.c in Sources */,
+				CDE1110B102B16830021D162 /* my_sleep.c in Sources */,
+				CDE1110C102B16830021D162 /* my_static.c in Sources */,
+				CDE1110D102B16830021D162 /* my_symlink.c in Sources */,
+				CDE1110E102B16830021D162 /* my_sync.c in Sources */,
+				CDE1110F102B16830021D162 /* my_thr_init.c in Sources */,
+				CDE11110102B16830021D162 /* my_write.c in Sources */,
+				CDE11111102B16830021D162 /* safemalloc.c in Sources */,
+				CDE11112102B16830021D162 /* sha1.c in Sources */,
+				CDE11113102B16830021D162 /* string.c in Sources */,
+				CDE11114102B16830021D162 /* thr_mutex.c in Sources */,
+				CDE11115102B16830021D162 /* typelib.c in Sources */,
+				CDD2A78F102B890D00D00011 /* vio.c in Sources */,
+				CDD2A790102B890D00D00011 /* viosocket.c in Sources */,
+				CDD2A791102B890D00D00011 /* viossl.c in Sources */,
+				CDD2A792102B890D00D00011 /* viosslfactories.c in Sources */,
+				CDD2A79B102B895800D00011 /* client.c in Sources */,
+				CDD2A79C102B895800D00011 /* my_time.c in Sources */,
+				CDD2A79D102B895800D00011 /* pack.c in Sources */,
+				CDD2A7AD102B8A0500D00011 /* net_serv.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CDD2A779102B879800D00011 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* NGDatabase */;
+			targetProxy = CDD2A778102B879800D00011 /* PBXContainerItemProxy */;
+		};
+		CDD2A77B102B879A00D00011 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDE10FE4102AFCE50021D162 /* mysqlclient_r */;
+			targetProxy = CDD2A77A102B879A00D00011 /* PBXContainerItemProxy */;
+		};
 		CDE038A21025BE08000243F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* NGDatabase */;
@@ -327,6 +1199,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = x86_64;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Frameworks";
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -355,6 +1228,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = x86_64;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Frameworks";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -380,6 +1254,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -398,6 +1273,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -410,10 +1286,97 @@
 			};
 			name = Release;
 		};
+		CDD2A759102B85C300D00011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Frameworks/NGDatabase.framework/NGDatabase";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PlugIns";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MYSQL_CLIENT,
+					DONT_USE_RAID,
+					SIGNAL_WITH_VIO_CLOSE,
+					_P1003_1B_VISIBLE,
+					DONT_DECLARE_CXA_PURE_VIRTUAL,
+					IGNORE_SIGHUP_SIGQUIT,
+					SIGNALS_DONT_BREAK_READ,
+				);
+				GENERATE_PKGINFO_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Drivers/MySQL/mysql/darwin",
+					"$(SRCROOT)/Drivers/MySQL/mysql/include",
+				);
+				INFOPLIST_FILE = "Drivers/MySQL/MySQL-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MySQL;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = dbplugin;
+			};
+			name = Debug;
+		};
+		CDD2A75A102B85C300D00011 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Frameworks/NGDatabase.framework/NGDatabase";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/PlugIns";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					MYSQL_CLIENT,
+					DONT_USE_RAID,
+					SIGNAL_WITH_VIO_CLOSE,
+					_P1003_1B_VISIBLE,
+					DONT_DECLARE_CXA_PURE_VIRTUAL,
+					IGNORE_SIGHUP_SIGQUIT,
+					SIGNALS_DONT_BREAK_READ,
+				);
+				GENERATE_PKGINFO_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Drivers/MySQL/mysql/darwin",
+					"$(SRCROOT)/Drivers/MySQL/mysql/include",
+				);
+				INFOPLIST_FILE = "Drivers/MySQL/MySQL-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				LIBRARY_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MySQL;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = dbplugin;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		CDE0389F1025BE03000243F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/bin";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -433,6 +1396,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/bin";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -447,6 +1411,66 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = iSQL;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		CDE10FE6102AFCE80021D162 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEFAULT_CHARSET_HOME=\"\\\"/usr/local\\\"\"",
+					"SHAREDIR=\"\\\"/usr/local/share/mysql\\\"\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Drivers/MySQL/mysql/darwin",
+					"$(SRCROOT)/Drivers/MySQL/mysql/include",
+				);
+				INSTALL_PATH = /usr/local/lib;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-fno-implicit-templates",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = mysqlclient_r;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		CDE10FE7102AFCE80021D162 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEFAULT_CHARSET_HOME=\"\\\"/usr/local\\\"\"",
+					"SHAREDIR=\"\\\"/usr/local/share/mysql\\\"\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Drivers/MySQL/mysql/darwin",
+					"$(SRCROOT)/Drivers/MySQL/mysql/include",
+				);
+				INSTALL_PATH = /usr/local/lib;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-fno-implicit-templates",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = mysqlclient_r;
+				SKIP_INSTALL = YES;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -472,11 +1496,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		CDD2A75B102B85C300D00011 /* Build configuration list for PBXNativeTarget "MySQL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDD2A759102B85C300D00011 /* Debug */,
+				CDD2A75A102B85C300D00011 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CDE038A41025BE14000243F1 /* Build configuration list for PBXNativeTarget "NGDBTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CDE0389F1025BE03000243F1 /* Debug */,
 				CDE038A01025BE03000243F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDE10FE9102AFCF80021D162 /* Build configuration list for PBXNativeTarget "mysqlclient_r" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDE10FE6102AFCE80021D162 /* Debug */,
+				CDE10FE7102AFCE80021D162 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
