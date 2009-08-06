@@ -144,6 +144,7 @@
 				CDE25A9910279608009BBBED /* NGMySQLResultSet.m */,
 			);
 			name = MySQL;
+			path = Drivers/MySQL;
 			sourceTree = "<group>";
 		};
 		CDF90AAC1027294600240ACD /* Core */ = {
