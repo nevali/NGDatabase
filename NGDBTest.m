@@ -53,6 +53,7 @@ main(int argc, char **argv)
 	}
 	url = [[NSString alloc] initWithUTF8String:argv[1]];
 	db = [[NGDBConnection alloc] initWithURLString:url options:nil status:&err];
+	[db setDebugLog:TRUE];
 	[url release];
 	if(!db)
 	{
@@ -170,7 +171,7 @@ main(int argc, char **argv)
 	[rows release];
 	
 		
-	[db executeSQL:@"DROP TEMPORARY TABLE {ngdbtest}" withArray:nil status:NULL];
+	[db executeSQL:@"DROP TABLE {ngdbtest}" withArray:nil status:NULL];
 	
 	[db release];
 	
