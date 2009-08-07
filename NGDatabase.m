@@ -72,6 +72,7 @@ static NGDatabase *sharedDatabaseManager;
                 sharedDatabaseManager = self;
 				driverClasses = [[NSMutableDictionary alloc] initWithCapacity:16];
 				driverInfo = [[NSMutableDictionary alloc] initWithCapacity:16];
+				/* Register the baked-in classes */
 				[self addDriverClass:[NSDictionary dictionaryWithObjectsAndKeys:
 					@"com.nexgenta.NGDatabase.SQLite", @"CFBundleIdentifier",
 					@"NGSQLiteConnection", @"NSPrincipalClass",
