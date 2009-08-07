@@ -6,6 +6,22 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		CD679FFB102CDF3A00D2907A /* Suite */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = CD67A008102CDF4C00D2907A /* Build configuration list for PBXAggregateTarget "Suite" */;
+			buildPhases = (
+			);
+			dependencies = (
+				CD679FFF102CDF4000D2907A /* PBXTargetDependency */,
+				CD67A001102CDF4000D2907A /* PBXTargetDependency */,
+				CD67A005102CDF4000D2907A /* PBXTargetDependency */,
+			);
+			name = Suite;
+			productName = Suite;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		CD726AB0102C4C2400EB1637 /* NGSQLiteConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = CD726AAE102C4C2400EB1637 /* NGSQLiteConnection.h */; };
@@ -197,6 +213,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CD679FFE102CDF4000D2907A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* NGDatabase */;
+			remoteInfo = NGDatabase;
+		};
+		CD67A000102CDF4000D2907A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDE0389C1025BE03000243F1 /* NGDBTest */;
+			remoteInfo = NGDBTest;
+		};
+		CD67A004102CDF4000D2907A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CDD2A756102B85C300D00011 /* MySQL */;
+			remoteInfo = MySQL;
+		};
 		CDD2A778102B879800D00011 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -980,6 +1017,7 @@
 				CDE0389C1025BE03000243F1 /* NGDBTest */,
 				CDE10FE4102AFCE50021D162 /* mysqlclient_r */,
 				CDD2A756102B85C300D00011 /* MySQL */,
+				CD679FFB102CDF3A00D2907A /* Suite */,
 			);
 		};
 /* End PBXProject section */
@@ -1189,6 +1227,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CD679FFF102CDF4000D2907A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* NGDatabase */;
+			targetProxy = CD679FFE102CDF4000D2907A /* PBXContainerItemProxy */;
+		};
+		CD67A001102CDF4000D2907A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDE0389C1025BE03000243F1 /* NGDBTest */;
+			targetProxy = CD67A000102CDF4000D2907A /* PBXContainerItemProxy */;
+		};
+		CD67A005102CDF4000D2907A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CDD2A756102B85C300D00011 /* MySQL */;
+			targetProxy = CD67A004102CDF4000D2907A /* PBXContainerItemProxy */;
+		};
 		CDD2A779102B879800D00011 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* NGDatabase */;
@@ -1307,6 +1360,27 @@
 				MYSQL_PREFIX = /opt/mysql5;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+		CD679FFC102CDF3A00D2907A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Suite;
+			};
+			name = Debug;
+		};
+		CD679FFD102CDF3A00D2907A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Suite;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -1516,6 +1590,15 @@
 			buildConfigurations = (
 				1DEB91B208733DA50010E9CD /* Debug */,
 				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CD67A008102CDF4C00D2907A /* Build configuration list for PBXAggregateTarget "Suite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD679FFC102CDF3A00D2907A /* Debug */,
+				CD679FFD102CDF3A00D2907A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

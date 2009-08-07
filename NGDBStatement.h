@@ -28,6 +28,8 @@
 #ifndef NGDATABASE_NGDBSTATEMENT_H_
 # define NGDATABASE_NGDBSTATEMENT_H_   1
 
+# include "NGDBConnection.h"
+
 @interface NGDBStatement : NSObject
 {
 @protected

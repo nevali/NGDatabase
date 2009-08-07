@@ -42,9 +42,15 @@ typedef enum {
 # include "NGDBConnection.h"
 # include "NGDBStatement.h"
 
-extern NSString *const NGDBErrorDomain; 
-extern NSString *const NGDBNull; 
-extern NSString *const NGDBDefault;
+# ifdef NGDB_WEAK_IMPORTS
+#  define NGDB_CONST_EXTERN_ATTRIBUTE __attribute__((weak_import))
+# else
+#  define NGDB_CONST_EXTERN_ATTRIBUTE
+# endif
+
+extern NSString *const NGDBErrorDomain NGDB_CONST_EXTERN_ATTRIBUTE; 
+extern NSString *const NGDBNull NGDB_CONST_EXTERN_ATTRIBUTE; 
+extern NSString *const NGDBDefault NGDB_CONST_EXTERN_ATTRIBUTE;
 
 @interface NGDatabase : NSObject
 {
@@ -55,10 +61,12 @@ extern NSString *const NGDBDefault;
 
 + (NGDatabase *)sharedDatabaseManager;
 
-- (BOOL)addDriverClass:(NSDictionary *)infoDictionary;
+- (BOOL)addDriverClass:(NSDictionary *)infoDictionary class:(Class)theClass bundlePath:(NSString *)path;
 - (Class)driverForScheme:(NSString *)scheme;
 - (id)driverProperty:(NSString *)propertyName forScheme:(NSString *)scheme;
 - (NSDictionary *)driverInfoDictionaryForScheme:(NSString *)scheme;
+- (BOOL)loadDriversFromPath:(NSString *)folderPath;
+- (BOOL)loadDriverFromBundle:(NSString *)path;
 
 @end
 

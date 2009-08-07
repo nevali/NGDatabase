@@ -30,7 +30,7 @@
 
 # import <Foundation/Foundation.h>
 
-# include "NGDBConnection.h"
+# include "NGDatabase.h"
 
 @interface NGDBConnection (NGDBDriverMethods)
 

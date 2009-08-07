@@ -28,8 +28,9 @@
 #ifndef DBCORE_NGMYSQLCONNECTION_H_
 # define DBCORE_NGMYSQLCONNECTION_H_   1
 
+# define NGDB_WEAK_IMPORTS             1
+
 # import <Foundation/Foundation.h>
-# import "NGDatabase.h"
 # import "NGDBDriver.h"
 # include <mysql.h>
 

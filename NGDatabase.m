@@ -63,6 +63,43 @@ static NGDatabase *sharedDatabaseManager;
     return sharedDatabaseManager;
 }
 
+- (BOOL)loadPlugIns
+{
+	/* We attempt to load plug-ins from the following locations:
+	 *
+	 * <main bundle>/Contents/PlugIns
+	 * <domain>/Library/Application Support/NGDatabase/PlugIns
+	 *
+	 * All plug-ins have the filename extension ".dbplugin", so as not
+	 * to clash with plug-ins belonging to the application itself or
+	 * other frameworks.
+	 */
+	NSBundle *mainBundle;
+	NSEnumerator *en;
+	NSArray *libpaths;
+	NSMutableArray *paths;
+	NSString *dir;
+	
+	paths = [[NSMutableArray alloc] init];
+	libpaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSAllDomainsMask, YES);
+	en = [libpaths objectEnumerator];
+	while((dir = [en nextObject]))
+	{
+		[paths addObject:[dir stringByAppendingPathComponent:@"Application Support/NGDatabase/PlugIns"]];
+	}
+	if((mainBundle = [NSBundle mainBundle]))
+	{
+		[paths addObject:[mainBundle builtInPlugInsPath]];
+	}
+	en = [paths objectEnumerator];
+	while((dir = [en nextObject]))
+	{
+		[self loadDriversFromPath:dir];
+	}
+	[paths release];
+	return TRUE;
+}
+
 - (id)init
 {
     Class me = [self class];
@@ -75,7 +112,6 @@ static NGDatabase *sharedDatabaseManager;
 				/* Register the baked-in classes */
 				[self addDriverClass:[NSDictionary dictionaryWithObjectsAndKeys:
 					@"com.nexgenta.NGDatabase.SQLite", @"CFBundleIdentifier",
-					@"NGSQLiteConnection", @"NSPrincipalClass",
 					@"© 2009 Mo McRoberts.", @"NSHumanReadableCopyright",
 					@"1.0", @"CFBundleVersion",
 					@"SQLite", @"CFBundleName",
@@ -84,19 +120,20 @@ static NGDatabase *sharedDatabaseManager;
 						[NSDictionary dictionaryWithObjectsAndKeys:
 							[NSArray arrayWithObjects:@"sqlite", @"sqlite3", nil], @"CFBundleURLSchemes", nil
 						], nil], @"CFBundleURLTypes",
-					nil]];
+					nil] class:NSClassFromString(@"NGSQLiteConnection") bundlePath:nil];
+				/* Load any plug-in bundles that we might find */
+				[self loadPlugIns];
             }
         }
     }
     return sharedDatabaseManager;
 }
 
-- (BOOL)addDriverClass:(NSDictionary *)infoDictionary
+- (BOOL)addDriverClass:(NSDictionary *)infoDictionary class:(Class)theClass bundlePath:(NSString *)path
 {
-	NSDictionary *infoDict;
+	NSMutableDictionary *infoDict;
 	NSString *className;
 	id urltypes, urldict, schemes, scheme;
-	Class targ;
 	size_t c, d, count;
 	
 	if(!(urltypes = [infoDictionary objectForKey:@"CFBundleURLTypes"]) || ![urltypes isKindOfClass:[NSArray class]])
@@ -104,18 +141,25 @@ static NGDatabase *sharedDatabaseManager;
 		NSLog(@"NGDatabase -addDriverClass:forScheme: CFBundleURLTypes key is absent");
 		return FALSE;
 	}
-	if(!(className = [infoDictionary objectForKey:@"NSPrincipalClass"]))
+	if(!theClass)
 	{
-		NSLog(@"NGDatabase -addDriverClass:forScheme: NSPrincipalClass key is absent");
-		return FALSE;
-	}
-	if(!(targ = NSClassFromString(className)))
-	{
-		NSLog(@"NGDatabase -addDriverClass:forScheme: specified NSPrincipalClass (%@) does not exist", className);
-		return FALSE;
+		if(!(className = [infoDictionary objectForKey:@"NSPrincipalClass"]))
+		{
+			NSLog(@"NGDatabase -addDriverClass:forScheme: NSPrincipalClass key is absent");
+			return FALSE;
+		}
+		if(!(theClass = NSClassFromString(className)))
+		{
+			NSLog(@"NGDatabase -addDriverClass:forScheme: specified NSPrincipalClass (%@) does not exist", className);
+			return FALSE;
+		}
 	}
 	count = 0;
-	infoDict = [infoDictionary copy];
+	infoDict = [[NSMutableDictionary alloc] initWithDictionary:infoDictionary];
+	if(path)
+	{
+		[infoDict setObject:path forKey:@"NGBundlePath"];
+	}
 	for(c = 0; c < [urltypes count]; c++)
 	{
 		urldict = [urltypes objectAtIndex:c];
@@ -130,9 +174,9 @@ static NGDatabase *sharedDatabaseManager;
 		for(d = 0; d < [schemes count]; d++)
 		{
 			scheme = [schemes objectAtIndex:d];
-			NSLog(@"Registering scheme %@", scheme);
-			[driverClasses setObject:targ forKey:scheme];
+			[driverClasses setObject:theClass forKey:scheme];
 			[driverInfo setObject:infoDict forKey:scheme];
+			count++;
 		}
 	}
 	[infoDict release];
@@ -174,6 +218,52 @@ static NGDatabase *sharedDatabaseManager;
 	}
 	return nil;
 }
+
+- (BOOL)loadDriversFromPath:(NSString *)folderPath
+{
+	NSDirectoryEnumerator *en;
+	NSString *p;
+
+	if(!(en = [[NSFileManager defaultManager] enumeratorAtPath:folderPath]))
+	{
+		return FALSE;
+	}
+	while(p = [en nextObject])
+	{
+		if([[p pathExtension] isEqualToString:@"dbplugin"])
+		{
+			[self loadDriverFromBundle:[folderPath stringByAppendingPathComponent:p]];
+		}
+	}
+	return TRUE;
+}
+
+- (BOOL)loadDriverFromBundle:(NSString *)path
+{
+	NSBundle *bundle;
+	Class theClass;
+	
+	if(!(bundle = [NSBundle bundleWithPath:path]))
+	{
+		return FALSE;
+	}
+	if(![bundle load])
+	{
+		return FALSE;
+	}
+	if(!(theClass = [bundle principalClass]))
+	{
+		[bundle unload];
+		return FALSE;
+	}
+	if(!([self addDriverClass:[bundle infoDictionary] class:theClass bundlePath:path]))
+	{
+		[bundle unload];
+		return FALSE;
+	}
+	return TRUE;
+}
+	
 
 - (id)copyWithZone:(NSZone *)zone
 {

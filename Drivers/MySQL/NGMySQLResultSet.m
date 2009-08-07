@@ -155,7 +155,15 @@
 			}
 			else
 			{
-				[rowobj addObject:NGDBNull];
+				[rowobj addObject:@"(Null)"];
+/*				if(!NGDBNull)
+				{
+					NSLog(@"NGDBNull is NULL!");
+				}
+				else
+				{
+					[rowobj addObject:NGDBNull];
+				}*/
 			}
 		}
 		rowArray = rowobj;
