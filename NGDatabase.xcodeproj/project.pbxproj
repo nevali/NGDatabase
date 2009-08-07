@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		CD726AB0102C4C2400EB1637 /* NGSQLiteConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = CD726AAE102C4C2400EB1637 /* NGSQLiteConnection.h */; };
+		CD726AB1102C4C2400EB1637 /* NGSQLiteConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CD726AAF102C4C2400EB1637 /* NGSQLiteConnection.m */; };
+		CD726ABA102C5D3E00EB1637 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CD726AB9102C5D3E00EB1637 /* libsqlite3.dylib */; };
+		CD726ACE102C611900EB1637 /* NGSQLiteResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CD726ACD102C611900EB1637 /* NGSQLiteResultSet.m */; };
 		CDD2A75E102B861700D00011 /* NGMySQLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE038661025ABF2000243F1 /* NGMySQLConnection.m */; };
 		CDD2A75F102B861700D00011 /* NGMySQLResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE25A9910279608009BBBED /* NGMySQLResultSet.m */; };
 		CDD2A77C102B87B100D00011 /* libmysqlclient_r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE10FE5102AFCE50021D162 /* libmysqlclient_r.a */; };
@@ -197,14 +201,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* NGDatabase */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = NGDatabase;
 		};
 		CDD2A77A102B879A00D00011 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CDE10FE4102AFCE50021D162 /* mysqlclient_r */;
+			remoteGlobalIDString = CDE10FE4102AFCE50021D162;
 			remoteInfo = mysqlclient_r;
 		};
 		CDE038A11025BE08000243F1 /* PBXContainerItemProxy */ = {
@@ -222,6 +226,10 @@
 		32DBCF5E0370ADEE00C91783 /* p_ngdatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = p_ngdatabase.h; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* NGDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NGDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD726AAE102C4C2400EB1637 /* NGSQLiteConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSQLiteConnection.h; sourceTree = "<group>"; };
+		CD726AAF102C4C2400EB1637 /* NGSQLiteConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSQLiteConnection.m; sourceTree = "<group>"; };
+		CD726AB9102C5D3E00EB1637 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		CD726ACD102C611900EB1637 /* NGSQLiteResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSQLiteResultSet.m; sourceTree = "<group>"; };
 		CDD2A757102B85C300D00011 /* MySQL.dbplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySQL.dbplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD2A78B102B890D00D00011 /* vio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vio.c; sourceTree = "<group>"; };
 		CDD2A78C102B890D00D00011 /* viosocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = viosocket.c; sourceTree = "<group>"; };
@@ -281,7 +289,7 @@
 		CDE038651025ABF2000243F1 /* NGMySQLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGMySQLConnection.h; sourceTree = "<group>"; };
 		CDE038661025ABF2000243F1 /* NGMySQLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGMySQLConnection.m; sourceTree = "<group>"; };
 		CDE038911025BDAC000243F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		CDE0389D1025BE03000243F1 /* NGDBTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = NGDBTest; path = build/Debug/bin/NGDBTest; sourceTree = "<group>"; };
+		CDE0389D1025BE03000243F1 /* NGDBTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NGDBTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDE039231025BE57000243F1 /* NGDBTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBTest.m; sourceTree = "<group>"; };
 		CDE039781025C6DE000243F1 /* libmysqlclient_r.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysqlclient_r.dylib; path = "/usr/local/mysql-5.1.32-osx10.5-x86_64/lib/libmysqlclient_r.dylib"; sourceTree = "<absolute>"; };
 		CDE03A321025D02C000243F1 /* NGDBError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBError.m; sourceTree = "<group>"; };
@@ -419,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDE038921025BDAC000243F1 /* Foundation.framework in Frameworks */,
+				CD726ABA102C5D3E00EB1637 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,13 +467,25 @@
 				CD8FB262102B841D00E3BEC5 /* Drivers */,
 				CDD2A741102B858600D00011 /* Command-line utilities */,
 				CDD2A7B9102B8A8900D00011 /* libz.dylib */,
+				CD726AB9102C5D3E00EB1637 /* libsqlite3.dylib */,
 			);
 			name = DBCore;
+			sourceTree = "<group>";
+		};
+		CD726AAC102C4C0000EB1637 /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				CD726AAE102C4C2400EB1637 /* NGSQLiteConnection.h */,
+				CD726AAF102C4C2400EB1637 /* NGSQLiteConnection.m */,
+				CD726ACD102C611900EB1637 /* NGSQLiteResultSet.m */,
+			);
+			path = SQLite;
 			sourceTree = "<group>";
 		};
 		CD8FB262102B841D00E3BEC5 /* Drivers */ = {
 			isa = PBXGroup;
 			children = (
+				CD726AAC102C4C0000EB1637 /* SQLite */,
 				CDF90A9C1027289B00240ACD /* MySQL */,
 			);
 			path = Drivers;
@@ -817,6 +838,7 @@
 				CDF90A4B102714AE00240ACD /* NGDBError.h in Headers */,
 				CDF90A4D1027152A00240ACD /* NGDBResultSet.h in Headers */,
 				CDDDF4C4102988BC001AC050 /* NGDBStatement.h in Headers */,
+				CD726AB0102C4C2400EB1637 /* NGSQLiteConnection.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,6 +1032,8 @@
 				CDF90A4F1027156C00240ACD /* NGDBConnection.m in Sources */,
 				CDE25AB71028180D009BBBED /* NGDBResultSet.m in Sources */,
 				CDDDF4C5102988BC001AC050 /* NGDBStatement.m in Sources */,
+				CD726AB1102C4C2400EB1637 /* NGSQLiteConnection.m in Sources */,
+				CD726ACE102C611900EB1637 /* NGSQLiteResultSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -71,6 +71,7 @@ static NGDatabase *sharedDatabaseManager;
                 sharedDatabaseManager = self;
 				drivers = [[NSMutableDictionary alloc] initWithCapacity:16];
 /*				[self addDriverClass:@"NGMySQLConnection" forScheme:@"mysql"]; */
+				[self addDriverClass:@"NGSQLiteConnection" forScheme:@"sqlite"];
             }
         }
     }
