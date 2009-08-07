@@ -37,6 +37,7 @@
 	NSTimeZone *timeZone;
 	NSMutableDictionary *aliases;
 	NGDBExecFlags execFlags;
+	int multipleInsertLimit;
 }
 
 /** +connectionWithURLString:options:status:
@@ -541,6 +542,22 @@
 	return vlist;
 }
 
+#define EXEC_AND_FREE(s, res, r) \
+	rp = [self exec:s flags:execFlags status:res]; \
+	if(rp || !err) \
+	{ \
+		r = TRUE; \
+		[self freeResult:rp]; \
+	} \
+	else \
+	{ \
+		r = FALSE; \
+		if(status) \
+		{ \
+			*status = err; \
+		} \
+	}
+
 - (BOOL)insertInto:(NSString *)target values:(id)values status:(NSError **)status
 {
 	char quoted[64];
@@ -548,35 +565,45 @@
 	NSArray *vlist, *klist;
 	NSMutableArray *sqllist;
 	id entry;
+	int numrows;
 	BOOL first, r;
 	size_t n, count;
 	void *rp;
 	NSError *err = NULL;
 	
+	numrows = 0;
 	targ = [self quoteObject:target qualify:TRUE];
+	
+	/* A simple set of key-value pairs, where the keys are field names */
 	if([values isKindOfClass:[NSDictionary class]])
 	{
-		/* A simple set of key-value pairs, where the keys are field names */
 		klist = [self _quoteKeys:[values allKeys] quoted:quoted];
 		vlist = [self _quoteValues:[values allValues] quoted:quoted];
 		sql = [[NSString alloc] initWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)",
 			   targ, [klist componentsJoinedByString:@", "], [vlist componentsJoinedByString:@", "], nil];
 		[klist release];
 		[vlist release];
+		[targ release];
+		EXEC_AND_FREE(sql, &err, r);
+		return r;
 	}
-	else if([values isKindOfClass:[NSArray class]])
+	
+	/* An array, either of NSArray objects, or of NSDictionary objects */
+	if([values isKindOfClass:[NSArray class]])
 	{
 		count = [values count];
 		if(!count)
 		{
+			[targ release];
 			return TRUE;
 		}
 		sqllist = [[NSMutableArray alloc] initWithCapacity:count + 1];
 		first = TRUE;
-		klist = NULL;
+		klist = nil;
 		for(n = 0; n < count; n++)
 		{
 			entry = [values objectAtIndex:n];
+			/* ...it's an array of NSArrays */
 			if([entry isKindOfClass:[NSArray class]])
 			{
 				if(first)
@@ -591,16 +618,36 @@
 					sql = [[NSString alloc] initWithFormat:@"(%@)", [vlist componentsJoinedByString:@", "], nil];
 					[sqllist addObject:sql];
 					[sql release];
+					numrows++;
 				}
 				else
 				{
 					sql = [[NSString alloc] initWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)", targ, [klist componentsJoinedByString:@", "], [vlist componentsJoinedByString:@", "], nil];
 					[sqllist addObject:sql];
 					[sql release];
+					numrows++;
+				}
+				if(multipleInsertLimit && numrows >= multipleInsertLimit)
+				{
+					/* Execute the statement so far immediately */
+					sql = [sqllist componentsJoinedByString:@", "];
+					[sqllist release];
+					EXEC_AND_FREE(sql, &err, r);
+					if(!r)
+					{
+						[klist release];
+						[vlist release];
+						[targ release];
+						return FALSE;
+					}
+					numrows = 0;
+					sqllist = [[NSMutableArray alloc] initWithCapacity:count + 1];
 				}
 				continue;
 			}
-			else if(![entry isKindOfClass:[NSDictionary class]])
+			
+			/* It's neither an array of NSArrays, nor of NSDictionary objects */
+			if(![entry isKindOfClass:[NSDictionary class]])
 			{
 				*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-1 reason:@"Cannot perform insertInto:values:status: where values: is an NSArray containing types other than NSDictionary and NSArray" statement:nil];
 				[sqllist release];
@@ -608,8 +655,11 @@
 				{
 					[klist release];
 				}
+				[targ release];
 				return FALSE;
 			}
+			
+			/* An array of NSDictionary objects */
 			if(first)
 			{
 				klist = [self _quoteKeys:[entry allKeys] quoted:quoted];
@@ -618,6 +668,7 @@
 				sql = [[NSString alloc] initWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)", targ, [klist componentsJoinedByString:@", "], [vlist componentsJoinedByString:@", "], nil];
 				[sqllist addObject:sql];
 				[sql release];
+				numrows++;
 			}
 			else
 			{
@@ -625,11 +676,32 @@
 				sql = [[NSString alloc] initWithFormat:@"(%@)", [vlist componentsJoinedByString:@", "], nil];
 				[sqllist addObject:sql];
 				[sql release];
+				numrows++;
 			}
 			[vlist release];
+			if(multipleInsertLimit && numrows >= multipleInsertLimit)
+			{
+				/* Execute the statement so far immediately */
+				sql = [sqllist componentsJoinedByString:@", "];
+				[sqllist release];
+				EXEC_AND_FREE(sql, &err, r);
+				if(!r)
+				{
+					[klist release];
+					[targ release];
+					return FALSE;
+				}
+				numrows = 0;
+				first = TRUE;
+				klist = nil;
+				sqllist = [[NSMutableArray alloc] initWithCapacity:count + 1];
+			}
 		}
-		[klist release];
-		sql = [sqllist componentsJoinedByString:@", "];
+		if(numrows)
+		{
+			[klist release];
+			sql = [sqllist componentsJoinedByString:@", "];
+		}
 		[sqllist release];
 	}
 	else
@@ -641,21 +713,12 @@
 		return FALSE;
 	}
 	[targ release];
-	rp = [self exec:sql flags:execFlags status:&err];
-	if(rp || !err)
+	if(numrows)
 	{
-		r = TRUE;
-		[self freeResult:rp];
+		EXEC_AND_FREE(sql, &err, r);
+		return r;
 	}
-	else
-	{
-		r = FALSE;
-		if(status)
-		{
-			*status = err;
-		}
-	}
-	return r;
+	return TRUE;
 }
 
 /** -alias:forObject:
@@ -927,6 +990,29 @@
 - (id)prepare:(NSString *)stmt status:(NSError **)status
 {
 	return [[NGDBStatement alloc] initWithStatement:stmt connection:self status:status];
+}
+
+/** setDebugLog:
+ *
+ * Set the state of the debug-logging flag. Drivers may use this flag as an
+ * indicator that application developer would like further feedback on executed
+ * queries, result states, and so on.
+ *
+ * The precise meaning of this flag is implementation-defined, but a typical
+ * driver's implementation would be to log executed queries using NSLog().
+ *
+ * Drivers should not override this method.
+ */
+- (void)setDebugLog:(BOOL)flag
+{
+	if(flag)
+	{
+		execFlags |= NGDBEF_DebugLog;
+	}
+	else
+	{
+		execFlags &= ~NGDBEF_DebugLog;
+	}
 }
 
 @end
@@ -1259,6 +1345,12 @@
 	return NULL;
 }
 
+/** -execFlags
+ *
+ * Return the current set of execution flags associated with this connection.
+ *
+ * Drivers should not override this method.
+ */
 - (NGDBExecFlags) execFlags
 {
 	return execFlags;

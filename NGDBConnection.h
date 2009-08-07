@@ -39,6 +39,7 @@
 	NSTimeZone *timeZone;
 	NSMutableDictionary *aliases;
 	NGDBExecFlags execFlags;
+	int multipleInsertLimit;
 }
 
 + (id)connectionWithURL:(NSURL *)url options:(NSDictionary *)options status:(NSError **)status;
@@ -82,6 +83,7 @@
 - (BOOL)isUnbuffered;
 - (void)setUncached:(BOOL)flag;
 - (BOOL)isUncached;
+- (void)setDebugLog:(BOOL)flag;
 
 @end
 

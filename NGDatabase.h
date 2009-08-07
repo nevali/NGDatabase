@@ -33,7 +33,8 @@
 typedef enum {
 	NGDBEF_None = 0,
 	NGDBEF_Unbuffered = (1<<0),
-	NGDBEF_Uncached = (1<<1)
+	NGDBEF_Uncached = (1<<1),
+	NGDBEF_DebugLog = (1<<2)
 } NGDBExecFlags;
 
 # include "NGDBError.h"
