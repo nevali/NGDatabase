@@ -32,6 +32,9 @@
 #include "p_ngdatabase.h"	
 
 @implementation NGDBError
+{
+	NSString *desc;
+}
 
 - (id) initWithDriver:(NSString *)driverName sqlState:(NSString *)state code:(NSInteger) code reason:(NSString *)reason statement:(NSString *)statement
 {
@@ -72,6 +75,55 @@
 - (NSString *) driverName
 {
 	return [[self userInfo] objectForKey:@"driverName"];
+}
+
+- (NSString *) description
+{
+	NSMutableArray *arr;
+	NSString *t, *s;
+	int d;
+	
+	if(desc)
+	{
+		return desc;
+	}
+	arr = [[NSMutableArray alloc] initWithCapacity:6];
+	if((t = [self driverName]))
+	{
+		if((d = [self code]))
+		{
+			s = [[NSString alloc] initWithFormat:@"%@(%d): ", t, d];
+		}
+		else
+		{
+			s = [[NSString alloc] initWithFormat:@"%@: ", t];
+		}			
+		[arr addObject:s];
+		[s release];
+	}
+	if((t = [self sqlState]))
+	{
+		s = [[NSString alloc] initWithFormat:@"SQLSTATE[%@]: ", t];
+		[arr addObject:s];
+		[s release];
+	}
+	if((t = [[self userInfo] objectForKey:NSLocalizedDescriptionKey]))
+	{
+		[arr addObject:t];
+	}
+	else
+	{
+		[arr addObject:@"Unknown error"];
+	}
+	if((t = [self statement]))
+	{
+		s = [[NSString alloc] initWithFormat:@"\nWhile executing: %@", t];
+		[arr addObject:s];
+		[s release];
+	}
+	desc = [arr componentsJoinedByString:@""];
+	[arr release];
+	return desc;
 }
 
 @end

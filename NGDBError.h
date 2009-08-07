@@ -31,7 +31,11 @@
 # import <Foundation/Foundation.h>
 
 @interface NGDBError: NSError
-
+{
+	@private
+	NSString *desc;
+}
+	
 - (id)initWithDriver:(NSString *)driverName sqlState:(NSString *)state code:(NSInteger) code reason:(NSString *)reason statement:(NSString *)statement;
 
 - (NSString *) sqlState;
