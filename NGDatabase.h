@@ -49,13 +49,16 @@ extern NSString *const NGDBDefault;
 @interface NGDatabase : NSObject
 {
 @private
-	NSMutableDictionary *drivers;
+	NSMutableDictionary *driverInfo;
+	NSMutableDictionary *driverClasses;
 }
 
 + (NGDatabase *)sharedDatabaseManager;
 
-- (BOOL)addDriverClass:(NSString *)className forScheme:(NSString *)scheme;
+- (BOOL)addDriverClass:(NSDictionary *)infoDictionary;
 - (Class)driverForScheme:(NSString *)scheme;
+- (id)driverProperty:(NSString *)propertyName forScheme:(NSString *)scheme;
+- (NSDictionary *)driverInfoDictionaryForScheme:(NSString *)scheme;
 
 @end
 

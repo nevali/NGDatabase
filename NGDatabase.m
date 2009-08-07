@@ -39,7 +39,8 @@ static NGDatabase *sharedDatabaseManager;
 
 @implementation NGDatabase
 {
-	NSMutableDictionary *drivers;
+	NSMutableDictionary *driverInfo;
+	NSMutableDictionary *driverClasses;
 }
 
 + (NGDatabase *)sharedDatabaseManager
@@ -69,30 +70,108 @@ static NGDatabase *sharedDatabaseManager;
         if (sharedDatabaseManager == nil) {
             if (self = [super init]) {
                 sharedDatabaseManager = self;
-				drivers = [[NSMutableDictionary alloc] initWithCapacity:16];
-/*				[self addDriverClass:@"NGMySQLConnection" forScheme:@"mysql"]; */
-				[self addDriverClass:@"NGSQLiteConnection" forScheme:@"sqlite"];
+				driverClasses = [[NSMutableDictionary alloc] initWithCapacity:16];
+				driverInfo = [[NSMutableDictionary alloc] initWithCapacity:16];
+				[self addDriverClass:[NSDictionary dictionaryWithObjectsAndKeys:
+					@"com.nexgenta.NGDatabase.SQLite", @"CFBundleIdentifier",
+					@"NGSQLiteConnection", @"NSPrincipalClass",
+					@"© 2009 Mo McRoberts.", @"NSHumanReadableCopyright",
+					@"1.0", @"CFBundleVersion",
+					@"SQLite", @"CFBundleName",
+					@"English", @"CFBundleDevelopmentRegion",
+					[NSArray arrayWithObjects:
+						[NSDictionary dictionaryWithObjectsAndKeys:
+							[NSArray arrayWithObjects:@"sqlite", @"sqlite3", nil], @"CFBundleURLSchemes", nil
+						], nil], @"CFBundleURLTypes",
+					nil]];
             }
         }
     }
     return sharedDatabaseManager;
 }
 
-- (BOOL)addDriverClass:(NSString *)className forScheme:(NSString *)scheme
+- (BOOL)addDriverClass:(NSDictionary *)infoDictionary
 {
+	NSDictionary *infoDict;
+	NSString *className;
+	id urltypes, urldict, schemes, scheme;
 	Class targ;
+	size_t c, d, count;
 	
-	if((targ = NSClassFromString(className)))
+	if(!(urltypes = [infoDictionary objectForKey:@"CFBundleURLTypes"]) || ![urltypes isKindOfClass:[NSArray class]])
 	{
-		[drivers setObject:targ forKey:scheme];
+		NSLog(@"NGDatabase -addDriverClass:forScheme: CFBundleURLTypes key is absent");
+		return FALSE;
+	}
+	if(!(className = [infoDictionary objectForKey:@"NSPrincipalClass"]))
+	{
+		NSLog(@"NGDatabase -addDriverClass:forScheme: NSPrincipalClass key is absent");
+		return FALSE;
+	}
+	if(!(targ = NSClassFromString(className)))
+	{
+		NSLog(@"NGDatabase -addDriverClass:forScheme: specified NSPrincipalClass (%@) does not exist", className);
+		return FALSE;
+	}
+	count = 0;
+	infoDict = [infoDictionary copy];
+	for(c = 0; c < [urltypes count]; c++)
+	{
+		urldict = [urltypes objectAtIndex:c];
+		if(![urldict isKindOfClass:[NSDictionary class]])
+		{
+			continue;
+		}
+		if(!(schemes = [urldict objectForKey:@"CFBundleURLSchemes"]) || ![urltypes isKindOfClass:[NSArray class]])
+		{
+			continue;
+		}
+		for(d = 0; d < [schemes count]; d++)
+		{
+			scheme = [schemes objectAtIndex:d];
+			NSLog(@"Registering scheme %@", scheme);
+			[driverClasses setObject:targ forKey:scheme];
+			[driverInfo setObject:infoDict forKey:scheme];
+		}
+	}
+	[infoDict release];
+	if(count)
+	{
 		return TRUE;
 	}
+	NSLog(@"NGDatabase -addDriverClass:forScheme: no URL schemes found to register");
 	return FALSE;
 }
 
 - (Class)driverForScheme:(NSString *)scheme
 {
-	return (Class) [drivers objectForKey:scheme];
+	return (Class) [driverClasses objectForKey:scheme];
+}
+
+- (id)driverProperty:(NSString *)propertyName forScheme:(NSString *)scheme
+{
+	NSDictionary *dict;
+	id prop;
+	
+	if((dict = [driverInfo objectForKey:scheme]))
+	{
+		if((prop = [dict objectForKey:propertyName]))
+		{
+			return prop;
+		}
+	}
+	return nil;
+}
+
+- (NSDictionary *)driverInfoDictionaryForScheme:(NSString *)scheme
+{
+	NSDictionary *dict;
+	
+	if((dict = [driverInfo objectForKey:scheme]))
+	{
+		return dict;
+	}
+	return nil;
 }
 
 - (id)copyWithZone:(NSZone *)zone
