@@ -22,5 +22,14 @@
 	<string>© 2009 Mo McRoberts.</string>
 	<key>CFBundleName</key>
 	<string>MySQL</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>mysql</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
