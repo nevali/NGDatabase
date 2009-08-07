@@ -110,7 +110,7 @@
 		
 		state = [[NSString alloc] initWithCString:mysql_sqlstate(conn) encoding:NSUTF8StringEncoding];
 		reason = [[NSString alloc] initWithCString:mysql_error(conn) encoding:NSUTF8StringEncoding];
-		[res initWithDriver:@"DBMySQL" sqlState:state code:mysql_errno(conn) reason:reason statement:statement];
+		[res initWithDriver:@"MySQL" sqlState:state code:mysql_errno(conn) reason:reason statement:statement];
 		[state release];
 		[reason release];
 		*result = res;
