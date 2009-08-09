@@ -25,12 +25,25 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifdef HAVE_CONFIG_H
-# include "config.h"
-#endif
+#ifndef NGDATABASE_NGDBSHAREDMANAGER_H_
+# define NGDATABASE_NGDBSHAREDMANAGER_H_ 1
 
-#include "p_ngdatabase.h"	
+@interface NGDBSharedManager : NSObject
+{
+@private
+	NSMutableDictionary *driverInfo;
+	NSMutableDictionary *driverClasses;
+}
 
-NSString *const NGDBErrorDomain = @"com.nexgenta.DBCore";
-NSString *const NGDBNull = @"(NULL)";
-NSString *const NGDBDefault = @"@@DEFAULT@@";
++ (NGDBSharedManager *)sharedDatabaseManager;
+
+- (BOOL)addDriverClass:(NSDictionary *)infoDictionary class:(Class)theClass bundlePath:(NSString *)path;
+- (Class)driverForScheme:(NSString *)scheme;
+- (id)driverProperty:(NSString *)propertyName forScheme:(NSString *)scheme;
+- (NSDictionary *)driverInfoDictionaryForScheme:(NSString *)scheme;
+- (BOOL)loadDriversFromPath:(NSString *)folderPath;
+- (BOOL)loadDriverFromBundle:(NSString *)path;
+
+@end
+
+#endif /* !NGDATABASE_NGDBSHAREDMANAGER_H_ */

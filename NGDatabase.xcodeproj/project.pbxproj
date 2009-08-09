@@ -33,6 +33,8 @@
 		CDC9636F102EEE9E00E75F75 /* toc.css in Resources */ = {isa = PBXBuildFile; fileRef = CDC9636E102EEE9E00E75F75 /* toc.css */; };
 		CDC96371102EEFA600E75F75 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = CDC96370102EEFA600E75F75 /* index.html */; };
 		CDC96373102EF00400E75F75 /* doc.css in Resources */ = {isa = PBXBuildFile; fileRef = CDC96372102EF00400E75F75 /* doc.css */; };
+		CDC964C3102F514400E75F75 /* NGDBSharedManager.h in Headers */ = {isa = PBXBuildFile; fileRef = CDC964C2102F50FB00E75F75 /* NGDBSharedManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDC964E1102F521B00E75F75 /* NGDBSharedManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC964C7102F518A00E75F75 /* NGDBSharedManager.m */; };
 		CDD2A75E102B861700D00011 /* NGMySQLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE038661025ABF2000243F1 /* NGMySQLConnection.m */; };
 		CDD2A75F102B861700D00011 /* NGMySQLResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE25A9910279608009BBBED /* NGMySQLResultSet.m */; };
 		CDD2A77C102B87B100D00011 /* libmysqlclient_r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE10FE5102AFCE50021D162 /* libmysqlclient_r.a */; };
@@ -279,6 +281,8 @@
 		CDC96372102EF00400E75F75 /* doc.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = doc.css; sourceTree = "<group>"; };
 		CDC963F2102F1FD200E75F75 /* index.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = index.xml; sourceTree = "<group>"; };
 		CDC96494102F43F300E75F75 /* connectionWithURLString_options_status.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = connectionWithURLString_options_status.xml; sourceTree = "<group>"; };
+		CDC964C2102F50FB00E75F75 /* NGDBSharedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBSharedManager.h; sourceTree = "<group>"; };
+		CDC964C7102F518A00E75F75 /* NGDBSharedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBSharedManager.m; sourceTree = "<group>"; };
 		CDD2A757102B85C300D00011 /* MySQL.dbplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySQL.dbplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD2A78B102B890D00D00011 /* vio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vio.c; sourceTree = "<group>"; };
 		CDD2A78C102B890D00D00011 /* viosocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = viosocket.c; sourceTree = "<group>"; };
@@ -875,6 +879,7 @@
 			children = (
 				32DBCF5E0370ADEE00C91783 /* p_ngdatabase.h */,
 				CDE038631025ABA6000243F1 /* NGDatabase.m */,
+				CDC964C7102F518A00E75F75 /* NGDBSharedManager.m */,
 				CDE03A321025D02C000243F1 /* NGDBError.m */,
 				CDF90A4E1027156C00240ACD /* NGDBConnection.m */,
 				CDDDF4C3102988BC001AC050 /* NGDBStatement.m */,
@@ -893,6 +898,7 @@
 				CDF90A4C1027152A00240ACD /* NGDBResultSet.h */,
 				CDE038601025A9AA000243F1 /* NGDatabase.h */,
 				CDDDF4C2102988BC001AC050 /* NGDBStatement.h */,
+				CDC964C2102F50FB00E75F75 /* NGDBSharedManager.h */,
 			);
 			name = "Public Headers";
 			sourceTree = "<group>";
@@ -904,6 +910,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC964C3102F514400E75F75 /* NGDBSharedManager.h in Headers */,
 				CDE038611025A9AA000243F1 /* NGDatabase.h in Headers */,
 				CDF90A461027138F00240ACD /* NGDBDriver.h in Headers */,
 				CDF90A49102713F600240ACD /* NGDBConnection.h in Headers */,
@@ -1106,6 +1113,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDE038641025ABA6000243F1 /* NGDatabase.m in Sources */,
+				CDC964E1102F521B00E75F75 /* NGDBSharedManager.m in Sources */,
 				CDE03A331025D02C000243F1 /* NGDBError.m in Sources */,
 				CDF90A4F1027156C00240ACD /* NGDBConnection.m in Sources */,
 				CDE25AB71028180D009BBBED /* NGDBResultSet.m in Sources */,

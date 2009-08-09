@@ -90,12 +90,12 @@
  */
 - (id)initWithURL:(NSURL *)url options:(NSDictionary *)options status:(NSError **)status
 {
-	NGDatabase *dbm;
+	NGDBSharedManager *dbm;
 	Class impl = nil;
 	id db;
 	
 	[self release];
-	dbm = [NGDatabase sharedDatabaseManager];
+	dbm = [NGDBSharedManager sharedDatabaseManager];
 	if((impl = [dbm driverForScheme:[url scheme]]))
 	{
 		if((db = [impl alloc]))
