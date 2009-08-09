@@ -42,7 +42,7 @@
 {
 	if((self = [super init]))
 	{
-		if(!(statement = [conn intersperseQuery:stmt substituteParams:FALSE paramsArray:nil addSuffix:nil status:status]))
+		if(!(statement = [conn intersperseQuery:stmt substituteParams:NO paramsArray:nil addSuffix:nil status:status]))
 		{
 			[self release];
 			return nil;
@@ -95,14 +95,14 @@
 	if((res = [self exec:params flags:execFlags status:&err]))
 	{
 		[connection freeResult:res];
-		return TRUE;
+		return YES;
 	}
 	else if(!err)
 	{
-		return TRUE;
+		return YES;
 	}
 	ASSIGN_ERROR(err, status);
-	return FALSE;
+	return NO;
 }
 
 - (id)query:(NSError **)status, ...
@@ -148,7 +148,7 @@
 	NSString *query;
 	void *result;
 	
-	if(!(query = [connection intersperseQuery:statement substituteParams:TRUE paramsArray:params addSuffix:nil status:status]))
+	if(!(query = [connection intersperseQuery:statement substituteParams:YES paramsArray:params addSuffix:nil status:status]))
 	{
 		return NULL;
 	}
