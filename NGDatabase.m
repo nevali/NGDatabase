@@ -97,7 +97,7 @@ static NGDatabase *sharedDatabaseManager;
 		[self loadDriversFromPath:dir];
 	}
 	[paths release];
-	return TRUE;
+	return YES;
 }
 
 - (id)init
@@ -139,19 +139,19 @@ static NGDatabase *sharedDatabaseManager;
 	if(!(urltypes = [infoDictionary objectForKey:@"CFBundleURLTypes"]) || ![urltypes isKindOfClass:[NSArray class]])
 	{
 		NSLog(@"NGDatabase -addDriverClass:forScheme: CFBundleURLTypes key is absent");
-		return FALSE;
+		return NO;
 	}
 	if(!theClass)
 	{
 		if(!(className = [infoDictionary objectForKey:@"NSPrincipalClass"]))
 		{
 			NSLog(@"NGDatabase -addDriverClass:forScheme: NSPrincipalClass key is absent");
-			return FALSE;
+			return NO;
 		}
 		if(!(theClass = NSClassFromString(className)))
 		{
 			NSLog(@"NGDatabase -addDriverClass:forScheme: specified NSPrincipalClass (%@) does not exist", className);
-			return FALSE;
+			return NO;
 		}
 	}
 	count = 0;
@@ -182,10 +182,10 @@ static NGDatabase *sharedDatabaseManager;
 	[infoDict release];
 	if(count)
 	{
-		return TRUE;
+		return YES;
 	}
 	NSLog(@"NGDatabase -addDriverClass:forScheme: no URL schemes found to register");
-	return FALSE;
+	return NO;
 }
 
 - (Class)driverForScheme:(NSString *)scheme
@@ -226,7 +226,7 @@ static NGDatabase *sharedDatabaseManager;
 
 	if(!(en = [[NSFileManager defaultManager] enumeratorAtPath:folderPath]))
 	{
-		return FALSE;
+		return NO;
 	}
 	while(p = [en nextObject])
 	{
@@ -235,7 +235,7 @@ static NGDatabase *sharedDatabaseManager;
 			[self loadDriverFromBundle:[folderPath stringByAppendingPathComponent:p]];
 		}
 	}
-	return TRUE;
+	return YES;
 }
 
 - (BOOL)loadDriverFromBundle:(NSString *)path
@@ -245,23 +245,23 @@ static NGDatabase *sharedDatabaseManager;
 	
 	if(!(bundle = [NSBundle bundleWithPath:path]))
 	{
-		return FALSE;
+		return NO;
 	}
 	if(![bundle load])
 	{
-		return FALSE;
+		return NO;
 	}
 	if(!(theClass = [bundle principalClass]))
 	{
 		[bundle unload];
-		return FALSE;
+		return NO;
 	}
 	if(!([self addDriverClass:[bundle infoDictionary] class:theClass bundlePath:path]))
 	{
 		[bundle unload];
-		return FALSE;
+		return NO;
 	}
-	return TRUE;
+	return YES;
 }
 	
 
