@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/css" href="../toc.css" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:html="http://www.w3.org/1999/xhtml">
+	
+	<html:base target="content" />
+	
+	<rdf:Description>
+		<dc:title><html:a href="overview.xml">Overview</html:a></dc:title>
+	</rdf:Description>
+	
+	<rdf:Description about="#class-methods"><dc:title>Class Methods</dc:title></rdf:Description>
+	<rdf:Seq id="class-methods">
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="connectionWithURL_options_status.xml">connectionWithURL:options:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="connectionWithURLString_options_status.xml">connectionWithURLString:options:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+	</rdf:Seq>
+
+	<rdf:Description about="#instance-methods"><dc:title>Instance Methods</dc:title></rdf:Description>
+	<rdf:Seq id="instance-methods">
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="initWithURL_options_status.xml">initWithURL:options:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="initWithURLString_options_status.xml">initWithURLString:options:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="executeSQL_status.xml">executeSQL:status:, ...</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="executeSQL_withArray_status.xml">executeSQL:withArray:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="query_status.xml">query:status:, ...</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="query_withArray_status.xml">query:withArray:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="prepare_status.xml">prepare:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="getRow_status.xml">getRow:status:, ...</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="getRow_withArray_status.xml">getRow:withArray:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="getAll_status.xml">getAll:status:, ...</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="getAll_withArray_status.xml">getAll:withArray:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="getCol_status.xml">getCol:status:, ...</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="getCol_withArray_status.xml">getCol:withArray:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="getAssoc_status.xml">getAssoc:status:, ...</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="getAssoc_withArray_status.xml">getAssoc:withArray:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="getOne_status.xml">getOne:status:, ...</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="getOne_withArray_status.xml">getOne:withArray:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="insertInto_values_status.xml">insertInto:values:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="update_values_constraints_status">update:values:constraints:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="deleteFrom_constraints_status.xml">deleteFrom:constraints:status:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="begin.xml">begin:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="commit.xml">commit:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="rollback.xml">rollback:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="quote.xml">quote:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="quoteObject_qualify.xml">quoteObject:qualify:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="quoteObject_inSchema_inDatabase.xml">quoteObject:inSchema:inDatabase:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="alias_forObject.xml">alias:forObject:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="alias_forObject_inSchema_inDatabase.xml">alias:forObject:inSchema:inDatabase</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="resolveAlias.xml">resolveAlias:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="now.xml">now</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="driverName.xml">driverName</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="databaseName.xml">databaseName</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="schemaName.xml">schemaName</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="timeZone.xml">timeZone</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="connected.xml">connected</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="setTimeZone.xml">setTimeZone:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="setUnbuffered.xml">setUnbuffered:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="setUncached.xml">setUncached:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="isUnbuffered.xml">isUnbuffered</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="isUncached.xml">isUncached</html:a></dc:title></rdf:Description>
+		</rdf:li>
+		<rdf:li>
+			<rdf:Description><dc:title><html:a href="setDebugLog.xml">setDebugLog:</html:a></dc:title></rdf:Description>
+		</rdf:li>
+
+	</rdf:Seq>
+
+</rdf:RDF>

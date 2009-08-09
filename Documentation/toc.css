@@ -1,0 +1,51 @@
+@namespace "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+@namespace dc "http://purl.org/dc/elements/1.1/";
+@namespace html "http://www.w3.org/1999/xhtml";
+
+RDF {
+	display: block;
+	margin: 0;
+	padding: 8px;
+	font-family: 'Lucida Grande', 'Geneva', 'Helvetica', sans-serif;
+	font-size: 70%;
+	font-weight: bold;
+	background: #D5DCDC;
+	color: #000;
+}
+dc|title {
+	display: block;
+	margin: 1em 0 1em 0;
+}
+Seq {
+	margin: 1em 0 1em 1.5em;
+	padding: 0;
+	list-style: none;
+	display: block;
+}
+Seq dc|title {
+	margin: 0.25em 0 0.25em 0;
+}
+
+RDF>Description>dc|title {
+	padding-left: 1.25em;
+}
+RDF>Description[about]>dc|title {
+	padding-left: 0;
+}
+RDF>Description[about]>dc|title:before {
+	display: inline-block;
+	content: '▾';
+	width: 1.25em;
+}
+
+/* HTML (links) */
+
+html|a:link {
+	color: #008;
+	text-decoration: none;
+}
+html|a:visited {
+	color: #808;
+	text-decoration: none;
+}
+

@@ -1,0 +1,168 @@
+@namespace "http://docbook.org/ns/docbook";
+@namespace html "http://www.w3.org/1999/xhtml";
+
+refentry {
+	display: block;
+	font-family: 'Lucida Grande', 'Geneva', 'Helvetica', sans-serif;
+	font-size: 80%;
+	margin: 1.5em;
+}
+
+refnamediv, refsynopsisdiv, refsection {
+	display: block;
+	margin: 1em 0 1.5em 0;
+}
+para {
+	display: block;
+	margin: 0.75em 0 0.75em 0;
+}
+
+methodname, literal, parameter, classname, type, property {
+	font-family: monaco, courier, monospace;
+	font-size: 110%;
+}
+
+methodname, methodname html|a:link, methodname html|a:visited {
+	color: #000;
+}
+
+literal, literal html|a:link, literal html|a:visited {
+	color: #080;
+}
+
+property, property html|a:link, property html|a:visited {
+	color: #880;
+}
+
+type, classname, type html|a:link, type html|a:visited, classname html|a:link, classname html|a:visited {
+	color: #800;
+}
+
+type > classname {
+	font-size: 100%;
+}
+
+parameter, parameter html|a:link, parameter html|a:visited {
+	font-style: italic;
+	color: #000;
+}
+
+itemizedlist {
+	display: block;
+	margin-left: 1.5em;
+}
+itemizedlist > listitem {
+	display: list-item;
+	list-style: square outside;
+}
+
+
+/* refnamediv */
+
+refnamediv {
+	margin-top: 0;
+}
+
+refnamediv > refname {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 0.5em;
+	font-size: 130%;
+}
+
+/* refsynopsisdiv */
+
+refsynopsisdiv {
+	background: #eee;
+	border: solid #ccc 1px;
+	padding: 1em;
+}
+
+refsynopsisdiv > methodsynopsis {
+	display: block;
+	font-family: monaco, courier, monospace;
+	font-size: 110%;
+	padding-left: 2em;
+	text-indent: -2em;
+}
+
+refsynopsisdiv > methodsynopsis methodname,
+refsynopsisdiv > methodsynopsis parameter,
+refsynopsisdiv > methodsynopsis type,
+refsynopsisdiv > methodsynopsis classname {
+	font-size: 100%;
+}
+
+refsynopsisdiv > methodsynopsis type:before {
+	color: #000;
+	content: '(';
+}
+refsynopsisdiv > methodsynopsis type:after {
+	color: #000;
+	content: ')';
+}
+refsynopsisdiv > methodsynopsis parameter {
+	font-style: italic;
+}
+
+/* refsection */
+
+refsection > title {
+	display: block;
+	font-weight: bold;
+	font-size: 100%;
+	margin: 0.75em 0 0.75em 0;
+}
+
+/* variablelist */
+
+variablelist > varlistentry {
+	display: block;
+}
+
+variablelist > varlistentry > listitem {
+	display: block;
+	margin: 0 0 1em 2em;
+}
+
+/* programlisting */
+
+programlisting {
+	background: #eee;
+	border: solid #ccc 1px;
+	padding: 1em;
+	font-family: monaco, courier, monospace;
+	font-size: 110%;
+	display: block;
+	white-space: pre;
+	overflow: scroll;
+}
+
+/* example */
+
+example {
+	display: block;
+	background: #eee;
+	border: solid #ccc 1px;
+	overflow: scroll;
+}
+
+example > title {
+	display: block;
+	font-weight: bold;
+	padding: 0.25em 1em 0.5em 1em;
+}
+
+example > programlisting {
+	border: none;
+	overflow: visible;
+}
+
+/* HTML (links) */
+
+html|a:link {
+	color: #008;
+}
+html|a:visited {
+	color: #808;
+}

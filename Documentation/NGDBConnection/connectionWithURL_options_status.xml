@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/css" href="../dbook.css" ?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V5.0//EN" "http://www.oasis-open.org/docbook/xml/5.0/docbook.dtd">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:html="http://www.w3.org/1999/xhtml">
+	<refnamediv>
+		<refname>connectionWithURL:options:status:</refname>
+		<refpurpose>Establishes a connection to a database.</refpurpose>
+	</refnamediv>
+	<refsynopsisdiv>
+		<methodsynopsis>
+			<modifier>+</modifier>
+			<type>id</type><methodname>connectionWithURL:</methodname><methodparam><type>NSURL *</type><parameter>url</parameter></methodparam>
+			<methodparam>
+				<modifier>options:</modifier><type>NSDictionary *</type><parameter>options</parameter>
+			</methodparam>
+			<methodparam>
+				<modifier>status:</modifier><type>NSError **</type><parameter>status</parameter>
+			</methodparam>
+		</methodsynopsis>
+	</refsynopsisdiv>
+	
+	<refsection>
+		<title>Parameters</title>
+		<variablelist>
+			<varlistentry>
+				<term><parameter>url</parameter></term>
+				<listitem>
+					<para>
+						An <classname>NSURL</classname> instance representing the
+						location of the database to connect to.
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><parameter>options</parameter></term>
+				<listitem>
+					<para>
+						An <classname>NSDictionary</classname> instance containing
+						a set of options which should be applied to the new
+						connection, or <literal>nil</literal> if no options are
+						required.
+					</para>
+					<para>
+						See the description of <methodname><html:a href="initWithURL_options_status.xml">initWithURL:options:status</html:a></methodname>
+						for further information on the <parameter>options</parameter>
+						parameter.
+					</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><parameter>status</parameter></term>
+				<listitem>
+					<para>
+						A pointer to an <type><classname>NSError</classname> *</type>
+						pointer which will be modified in the event of an error
+						to point to a new <classname>NSError</classname> instance
+						describing the failure condition. If, for some reason, the
+						details of the failure condition are not required, <literal>NULL</literal>
+						may be supplied for this parameter.
+					</para>
+					<para>
+						The location pointed to by this parameter may or may not
+						be modified in the event of a successful invocation: applications
+						should not rely in this situation either upon no modification
+						being made, nor	upon it being modified to be <literal>NULL</literal>.
+					</para>
+				</listitem>
+			</varlistentry>
+			
+		</variablelist>
+	</refsection>
+	
+	<refsection>
+		<title>Return value</title>
+		<para>
+			Upon success, <methodname>connectionWithURL:options:status:</methodname>
+			returns a connection instance.
+		</para>
+		<para>
+			Upon failure, <literal>nil</literal> shall be returned, and if
+			<parameter>status</parameter> is non-<literal>NULL</literal>, it
+			shall be modified to point to an <classname>NSError</classname>
+			instance describing the failure condition.
+		</para>
+	</refsection>
+	
+	<refsection>
+		<title>Discussion</title>
+		<para>
+			Establishes a database connection given an <classname>NSURL</classname> and adds
+			it to the autorelease pool.
+		</para>
+		<para>
+			The instance returned by a successful call to this method will be
+			one defined by the driver which is registered for the <property>scheme</property>
+			of the specified <parameter>url</parameter>. Applications should not
+			generally need to be written with specific awareness of this, although
+			developers should be aware that the instance returned will never be
+			an instance of <classname>NGDBConnection</classname> itself.
+		</para>
+		<para>
+			It is not recommended that applications frequently establish connections
+			to databases by creating autoreleased instances when database access
+			is required, because there are no guarantees that establishing a
+			connection will be an efficient operation.
+		</para>
+		<para>
+			Similarly, calling this method may cause name resolution to occur
+			or remote network connections to be established, which could block
+			the calling thread for some time. Applications should not call this
+			method on a UI thread.
+		</para>
+	</refsection>
+
+	<refsection>
+		<title>Example</title>
+		<example>
+			<title>Establishing a database connection with connectionWithURL:options:status:</title>
+			<programlisting xml:space="preserve"><![CDATA[NGDBConnection *db;
+NSError *error = NULL;
+
+if(!(db = [NGDBConnection connectionWithURL:[NSURL URLWithString:@"sqlite:///Users/me/example.db"] options:nil status:&error]))
+{
+	NSLog(@"Error establishing database connection: %@", error);
+	[error release];
+	return -1;
+}
+if([db getOne:@"SELECT [id] FROM {users} WHERE [name] = ?" status:&error, @"johnsmith", nil])
+{
+	return 1;
+}
+if(error)
+{
+	NSLog(@"Error executing query: %@", error);
+	[error release];
+	return -1;
+}
+return 0;
+]]></programlisting>
+		</example>
+	</refsection>
+	
+	<refsection>
+		<title>When to implement</title>
+		<para>
+			Drivers should not need to override this method, and doing so will
+			have no effect.
+		</para>
+	</refsection>
+	
+	<refsection>
+		<title>Availability</title>
+		<para>
+			Available in NGDBConnection 1.0.0 and later.
+		</para>
+	</refsection>
+	
+	<refsection>
+		<title>See also</title>
+		<itemizedlist>
+			<listitem>
+				<methodname><html:a href="connectionWithURLString_options_status.xml">connectionWithURLString:options:status:</html:a></methodname>
+			</listitem>
+			<listitem>
+				<methodname><html:a href="initWithURL_options_status.xml">initWithURL:options:status:</html:a></methodname>
+			</listitem>
+			<listitem>
+				<methodname><html:a href="initWithURLString_options_status.xml">initWithURLString:options:status:</html:a></methodname>
+			</listitem>
+		</itemizedlist>
+	</refsection>
+</refentry>
