@@ -140,8 +140,8 @@
 
 /** -executeSQL:status:, ...
  *
- * Execute a (possibly parametised) statement, returning TRUE if it executed
- * successfully, FALSE otherwise.
+ * Execute a (possibly parametised) statement, returning YES if it executed
+ * successfully, NO otherwise.
  *
  * executeSQL:status: will be marginally more efficient than query:status: if
  * the statement is known not to produce a result-set or the result-set is
@@ -165,8 +165,8 @@
 
 /** -executeSQL:withArray:status:
  * 
- * Execute a parametised statement given an array of parameters and return TRUE
- * if the query executed successfully, FALSE otherwise.
+ * Execute a parametised statement given an array of parameters and return YES
+ * if the query executed successfully, NO otherwise.
  *
  * executeSQL:withArray:status: will be marginally more efficient than
  * query:withArray:status: if the statement is known not to produce a result-
@@ -183,22 +183,22 @@
 	NSError *err = NULL;
 	NSString *sql;
 	
-	if(!(sql = [self intersperseQuery:query substituteParams:TRUE paramsArray:params addSuffix:nil status:status]))
+	if(!(sql = [self intersperseQuery:query substituteParams:YES paramsArray:params addSuffix:nil status:status]))
 	{
-		return FALSE;
+		return NO;
 	}
 	r = [self exec:sql flags:execFlags status:&err];
 	if(r)
 	{
 		[self freeResult:r];
-		return TRUE;
+		return YES;
 	}
 	else if(err)
 	{
 		ASSIGN_ERROR(err, status);
-		return FALSE;
+		return NO;
 	}
-	return TRUE;
+	return YES;
 }
 
 /** -query:status:, ...
@@ -253,7 +253,7 @@
 	void *result;
 	id rs;
 	
-	if(!(sql = [self intersperseQuery:query substituteParams:TRUE paramsArray:params addSuffix:nil status:&err]))
+	if(!(sql = [self intersperseQuery:query substituteParams:YES paramsArray:params addSuffix:nil status:&err]))
 	{
 		ASSIGN_ERROR(err, status);
 		return nil;
@@ -394,9 +394,9 @@
 
 /** -connected
  *
- * Return TRUE if the client believes the connection is established to a
- * database server, FALSE otherwise. Ordinarily, this method will only return
- * FALSE if initWithURL:status: (or one of its variants) has not yet been
+ * Return YES if the client believes the connection is established to a
+ * database server, NO otherwise. Ordinarily, this method will only return
+ * NO if initWithURL:status: (or one of its variants) has not yet been
  * invoked.
  *
  * Drivers must override this method.
@@ -404,7 +404,7 @@
 
 - (BOOL) connected
 {
-	return FALSE;
+	return NO;
 }
 
 /** -timeZone
@@ -510,7 +510,7 @@
 			quoted[c] = 1;
 			t = k;
 		}
-		s = [self quoteObject:t qualify:FALSE];
+		s = [self quoteObject:t qualify:NO];
 		if(t != k) [t release];
 		[knames addObject:s];
 		[s release];
@@ -546,12 +546,12 @@
 	rp = [self exec:s flags:execFlags status:res]; \
 	if(rp || !err) \
 	{ \
-		r = TRUE; \
+		r = YES; \
 		[self freeResult:rp]; \
 	} \
 	else \
 	{ \
-		r = FALSE; \
+		r = NO; \
 		if(status) \
 		{ \
 			*status = err; \
@@ -572,7 +572,7 @@
 	NSError *err = NULL;
 	
 	numrows = 0;
-	targ = [self quoteObject:target qualify:TRUE];
+	targ = [self quoteObject:target qualify:YES];
 	
 	/* A simple set of key-value pairs, where the keys are field names */
 	if([values isKindOfClass:[NSDictionary class]])
@@ -595,10 +595,10 @@
 		if(!count)
 		{
 			[targ release];
-			return TRUE;
+			return YES;
 		}
 		sqllist = [[NSMutableArray alloc] initWithCapacity:count + 1];
-		first = TRUE;
+		first = YES;
 		klist = nil;
 		for(n = 0; n < count; n++)
 		{
@@ -609,7 +609,7 @@
 				if(first)
 				{
 					klist = [self _quoteKeys:entry quoted:quoted];
-					first = FALSE;
+					first = NO;
 					continue;
 				}
 				vlist = [self _quoteValues:entry quoted:quoted];
@@ -638,7 +638,7 @@
 						[klist release];
 						[vlist release];
 						[targ release];
-						return FALSE;
+						return NO;
 					}
 					numrows = 0;
 					sqllist = [[NSMutableArray alloc] initWithCapacity:count + 1];
@@ -656,7 +656,7 @@
 					[klist release];
 				}
 				[targ release];
-				return FALSE;
+				return NO;
 			}
 			
 			/* An array of NSDictionary objects */
@@ -664,7 +664,7 @@
 			{
 				klist = [self _quoteKeys:[entry allKeys] quoted:quoted];
 				vlist = [self _quoteValues:[entry allValues] quoted:quoted];
-				first = FALSE;
+				first = NO;
 				sql = [[NSString alloc] initWithFormat:@"INSERT INTO %@ (%@) VALUES (%@)", targ, [klist componentsJoinedByString:@", "], [vlist componentsJoinedByString:@", "], nil];
 				[sqllist addObject:sql];
 				[sql release];
@@ -689,10 +689,10 @@
 				{
 					[klist release];
 					[targ release];
-					return FALSE;
+					return NO;
 				}
 				numrows = 0;
-				first = TRUE;
+				first = YES;
 				klist = nil;
 				sqllist = [[NSMutableArray alloc] initWithCapacity:count + 1];
 			}
@@ -710,7 +710,7 @@
 		{
 			*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-1 reason:@"Cannot perform insertInto:values:status: where values: is neither an NSDictionary nor an NSArray" statement:nil];
 		}
-		return FALSE;
+		return NO;
 	}
 	[targ release];
 	if(numrows)
@@ -718,7 +718,104 @@
 		EXEC_AND_FREE(sql, &err, r);
 		return r;
 	}
-	return TRUE;
+	return YES;
+}
+
+- (BOOL)update:(NSString *)target values:(NSDictionary *)values constraints:(id)constraints status:(NSError **)status
+{
+	NSArray *klist, *vlist;
+	NSMutableArray *kv;
+	NSString *s, *targ, *clist;
+	NSError *result;
+	size_t count, c;
+	char quoted[64];
+	void *r;
+	
+	count = [values count];
+	kv = [[NSMutableArray alloc] initWithCapacity:count];
+	klist = [self _quoteKeys:[values allKeys] quoted:quoted];
+	vlist = [self _quoteValues:[values allValues] quoted:quoted];
+	for(c = 0; c < count; c++)
+	{
+		s = [[NSString alloc] initWithFormat:@"%@ = %@", [klist objectAtIndex:c], [vlist objectAtIndex:c], nil];		
+		[kv addObject:s];
+		[s release];
+	}
+	[klist release];
+	[vlist release];
+	targ = [self quoteObject:target qualify:YES];
+	if(constraints)
+	{
+		clist = [self formatConstraints:constraints];
+		s = [[NSString alloc] initWithFormat:@"UPDATE %@ SET %@ WHERE %@", targ, [kv componentsJoinedByString:@", "], clist];
+		[clist release];
+	}
+	else
+	{
+		s = [[NSString alloc] initWithFormat:@"UPDATE %@ SET %@", targ, [kv componentsJoinedByString:@", "]];
+	}
+	[kv release];
+	[targ release];
+	r = [self exec:s flags:execFlags status:&result];
+	[s release];
+	if(r)
+	{
+		[self freeResult:r];
+		return YES;
+	}
+	if(!result)
+	{
+		return YES;
+	}
+	if(status)
+	{
+		*status = result;
+	}
+	else
+	{
+		[result release];
+	}
+	return NO;
+}
+
+- (BOOL)deleteFrom:(NSString *)target constraints:(id)constraints status:(NSError **)status
+{
+	NSString *s, *targ, *clist;
+	NSError *result;
+	void *r;
+	
+	targ = [self quoteObject:target qualify:YES];
+	if(constraints)
+	{
+		clist = [self formatConstraints:constraints];
+		s = [[NSString alloc] initWithFormat:@"DELETE FROM %@ WHERE %@", targ, clist];
+		[clist release];
+	}
+	else
+	{
+		s = [[NSString alloc] initWithFormat:@"TRUNCATE %@", targ];
+	}
+	[targ release];
+	r = [self exec:s flags:execFlags status:&result];
+	[s release];
+	if(r)
+	{
+		[self freeResult:r];
+		return YES;
+	}
+	if(!result)
+	{
+		return YES;
+	}
+	if(status)
+	{
+		*status = result;
+	}
+	else
+	{
+		[result release];
+	}
+	return NO;
 }
 
 /** -alias:forObject:
@@ -751,7 +848,7 @@
 	target = [self quoteObject:obj inSchema:schema inDatabase:db];
 	[aliases setObject:target forKey:alias];
 	[target release];
-	return TRUE;
+	return YES;
 }
 
 /** -resolveAlias:
@@ -819,6 +916,50 @@
 	return dict;
 }
 
+/** -getOne:withArray:status:
+ *
+ * Perform the specified query and return the first column of the first row of
+ * the results.
+ *
+ * Drivers should override this method to be more efficient (specifically: not
+ * require the construction of an NGDBResultSet, and to modify the query to
+ * add a "LIMIT"-style specifier).
+ *
+ * If an error occurs, or the query produced no results, nil will be returned.
+ * In the former case, if status is non-NULL, it will be set to point to an
+ * NSError instance describing the error condition.
+ */
+- (NSString *)getOne:(NSString *)query status:(NSError **)status, ...
+{
+	NSMutableArray *params;
+	NSString *r;
+	
+	VA_TO_NSARRAY(status, params);
+	r = [self getOne:query withArray:params status:status];
+	[params release];
+	return r;
+}
+
+
+- (NSString *)getOne:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
+{
+	NSString *res;
+	NSArray *row;
+	NGDBResultSet *rs;
+	
+	res = nil;
+	if((rs = [self query:query withArray:params status:status]))
+	{
+		if((row = [rs nextAsArray]))
+		{
+			res = [[row objectAtIndex:0] copy];
+		}
+		[rs release];
+	}
+	return res;
+}
+
+
 /** -getAll:status:, ...
  *
  * Perform the specified query and return the all rows of the results as an
@@ -876,10 +1017,134 @@
 	return results;
 }
 
+/** -getCol:withArray:status:
+ *
+ * Perform the specified query and return the first column of each of the rows
+ * of the results as an array.
+ *
+ * Drivers should override this method to be more efficient (specifically: not
+ * require the construction of an intermediate NGDBResultSet).
+ *
+ * If an error occurs, nil will be returned and if status is non-NULL, it will
+ * be set to point to an NSError instance describing the error condition.
+ *
+ * If the query was successful but the result-set was empty, an empty NSArray
+ * will be returned.
+ */
+- (NSArray *)getCol:(NSString *)query status:(NSError **)status, ...
+{
+	NSMutableArray *params;
+	NSArray *r;
+	
+	VA_TO_NSARRAY(status, params);
+	r = [self getCol:query withArray:params status:status];
+	[params release];
+	return r;
+}
+
+
+- (NSArray *)getCol:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
+{
+	NSArray *row;
+	NSString *res;
+	NSMutableArray *results;
+	NGDBResultSet *rs;
+	
+	results = nil;
+	if((rs = [self query:query withArray:params status:status]))
+	{
+		results = [[NSMutableArray alloc] initWithCapacity:[rs rowCount]];
+		while((row = [rs nextAsArray]))
+		{
+			res = [row objectAtIndex:0];
+			[results addObject:res];
+			[res release];
+		}
+		[rs release];
+	}
+	return results;
+}
+
+/** -getAssoc:withArray:status:
+ *
+ * Perform the specified query and return the all rows of the results as an
+ * associative array (NSDictionary instance) where the value from the first
+ * column is used as the key, and the subsequent columns make up the value.
+ *
+ * This method behaves differently depending upon the number of columns present
+ * in the result-set:
+ *
+ * - If one column is present, both key and value are set to the same value.
+ * - If two columns are present, the key is the first column, and the value
+ *   is the second columns.
+ * - If more than two columns are present, the key is the first column, and
+ *   the value is an NSDictionary as would be returned by NGDBResultSet's
+ *   -nextAsDict: method.
+ *
+ * Drivers should override this method to be more efficient (specifically: not
+ * require the construction of an intermediate NGDBResultSet).
+ *
+ * If an error occurs, nil will be returned and if status is non-NULL, it will
+ * be set to point to an NSError instance describing the error condition.
+ *
+ * If the query was successful but the result-set was empty, an empty NSArray
+ * will be returned.
+ */
+- (NSDictionary *)getAssoc:(NSString *)query status:(NSError **)status, ...
+{
+	NSMutableArray *params;
+	NSDictionary *r;
+	
+	VA_TO_NSARRAY(status, params);
+	r = [self getAssoc:query withArray:params status:status];
+	[params release];
+	return r;
+}
+
+
+- (NSDictionary *)getAssoc:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
+{
+	NSDictionary *dict;
+	NSArray *row;
+	NSMutableDictionary *results;
+	NGDBResultSet *rs;
+	NSString *k;
+	
+	results = nil;
+	if((rs = [self query:query withArray:params status:status]))
+	{
+		results = [[NSMutableDictionary alloc] initWithCapacity:[rs rowCount]];
+		switch([rs colCount])
+		{
+			case 1:
+				while((row = [rs nextAsArray]))
+				{
+					k = [row objectAtIndex:0];
+					[results setObject:k forKey:k];
+				}
+				break;
+			case 2:
+				while((row = [rs nextAsArray]))
+				{
+					[results setObject:[row objectAtIndex:1] forKey:[row objectAtIndex:0]];
+				}
+				break;
+			default:
+				while((dict = [rs nextAsDict]))
+				{
+					row = [rs rowAsArray];
+					[results setObject:dict forKey:[row objectAtIndex:0]];
+				}
+		}
+	}
+	return results;
+}
+
+
 /** - setUnbuffered:
  *
- * If TRUE, request that future queries be unbuffered if appropriate.
- * If FALSE, request that future queries should be buffered (the default).
+ * If YES, request that future queries be unbuffered if appropriate.
+ * If NO, request that future queries should be buffered (the default).
  *
  * Typically, a driver's underlying implementation will buffer the results of
  * queries. This allows multiple queries to be interspersed with one another
@@ -913,14 +1178,14 @@
 
 /** - isUnbuffered
  *
- * Return TRUE if the connection is in unbuffered mode, FALSE otherwise.
+ * Return YES if the connection is in unbuffered mode, NO otherwise.
  *
  * Drivers should not override this method.
  *
  */
 - (BOOL)isUnbuffered
 {
-	return (execFlags & NGDBEF_Unbuffered ? TRUE : FALSE);
+	return (execFlags & NGDBEF_Unbuffered ? YES : NO);
 }
 
 /** - setUncached:
@@ -929,8 +1194,8 @@
  * queries where the underlying objects have not caused the cache to become
  * invalidated, the default is to permit this to occur.
  *
- * If TRUE, request that future queries ignore any query-caching mechanisms.
- * If FALSE, request that future queries make use of available query caches
+ * If YES, request that future queries ignore any query-caching mechanisms.
+ * If NO, request that future queries make use of available query caches
  * (the default).
  *
  * Note that the precise interpretation of this flag is implementation-defined,
@@ -954,14 +1219,14 @@
 
 /** - isUncached
  *
- * Return TRUE if the connection is in uncached mode, FALSE otherwise.
+ * Return YES if the connection is in uncached mode, NO otherwise.
  *
  * Drivers should not override this method.
  *
  */
 - (BOOL)isUncached
 {
-	return (execFlags & NGDBEF_Uncached ? TRUE : FALSE);
+	return (execFlags & NGDBEF_Uncached ? YES : NO);
 }
 
 /** - prepare:status:
@@ -1013,6 +1278,33 @@
 	{
 		execFlags &= ~NGDBEF_DebugLog;
 	}
+}
+
+- (BOOL)begin:(NSError **)status
+{
+	if(status)
+	{
+		*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-1 reason:@"Cannot begin transaction: transactions are not supported" statement:nil];
+	}	
+	return NO;
+}
+
+- (BOOL)commit:(NSError **)status
+{
+	if(status)
+	{
+		*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-1 reason:@"Cannot commit: transactions are not supported" statement:nil];
+	}	
+	return NO;
+}
+
+- (BOOL)rollback:(NSError **)status
+{
+	if(status)
+	{
+		*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-1 reason:@"Cannot rollback: transactions are not supported" statement:nil];
+	}	
+	return NO;
 }
 
 @end
@@ -1086,18 +1378,18 @@
  * SELECT "field" FROM {table} WHERE "field" = ? ORDER BY "field" ASC 
  *
  * Object names contained within square brackets will be replaced with quoted
- * object names (by -quoteObject:qualfied:, with qualfied:FALSE).
+ * object names (by -quoteObject:qualfied:, with qualfied:NO).
  *
  * Object names contained within curly braces are assumed to be table or view
  * names which should have alias matching performed upon them (where possible)
  * and fully-qualified (again, where possible).
  *
- * If substituteParams is TRUE, question marks denote parameters whose (raw)
+ * If substituteParams is YES, question marks denote parameters whose (raw)
  * values will be taken from the paramsArray: argument and quoted (via -quote:)
  * before insertion into the final result. If too few parameters are provided
  * for substitution, an error will occur and nil will be returned.
  *
- * If substituteParams is FALSE, question marks will be included literally
+ * If substituteParams is NO, question marks will be included literally
  * in the result and paramsArray: will be ignored.
  *
  * A typical result of interspersing the above statement would be:
@@ -1116,7 +1408,7 @@
 	const char *src;
 	size_t s, e, n, p, nobjs;
 	int q;
-	BOOL failed = FALSE, a;
+	BOOL failed = NO, a;
 	
 	if(array)
 	{
@@ -1138,13 +1430,13 @@
 			q = 0;
 			if(!(tmp = [[NSString alloc] initWithBytes:&(src[s + 1]) length:(e - s - 1) encoding:NSUTF8StringEncoding]))
 			{
-				failed = TRUE;
+				failed = YES;
 				break;
 			}
-			if(!(ret = [self quoteObject:tmp qualify:TRUE]))
+			if(!(ret = [self quoteObject:tmp qualify:YES]))
 			{
 				[tmp release];
-				failed = TRUE;
+				failed = YES;
 				break;
 			}
 			[tmp release];
@@ -1164,12 +1456,12 @@
 			 * going to be a valid object name in its own right, whether or not
 			 * it's a valid array specifier for the server.
 			 */
-			a = TRUE;
+			a = YES;
 			for(p = s + 1; p < e; p++)
 			{
 				if(!isdigit(src[p]) && src[p] != ':')
 				{
-					a = FALSE;
+					a = NO;
 					break;
 				}
 			}
@@ -1178,7 +1470,7 @@
 				/* Add the original string as a literal */
 				if(!(tmp = [[NSString alloc] initWithBytes:&(src[s]) length:(e - s) encoding:NSUTF8StringEncoding]))
 				{
-					failed = TRUE;
+					failed = YES;
 					break;
 				}
 				[tarray addObject:tmp];
@@ -1188,13 +1480,13 @@
 			{
 				if(!(tmp = [[NSString alloc] initWithBytes:&(src[s + 1]) length:(e - s - 1) encoding:NSUTF8StringEncoding]))
 				{
-					failed = TRUE;
+					failed = YES;
 					break;
 				}
-				if(!(ret = [self quoteObject:tmp qualify:FALSE]))
+				if(!(ret = [self quoteObject:tmp qualify:NO]))
 				{
 					[tmp release];
-					failed = TRUE;
+					failed = YES;
 					break;
 				}
 				[tmp release];
@@ -1222,7 +1514,7 @@
 			{
 				if(!(tmp = [[NSString alloc] initWithBytes:&(src[s]) length:(e - s) encoding:NSUTF8StringEncoding]))
 				{
-					failed = TRUE;
+					failed = YES;
 					break;
 				}
 				[tarray addObject:tmp];
@@ -1239,7 +1531,7 @@
 			{
 				if(!(tmp = [[NSString alloc] initWithBytes:&(src[s]) length:(e - s) encoding:NSUTF8StringEncoding]))
 				{
-					failed = TRUE;
+					failed = YES;
 					break;
 				}
 				[tarray addObject:tmp];
@@ -1251,12 +1543,12 @@
 				{
 					*status = [[NGDBError alloc] initWithDriver:[self driverName] sqlState:nil code:-2 reason:@"Number of parameter placeholders exceeds number of supplied parameters" statement:query];
 				}
-				failed = TRUE;
+				failed = YES;
 				break;
 			}
 			if(!(tmp = [self quote:[array objectAtIndex:n]]))
 			{
-				failed = TRUE;
+				failed = YES;
 				break;
 			}
 			[tarray addObject:tmp];
@@ -1290,6 +1582,55 @@
 	ret = [[tarray componentsJoinedByString:@""] copy];
 	[tarray release];
 	return ret;
+}
+
+- (NSString *)formatConstraints:(id)constraints
+{
+	NSArray *klist, *vlist;
+	char quoted[64];
+	NSMutableArray *list;
+	NSString *r;
+	size_t count, c;
+	
+	if([constraints isKindOfClass:[NSString class]])
+	{
+		return [constraints retain];
+	}
+	if([constraints isKindOfClass:[NSArray class]])
+	{
+		count = [constraints count];
+		list = [[NSMutableArray alloc] initWithCapacity:count];
+		for(c = 0; c < count; c++)
+		{
+			[list addObject:(r = [self formatConstraints:[constraints objectAtIndex:c]])];
+			[r release];
+		}
+		r = [[list componentsJoinedByString:@" OR "] retain];
+		[list release];
+		return r;
+	}
+	if([constraints isKindOfClass:[NSDictionary class]])
+	{
+		/* This should probably deal with a value being an NSArray or another
+		 * NSDictionary; it's mostly built for simple key1 = value1 and key2
+		 * = value2 style constraint lists.
+		 */
+		count = [constraints count];
+		list = [[NSMutableArray alloc] initWithCapacity:count];
+		klist = [self _quoteKeys:[constraints allKeys] quoted:quoted];
+		vlist = [self _quoteValues:[constraints allValues] quoted:quoted];
+		for(c = 0; c < count; c++)
+		{
+			[list addObject:[NSString stringWithFormat:@"%@ = %@", [klist objectAtIndex:c], [vlist objectAtIndex:c], nil]];
+		}
+		[klist release];
+		[vlist release];
+		r = [[NSString alloc] initWithFormat:@"(%@)", [list componentsJoinedByString:@" AND "], nil];
+		[list release];
+		return r;
+	}
+	/* TODO: Deal with NSPredicate and friends */
+	return [[constraints description] retain];
 }
 
 /** -freeResult:

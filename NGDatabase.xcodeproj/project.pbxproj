@@ -28,6 +28,11 @@
 		CD726AB1102C4C2400EB1637 /* NGSQLiteConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CD726AAF102C4C2400EB1637 /* NGSQLiteConnection.m */; };
 		CD726ABA102C5D3E00EB1637 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CD726AB9102C5D3E00EB1637 /* libsqlite3.dylib */; };
 		CD726ACE102C611900EB1637 /* NGSQLiteResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CD726ACD102C611900EB1637 /* NGSQLiteResultSet.m */; };
+		CDC96367102ED79500E75F75 /* connectionWithURL_options_status.xml in Resources */ = {isa = PBXBuildFile; fileRef = CDC96366102ED79500E75F75 /* connectionWithURL_options_status.xml */; };
+		CDC96369102EDBD600E75F75 /* dbook.css in Resources */ = {isa = PBXBuildFile; fileRef = CDC96368102EDBD600E75F75 /* dbook.css */; };
+		CDC9636F102EEE9E00E75F75 /* toc.css in Resources */ = {isa = PBXBuildFile; fileRef = CDC9636E102EEE9E00E75F75 /* toc.css */; };
+		CDC96371102EEFA600E75F75 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = CDC96370102EEFA600E75F75 /* index.html */; };
+		CDC96373102EF00400E75F75 /* doc.css in Resources */ = {isa = PBXBuildFile; fileRef = CDC96372102EF00400E75F75 /* doc.css */; };
 		CDD2A75E102B861700D00011 /* NGMySQLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE038661025ABF2000243F1 /* NGMySQLConnection.m */; };
 		CDD2A75F102B861700D00011 /* NGMySQLResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE25A9910279608009BBBED /* NGMySQLResultSet.m */; };
 		CDD2A77C102B87B100D00011 /* libmysqlclient_r.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE10FE5102AFCE50021D162 /* libmysqlclient_r.a */; };
@@ -217,21 +222,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* NGDatabase */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = NGDatabase;
 		};
 		CD67A000102CDF4000D2907A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CDE0389C1025BE03000243F1 /* NGDBTest */;
+			remoteGlobalIDString = CDE0389C1025BE03000243F1;
 			remoteInfo = NGDBTest;
 		};
 		CD67A004102CDF4000D2907A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = CDD2A756102B85C300D00011 /* MySQL */;
+			remoteGlobalIDString = CDD2A756102B85C300D00011;
 			remoteInfo = MySQL;
 		};
 		CDD2A778102B879800D00011 /* PBXContainerItemProxy */ = {
@@ -267,6 +272,13 @@
 		CD726AAF102C4C2400EB1637 /* NGSQLiteConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSQLiteConnection.m; sourceTree = "<group>"; };
 		CD726AB9102C5D3E00EB1637 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CD726ACD102C611900EB1637 /* NGSQLiteResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSQLiteResultSet.m; sourceTree = "<group>"; };
+		CDC96366102ED79500E75F75 /* connectionWithURL_options_status.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = connectionWithURL_options_status.xml; sourceTree = "<group>"; };
+		CDC96368102EDBD600E75F75 /* dbook.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = dbook.css; sourceTree = "<group>"; };
+		CDC9636E102EEE9E00E75F75 /* toc.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = toc.css; sourceTree = "<group>"; };
+		CDC96370102EEFA600E75F75 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = index.html; sourceTree = "<group>"; };
+		CDC96372102EF00400E75F75 /* doc.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = doc.css; sourceTree = "<group>"; };
+		CDC963F2102F1FD200E75F75 /* index.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = index.xml; sourceTree = "<group>"; };
+		CDC96494102F43F300E75F75 /* connectionWithURLString_options_status.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = connectionWithURLString_options_status.xml; sourceTree = "<group>"; };
 		CDD2A757102B85C300D00011 /* MySQL.dbplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySQL.dbplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD2A78B102B890D00D00011 /* vio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vio.c; sourceTree = "<group>"; };
 		CDD2A78C102B890D00D00011 /* viosocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = viosocket.c; sourceTree = "<group>"; };
@@ -499,8 +511,9 @@
 		0867D691FE84028FC02AAC07 /* DBCore */ = {
 			isa = PBXGroup;
 			children = (
-				CDD2C440102B9CAF00D00011 /* plugin.icns */,
+				CDC96364102ED71400E75F75 /* Documentation */,
 				CDE038A31025BE14000243F1 /* NGDatabase.framework */,
+				CDD2C440102B9CAF00D00011 /* plugin.icns */,
 				CD8FB262102B841D00E3BEC5 /* Drivers */,
 				CDD2A741102B858600D00011 /* Command-line utilities */,
 				CDD2A7B9102B8A8900D00011 /* libz.dylib */,
@@ -526,6 +539,28 @@
 				CDF90A9C1027289B00240ACD /* MySQL */,
 			);
 			path = Drivers;
+			sourceTree = "<group>";
+		};
+		CDC96364102ED71400E75F75 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				CDC96365102ED76000E75F75 /* NGDBConnection */,
+				CDC96368102EDBD600E75F75 /* dbook.css */,
+				CDC9636E102EEE9E00E75F75 /* toc.css */,
+				CDC96372102EF00400E75F75 /* doc.css */,
+			);
+			path = Documentation;
+			sourceTree = "<group>";
+		};
+		CDC96365102ED76000E75F75 /* NGDBConnection */ = {
+			isa = PBXGroup;
+			children = (
+				CDC96366102ED79500E75F75 /* connectionWithURL_options_status.xml */,
+				CDC96370102EEFA600E75F75 /* index.html */,
+				CDC963F2102F1FD200E75F75 /* index.xml */,
+				CDC96494102F43F300E75F75 /* connectionWithURLString_options_status.xml */,
+			);
+			path = NGDBConnection;
 			sourceTree = "<group>";
 		};
 		CDD2A741102B858600D00011 /* Command-line utilities */ = {
@@ -1028,6 +1063,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+				CDC96367102ED79500E75F75 /* connectionWithURL_options_status.xml in Resources */,
+				CDC96369102EDBD600E75F75 /* dbook.css in Resources */,
+				CDC9636F102EEE9E00E75F75 /* toc.css in Resources */,
+				CDC96371102EEFA600E75F75 /* index.html in Resources */,
+				CDC96373102EF00400E75F75 /* doc.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

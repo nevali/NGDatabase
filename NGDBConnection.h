@@ -60,8 +60,20 @@
 - (NSDictionary *)getRow:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
 - (NSArray *)getAll:(NSString *)query status:(NSError **)status, ...;
 - (NSArray *)getAll:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
+- (NSArray *)getCol:(NSString *)query status:(NSError **)status, ...;
+- (NSArray *)getCol:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
+- (NSDictionary *)getAssoc:(NSString *)query status:(NSError **)status, ...;
+- (NSDictionary *)getAssoc:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
+- (NSString *)getOne:(NSString *)query status:(NSError **)status, ...;
+- (NSString *)getOne:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
 
 - (BOOL)insertInto:(NSString *)target values:(id)values status:(NSError **)status;
+- (BOOL)update:(NSString *)target values:(NSDictionary *)values constraints:(id)constraints status:(NSError **)status;
+- (BOOL)deleteFrom:(NSString *)target constraints:(id)constraints status:(NSError **)status;
+
+- (BOOL)begin:(NSError **)status;
+- (BOOL)commit:(NSError **)status;
+- (BOOL)rollback:(NSError **)status;
 
 - (NSString *)quote:(id)value;
 - (NSString *)quoteObject:(NSString *)objectName qualify:(BOOL)qualify;
