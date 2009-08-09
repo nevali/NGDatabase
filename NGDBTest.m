@@ -85,6 +85,7 @@ main(int argc, char **argv)
 	{
 		NSLog(@"Error: %@", err);
 		[db release];
+		[pool drain];
 		return 1;
 	}	
 	if(![db insertInto:@"TEST" values:[NSArray arrayWithObjects:
@@ -97,6 +98,7 @@ main(int argc, char **argv)
 	{
 		NSLog(@"Error: %@", err);
 		[db release];
+		[pool drain];
 		return 1;
 	}	
 	rs = [db query:@"SELECT * FROM {TEST} WHERE [id] > ? AND [name] IS NOT NULL" status:&err,
@@ -109,7 +111,6 @@ main(int argc, char **argv)
 		{
 			NSLog(@"RS Row: %@", row);
 		}
-		[rs release];
 	}
 	else
 	{
@@ -119,6 +120,7 @@ main(int argc, char **argv)
 	{
 		NSLog(@"Error: %@", err);
 		[db release];
+		[pool drain];		
 		return 1;
 	}
 	else if(!row)
@@ -134,45 +136,44 @@ main(int argc, char **argv)
 	{
 		NSLog(@"Error: %@", err);
 		[db release];
+		[pool drain];		
 		return 1;
 	}
 	NSLog(@"Rows: %@", rows);
-	[rows release];
 
 	if(!(st = [db prepare:@"UPDATE {TEST} SET [name] = ? WHERE [id] = ?" status:&err]))
 	{
 		NSLog(@"Error during prepare: %@", err);
 		[db release];
+		[pool drain];
 		return 1;
 	}
 	if(![st execute:&err, @"The Joker", @"13"])
 	{
 		NSLog(@"Error during prepared exec: %@", err);
-		[st release];
 		[db release];
+		[pool drain];
 		return 1;
 	}
 	if(![st execute:&err, @"Lex Luthor", @"10"])
 	{
 		NSLog(@"Error during prepared exec: %@", err);
-		[st release];
 		[db release];
+		[pool drain];
 		return 1;
 	}		
-	[st release];
 
 	if(!(rowdict = [db dictForQuery:@"SELECT [id],[name] FROM {TEST} WHERE [id] BETWEEN ? AND ?" status:&err, @"10", @"13", nil]))
 	{
 		NSLog(@"Error: %@", err);
 		[db release];
+		[pool drain];
 		return 1;
 	}
 	NSLog(@"Rows: %@", rowdict);
-	[rowdict release];
-	
 		
 	[db executeSQL:@"DROP TABLE {ngdbtest}" withArray:nil status:NULL];
-	
+
 	[db release];
 	
 	[pool drain];

@@ -264,9 +264,10 @@
 	{
 		if((rs = [self createResultSet:result status:&err]))
 		{
-			ASSIGN_ERROR(err, status);
+			[rs autorelease];
 			return rs;
 		}
+		ASSIGN_ERROR(err, status);
 		[self freeResult:result];
 		return nil;
 	}
@@ -292,6 +293,9 @@
  * [super quote:value] is nil, a driver implementation should continue on to
  * quote the value themselves; otherwise the result can be returned to the
  * caller directly.
+ *
+ * The resulting string will not be autoreleased and should be freed by the
+ * caller.
  */
 - (NSString *)quote:(id)value
 {
@@ -317,7 +321,10 @@
  * argument is ignored, as resolved aliases are always as fully-qualified
  * as possible.
  *
- * Drivers should not need to override this method, but may if required.
+ * The resulting string will not be autoreleased and should be freed by the
+ * caller.
+ *
+ * Drivers should need to override this method.
  */
 - (NSString *)quoteObject:(NSString *)objectName qualify:(BOOL)qualify
 {
@@ -343,6 +350,9 @@
  * Given an unqualified, unquoted object name and optional schema and
  * database names (defaulting to the current values if either are supplied
  * as nil), generate as fully-qualified quoted name as possible.
+ *
+ * The resulting string will not be autoreleased and should be freed by the
+ * caller.
  *
  * Drivers should not need to override this method, but may if required.
  */
@@ -911,7 +921,6 @@
 		{
 			dict = [dict copy];
 		}
-		[rs release];
 	}
 	return dict;
 }
@@ -954,8 +963,8 @@
 		{
 			res = [[row objectAtIndex:0] copy];
 		}
-		[rs release];
 	}
+	[res autorelease];
 	return res;
 }
 
@@ -1012,7 +1021,7 @@
 		{
 			[results addObject:dict];
 		}
-		[rs release];
+		[results autorelease];
 	}
 	return results;
 }
@@ -1058,9 +1067,8 @@
 		{
 			res = [row objectAtIndex:0];
 			[results addObject:res];
-			[res release];
 		}
-		[rs release];
+		[results autorelease];
 	}
 	return results;
 }
@@ -1136,6 +1144,7 @@
 					[results setObject:dict forKey:[row objectAtIndex:0]];
 				}
 		}
+		[results autorelease];
 	}
 	return results;
 }
@@ -1254,7 +1263,7 @@
  */
 - (id)prepare:(NSString *)stmt status:(NSError **)status
 {
-	return [[NGDBStatement alloc] initWithStatement:stmt connection:self status:status];
+	return [[[NGDBStatement alloc] initWithStatement:stmt connection:self status:status] autorelease];
 }
 
 /** setDebugLog:
