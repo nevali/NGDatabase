@@ -56,16 +56,16 @@
 
 - (id)prepare:(NSString *)statement status:(NSError **)status;
 
-- (NSDictionary *)getRow:(NSString *)query status:(NSError **)status, ...;
-- (NSDictionary *)getRow:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
-- (NSArray *)getAll:(NSString *)query status:(NSError **)status, ...;
-- (NSArray *)getAll:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
-- (NSArray *)getCol:(NSString *)query status:(NSError **)status, ...;
-- (NSArray *)getCol:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
-- (NSDictionary *)getAssoc:(NSString *)query status:(NSError **)status, ...;
-- (NSDictionary *)getAssoc:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
-- (NSString *)getOne:(NSString *)query status:(NSError **)status, ...;
-- (NSString *)getOne:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
+- (NSDictionary *)rowForQuery:(NSString *)query status:(NSError **)status, ...;
+- (NSDictionary *)rowForQuery:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
+- (NSArray *)rowsForQuery:(NSString *)query status:(NSError **)status, ...;
+- (NSArray *)rowsForQuery:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
+- (NSArray *)columnForQuery:(NSString *)query status:(NSError **)status, ...;
+- (NSArray *)columnForQuery:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
+- (NSDictionary *)dictForQuery:(NSString *)query status:(NSError **)status, ...;
+- (NSDictionary *)dictForQuery:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
+- (NSString *)valueForQuery:(NSString *)query status:(NSError **)status, ...;
+- (NSString *)valueForQuery:(NSString *)query withArray:(NSArray *)params status:(NSError **)status;
 
 - (BOOL)insertInto:(NSString *)target values:(id)values status:(NSError **)status;
 - (BOOL)update:(NSString *)target values:(NSDictionary *)values constraints:(id)constraints status:(NSError **)status;
@@ -79,9 +79,14 @@
 - (NSString *)quoteObject:(NSString *)objectName qualify:(BOOL)qualify;
 - (NSString *)quoteObject:(NSString *)objectName inSchema:(NSString *)schema inDatabase:(NSString *)db;
 
-- (BOOL)alias:(NSString *)alias forObject:(NSString *)obj;
-- (BOOL)alias:(NSString *)alias forObject:(NSString *)obj inSchema:(NSString *)schema inDatabase:(NSString *)db;
-- (NSString *)resolveAlias:(NSString *)alias;
+- (BOOL)setAlias:(NSString *)alias forObject:(NSString *)obj;
+- (BOOL)setAlias:(NSString *)alias forObject:(NSString *)obj inSchema:(NSString *)schema inDatabase:(NSString *)db;
+- (NSString *)aliasForObject:(NSString *)alias;
+
+- (void)setTimeZone:(NSTimeZone *)newTimeZone;
+- (void)setUnbuffered:(BOOL)flag;
+- (void)setUncached:(BOOL)flag;
+- (void)setDebugLogging:(BOOL)flag;
 
 - (NSString *)now;
 - (NSString *)driverName;
@@ -89,13 +94,9 @@
 - (NSString *)schemaName;
 - (NSTimeZone *)timeZone;
 - (BOOL)connected;
-
-- (void)setTimeZone:(NSTimeZone *)newTimeZone;
-- (void)setUnbuffered:(BOOL)flag;
-- (BOOL)isUnbuffered;
-- (void)setUncached:(BOOL)flag;
-- (BOOL)isUncached;
-- (void)setDebugLog:(BOOL)flag;
+- (BOOL)unbuffered;
+- (BOOL)uncached;
+- (BOOL)debugLogging;
 
 @end
 

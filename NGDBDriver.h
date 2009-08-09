@@ -34,14 +34,14 @@
 
 @interface NGDBConnection (NGDBDriverMethods)
 
-- (id) initWithOptions:(NSDictionary *)options status:(NSError **)status;
-- (id) initDriverWithURL:(NSURL *)url options:(NSDictionary *)options status:(NSError **)status;
-- (void *) exec:(NSString *)query flags:(NGDBExecFlags)flags status:(NSError **)status;
-- (id) createResultSet:(void *)result status:(NSError **)status;
-- (void) freeResult:(void *)result;
-- (NSString *) intersperseQuery:(NSString *)query substituteParams:(BOOL)subParams paramsArray:(NSArray *)array addSuffix:(NSString *)suffix status:(NSError **)status;
+- (id)initWithOptions:(NSDictionary *)options status:(NSError **)status;
+- (id)initDriverWithURL:(NSURL *)url options:(NSDictionary *)options status:(NSError **)status;
+- (void *)exec:(NSString *)query flags:(NGDBExecFlags)flags status:(NSError **)status;
+- (id)createResultSet:(void *)result status:(NSError **)status;
+- (void)freeResult:(void *)result;
+- (NSString *)intersperseQuery:(NSString *)query substituteParams:(BOOL)subParams paramsArray:(NSArray *)array addSuffix:(NSString *)suffix status:(NSError **)status;
 - (NSString *)formatConstraints:(id)constraints;
-- (NGDBExecFlags) execFlags;
+- (NGDBExecFlags)execFlags;
 
 @end
 

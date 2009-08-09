@@ -39,7 +39,7 @@ main(int argc, char **argv)
 	NGDBConnection *db;
 	NGDBResultSet *rs;
 	NGDBStatement *st;
-	NSDictionary *row;
+	NSDictionary *row, *rowdict;
 	NSArray *rows;
 	NSError *err = nil;
 	NSString *url;
@@ -53,7 +53,7 @@ main(int argc, char **argv)
 	}
 	url = [[NSString alloc] initWithUTF8String:argv[1]];
 	db = [[NGDBConnection alloc] initWithURLString:url options:nil status:&err];
-	[db setDebugLog:TRUE];
+	[db setDebugLogging:TRUE];
 	[url release];
 	if(!db)
 	{
@@ -72,7 +72,7 @@ main(int argc, char **argv)
 		[db release];
 		return 1;
 	}
-	[db alias:@"TEST" forObject:@"ngdbtest"];
+	[db setAlias:@"TEST" forObject:@"ngdbtest"];
 	
 	if(![db insertInto:@"TEST" values:[NSArray arrayWithObjects:
 		[NSDictionary dictionaryWithObjectsAndKeys:@"1", @"id", @"Mr John Smith", @"name",nil],
@@ -115,7 +115,7 @@ main(int argc, char **argv)
 	{
 		NSLog(@"No result-set returned: %@", err);
 	}	
-	if(!(row = [db getRow:@"SELECT * FROM {TEST} WHERE [id] = ?" status:&err, @"3", nil]) && !err)
+	if(!(row = [db rowForQuery:@"SELECT * FROM {TEST} WHERE [id] = ?" status:&err, @"3", nil]) && !err)
 	{
 		NSLog(@"Error: %@", err);
 		[db release];
@@ -130,7 +130,7 @@ main(int argc, char **argv)
 		NSLog(@"Single row: %@", row);
 	}
 	
-	if(!(rows = [db getAll:@"SELECT * FROM {TEST} WHERE [id] BETWEEN ? AND ?" status:&err, @"3", @"6", nil]))
+	if(!(rows = [db rowsForQuery:@"SELECT * FROM {TEST} WHERE [id] BETWEEN ? AND ?" status:&err, @"3", @"6", nil]))
 	{
 		NSLog(@"Error: %@", err);
 		[db release];
@@ -161,14 +161,14 @@ main(int argc, char **argv)
 	}		
 	[st release];
 
-	if(!(rows = [db getAll:@"SELECT * FROM {TEST} WHERE [id] BETWEEN ? AND ?" status:&err, @"10", @"13", nil]))
+	if(!(rowdict = [db dictForQuery:@"SELECT [id],[name] FROM {TEST} WHERE [id] BETWEEN ? AND ?" status:&err, @"10", @"13", nil]))
 	{
 		NSLog(@"Error: %@", err);
 		[db release];
 		return 1;
 	}
-	NSLog(@"Rows: %@", rows);
-	[rows release];
+	NSLog(@"Rows: %@", rowdict);
+	[rowdict release];
 	
 		
 	[db executeSQL:@"DROP TABLE {ngdbtest}" withArray:nil status:NULL];

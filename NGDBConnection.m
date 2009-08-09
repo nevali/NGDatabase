@@ -327,7 +327,7 @@
 	{
 		return [objectName copy];
 	}
-	if((s = [self resolveAlias:objectName]))
+	if((s = [self aliasForObject:objectName]))
 	{
 		return [s copy];
 	}
@@ -818,7 +818,7 @@
 	return NO;
 }
 
-/** -alias:forObject:
+/** -setAlias:forObject:
  *
  * Add an alias for the given table name in the current database and schema.
  *
@@ -826,12 +826,12 @@
  *
  * Drivers should not override this method.
  */
-- (BOOL)alias:(NSString *)alias forObject:(NSString *)obj
+- (BOOL)setAlias:(NSString *)alias forObject:(NSString *)obj
 {
-	return [self alias:alias forObject:obj inSchema:nil inDatabase:nil];
+	return [self setAlias:alias forObject:obj inSchema:nil inDatabase:nil];
 }
 
-/** -alias:forObject:inSchema:inDatabase:
+/** -setAlias:forObject:inSchema:inDatabase:
  *
  * Add an alias for the given table name in the specified database and schema.
  * If schema and/or db are nil, the current schema and database names will be
@@ -841,7 +841,7 @@
  *
  * Drivers should not override this method.
  */
-- (BOOL)alias:(NSString *)alias forObject:(NSString *)obj inSchema:(NSString *)schema inDatabase:(NSString *)db
+- (BOOL)setAlias:(NSString *)alias forObject:(NSString *)obj inSchema:(NSString *)schema inDatabase:(NSString *)db
 {
 	NSString *target;
 	
@@ -851,18 +851,18 @@
 	return YES;
 }
 
-/** -resolveAlias:
+/** -aliasForObject:
  *
  * Return the fully-qualfied name corresponding to the specified alias.
  *
  * Returns nil if the given name has not been registered.
  */
-- (NSString *)resolveAlias:(NSString *)alias
+- (NSString *)aliasForObject:(NSString *)alias
 {
 	return [aliases objectForKey:alias];
 }
 
-/** -getRow:status:, ...
+/** -rowForQuery:status:, ...
  *
  * Perform the specified query and return the first row of the results as an
  * associative array (NSDictionary instance).
@@ -875,18 +875,18 @@
  * instead.
  */
 
-- (NSDictionary *)getRow:(NSString *)query status:(NSError **)status, ...
+- (NSDictionary *)rowForQuery:(NSString *)query status:(NSError **)status, ...
 {
 	NSMutableArray *params;
 	NSDictionary *r;
 	
 	VA_TO_NSARRAY(status, params);
-	r = [self getRow:query withArray:params status:status];
+	r = [self rowForQuery:query withArray:params status:status];
 	[params release];
 	return r;
 }
 
-/** -getRow:withArray:status:
+/** -rowForQuery:withArray:status:
  *
  * Perform the specified query and return the first row of the results as an
  * associative array (NSDictionary instance).
@@ -899,7 +899,7 @@
  * In the former case, if status is non-NULL, it will be set to point to an
  * NSError instance describing the error condition.
  */
-- (NSDictionary *)getRow:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
+- (NSDictionary *)rowForQuery:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
 {
 	NSDictionary *dict;
 	NGDBResultSet *rs;
@@ -916,7 +916,7 @@
 	return dict;
 }
 
-/** -getOne:withArray:status:
+/** -valueForQuery:withArray:status:
  *
  * Perform the specified query and return the first column of the first row of
  * the results.
@@ -929,19 +929,19 @@
  * In the former case, if status is non-NULL, it will be set to point to an
  * NSError instance describing the error condition.
  */
-- (NSString *)getOne:(NSString *)query status:(NSError **)status, ...
+- (NSString *)valueForQuery:(NSString *)query status:(NSError **)status, ...
 {
 	NSMutableArray *params;
 	NSString *r;
 	
 	VA_TO_NSARRAY(status, params);
-	r = [self getOne:query withArray:params status:status];
+	r = [self valueForQuery:query withArray:params status:status];
 	[params release];
 	return r;
 }
 
 
-- (NSString *)getOne:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
+- (NSString *)valueForQuery:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
 {
 	NSString *res;
 	NSArray *row;
@@ -960,7 +960,7 @@
 }
 
 
-/** -getAll:status:, ...
+/** -rowsForQuery:status:, ...
  *
  * Perform the specified query and return the all rows of the results as an
  * array (NSArray instance) of associative arrays (NSDictionary instances).
@@ -973,18 +973,18 @@
  * instead.
  */
 
-- (NSArray *)getAll:(NSString *)query status:(NSError **)status, ...
+- (NSArray *)rowsForQuery:(NSString *)query status:(NSError **)status, ...
 {
 	NSMutableArray *params;
 	NSArray *r;
 	
 	VA_TO_NSARRAY(status, params);
-	r = [self getAll:query withArray:params status:status];
+	r = [self rowsForQuery:query withArray:params status:status];
 	[params release];
 	return r;
 }
 
-/** -getAll:withArray:status:
+/** -rowsForQuery:withArray:status:
  *
  * Perform the specified query and return the all rows of the results as an
  * array (NSArray instance) of associative arrays (NSDictionary instances).
@@ -998,7 +998,7 @@
  * If the query was successful but the result-set was empty, an empty NSArray
  * will be returned.
  */
-- (NSArray *)getAll:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
+- (NSArray *)rowsForQuery:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
 {
 	NSDictionary *dict;
 	NSMutableArray *results;
@@ -1017,7 +1017,7 @@
 	return results;
 }
 
-/** -getCol:withArray:status:
+/** -columnForQuery:withArray:status:
  *
  * Perform the specified query and return the first column of each of the rows
  * of the results as an array.
@@ -1031,19 +1031,19 @@
  * If the query was successful but the result-set was empty, an empty NSArray
  * will be returned.
  */
-- (NSArray *)getCol:(NSString *)query status:(NSError **)status, ...
+- (NSArray *)columnForQuery:(NSString *)query status:(NSError **)status, ...
 {
 	NSMutableArray *params;
 	NSArray *r;
 	
 	VA_TO_NSARRAY(status, params);
-	r = [self getCol:query withArray:params status:status];
+	r = [self columnForQuery:query withArray:params status:status];
 	[params release];
 	return r;
 }
 
 
-- (NSArray *)getCol:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
+- (NSArray *)columnForQuery:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
 {
 	NSArray *row;
 	NSString *res;
@@ -1065,7 +1065,7 @@
 	return results;
 }
 
-/** -getAssoc:withArray:status:
+/** -dictForQuery:withArray:status:
  *
  * Perform the specified query and return the all rows of the results as an
  * associative array (NSDictionary instance) where the value from the first
@@ -1090,19 +1090,19 @@
  * If the query was successful but the result-set was empty, an empty NSArray
  * will be returned.
  */
-- (NSDictionary *)getAssoc:(NSString *)query status:(NSError **)status, ...
+- (NSDictionary *)dictForQuery:(NSString *)query status:(NSError **)status, ...
 {
 	NSMutableArray *params;
 	NSDictionary *r;
 	
 	VA_TO_NSARRAY(status, params);
-	r = [self getAssoc:query withArray:params status:status];
+	r = [self dictForQuery:query withArray:params status:status];
 	[params release];
 	return r;
 }
 
 
-- (NSDictionary *)getAssoc:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
+- (NSDictionary *)dictForQuery:(NSString *)query withArray:(NSArray *)params status:(NSError **)status
 {
 	NSDictionary *dict;
 	NSArray *row;
@@ -1176,14 +1176,14 @@
 	}
 }
 
-/** - isUnbuffered
+/** - unbuffered
  *
  * Return YES if the connection is in unbuffered mode, NO otherwise.
  *
  * Drivers should not override this method.
  *
  */
-- (BOOL)isUnbuffered
+- (BOOL)unbuffered
 {
 	return (execFlags & NGDBEF_Unbuffered ? YES : NO);
 }
@@ -1224,7 +1224,7 @@
  * Drivers should not override this method.
  *
  */
-- (BOOL)isUncached
+- (BOOL)uncached
 {
 	return (execFlags & NGDBEF_Uncached ? YES : NO);
 }
@@ -1268,7 +1268,7 @@
  *
  * Drivers should not override this method.
  */
-- (void)setDebugLog:(BOOL)flag
+- (void)setDebugLogging:(BOOL)flag
 {
 	if(flag)
 	{
@@ -1278,6 +1278,11 @@
 	{
 		execFlags &= ~NGDBEF_DebugLog;
 	}
+}
+
+- (BOOL)debugLogging
+{
+	return (execFlags & NGDBEF_DebugLog ? YES : NO);
 }
 
 - (BOOL)begin:(NSError **)status
