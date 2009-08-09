@@ -77,12 +77,12 @@
 
 - (BOOL)moveNext
 {
-	return FALSE;
+	return NO;
 }
 
 - (BOOL)eof
 {
-	return TRUE;
+	return YES;
 }
 
 - (NSDictionary *)rowAsDict
