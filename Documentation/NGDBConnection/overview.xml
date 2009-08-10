@@ -272,6 +272,177 @@
 				</varlistentry>
 			</variablelist>
 		</section>
+		
+		<section>
+			<title>Object aliasing</title>
+			<variablelist>
+				<varlistentry>
+					<term><methodname><html:a href="setAlias.xml">setAlias:forObject:</html:a></methodname></term>
+					<term><methodname><html:a href="setAlias.xml">setAlias:forObject:inSchema:inDatabase:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Adds an alias for an object, optionally within a specified
+							schema and/or database.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="aliasForObject.xml">aliasForObject:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Returns a fully-qualified object name given an alias name.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</section>
+		
+		<section>
+			<title>Quoting and literals</title>
+			<variablelist>
+				<varlistentry>
+					<term><methodname><html:a href="quote.xml">quote:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Quotes a value returning a string which may be substituted
+							directly into a query.
+						</para>
+					</listitem>
+				</varlistentry>
+				
+				<varlistentry>
+					<term><methodname><html:a href="quoteObject.xml">quoteObject:qualify:</html:a></methodname></term>
+					<term><methodname><html:a href="quoteObject.xml">quoteObject:inSchema:inDatabase:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Quotes the name of an object, resolving aliases as necessary,
+							returning a string suitable for substitution into a
+							query.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="now.xml">now</html:a></methodname></term>
+					<listitem>
+						<para>
+							Returns a string which represents the current date and time,
+							suitable for substitution into a query.
+						</para>
+					</listitem>
+				</varlistentry>
+
+			</variablelist>
+		</section>
+		
+		<section>
+			<title>Connection properties</title>
+			<variablelist>
+
+				<varlistentry>
+					<term><methodname><html:a href="connected.xml">connected</html:a></methodname></term>
+					<listitem>
+						<para>
+							<literal>YES</literal> if this instance represents an
+							active connection to a database, <literal>NO</literal>
+							otherwise.
+						</para>
+					</listitem>
+				</varlistentry>
+			
+				<varlistentry>
+					<term><methodname><html:a href="driverName.xml">driverName</html:a></methodname></term>
+					<listitem>
+						<para>
+							The name of the driver used by this connection (e.g., “SQLite”).
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="schemaName.xml">schemaName</html:a></methodname></term>
+					<listitem>
+						<para>
+							If the database system supports multiple schemata
+							within a database, the name of the current schema.
+						</para>
+					</listitem>
+				</varlistentry>
+			
+				<varlistentry>
+					<term><methodname><html:a href="databaseName.xml">databaseName</html:a></methodname></term>
+					<listitem>
+						<para>
+							If the database system supports accessing multiple
+							databases from a single connection, the name of the
+							current database.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="timeZone.xml">timeZone</html:a></methodname></term>
+					<term><methodname><html:a href="timeZone.xml">setTimeZone:</html:a></methodname></term>
+					<listitem>
+						<para>
+							The timezone associated with the connection, represented
+							as an <classname>NSTimeZone</classname> instance.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="unbuffered.xml">unbuffered</html:a></methodname></term>
+					<term><methodname><html:a href="unbuffered.xml">setUnbuffered:</html:a></methodname></term>
+					<listitem>
+						<para>
+							A flag indicating whether the connection is operating
+							in unbuffered mode. In buffered mode, if supported by
+							the database system, all of the rows of a result-set
+							are sent together to the client once a query has
+							executed to allow accurate row-counts and concurrent
+							queries to be executed within the same thread. Unbuffered
+							mode may yield performance improvements at the expense
+							of this flexibility.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="uncached.xml">uncached</html:a></methodname></term>
+					<term><methodname><html:a href="uncached.xml">setUncached:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Where database systems perform query caching (caching the
+							results of queries and returning them where identical
+							queries are executed provided none of the concerned
+							objects have been marked as invalidated), this flag
+							explicitly requests that queries should ignore the
+							cache. This flag is ordinarily only used when testing
+							performance.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="debugLogging.xml">debugLogging</html:a></methodname></term>
+					<term><methodname><html:a href="debugLogging.xml">setDebugLogging:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Request that the driver log information about executed
+							queries using <function>NSLog</function>. Note
+							that this flag may cause sensitive information to be
+							written to the system event log and an application’s
+							standard error stream.
+						</para>
+					</listitem>
+				</varlistentry>
+
+
+			</variablelist>
+		</section>
+
 	</section>
 	
 </article>

@@ -134,27 +134,27 @@
 		<title>Example</title>
 		<example>
 			<title>Establishing a database connection with connectionWithURL:options:status:</title>
-			<programlisting xml:space="preserve"><![CDATA[NGDBConnection *db;
-NSError *error = NULL;
+			<programlisting xml:space="preserve"><classname>NGDBConnection</classname> *<varname>db</varname>;
+<classname>NSError</classname> *<varname>error</varname> = <literal>NULL</literal>;
 
-if(!(db = [NGDBConnection connectionWithURL:[NSURL URLWithString:@"sqlite:///Users/me/example.db"] options:nil status:&error]))
+if(!(<varname>db</varname> = [<classname>NGDBConnection</classname> <methodname>connectionWithURL:</methodname>[<classname>NSURL</classname> <methodname>URLWithString:</methodname><literal>@"sqlite:///Users/me/example.db"</literal>] options:<literal>nil</literal> status:&amp;<varname>error</varname>]))
 {
-	NSLog(@"Error establishing database connection: %@", error);
-	[error release];
-	return -1;
+	<function>NSLog</function>(<literal>@"Error establishing database connection: %@"</literal>, <varname>error</varname>);
+	[<varname>error</varname> <methodname>release</methodname>];
+	return <literal>-1</literal>;
 }
-if([db getOne:@"SELECT [id] FROM {users} WHERE [name] = ?" status:&error, @"johnsmith", nil])
+if([<varname>db</varname> <methodname>rowForQuery:</methodname><literal>@"SELECT [id] FROM {users} WHERE [name] = ?"</literal> status:&amp;<varname>error</varname>, <literal>@"johnsmith"</literal>, <literal>nil</literal>])
 {
-	return 1;
+	return <literal>1</literal>;
 }
-if(error)
+if(<varname>error</varname>)
 {
-	NSLog(@"Error executing query: %@", error);
-	[error release];
-	return -1;
+	<function>NSLog</function>(<literal>@"Error executing query: %@"</literal>, <varname>error</varname>);
+	[<varname>error</varname> <methodname>release</methodname>];
+	return <literal>-1</literal>;
 }
-return 0;
-]]></programlisting>
+return <literal>0</literal>;
+</programlisting>
 		</example>
 	</refsection>
 	

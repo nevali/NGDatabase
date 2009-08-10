@@ -17,7 +17,7 @@ para {
 	margin: 0.75em 0 0.75em 0;
 }
 
-methodname, literal, parameter, classname, type, property {
+methodname, literal, parameter, classname, type, property, varname, function {
 	font-family: monaco, courier, monospace;
 	font-size: 110%;
 }
@@ -32,6 +32,10 @@ literal, literal html|a:link, literal html|a:visited {
 
 property, property html|a:link, property html|a:visited {
 	color: #880;
+}
+
+varname, varname html|a:link, varname html|a:visited {
+	color: #008;
 }
 
 type, classname, type html|a:link, type html|a:visited, classname html|a:link, classname html|a:visited {
@@ -183,6 +187,12 @@ programlisting {
 	display: block;
 	white-space: pre;
 	overflow: scroll;
+}
+
+programlisting methodname, programlisting literal, programlisting parameter,
+programlisting classname, programlisting type, programlisting property, 
+programlisting varname, programlisting function {
+	font-size: 100%;
 }
 
 /* example */
