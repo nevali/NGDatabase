@@ -4,12 +4,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:html="http://www.w3.org/1999/xhtml">
 	<refnamediv>
 		<refname>connectionWithURL:options:status:</refname>
-		<refpurpose>Establishes a connection to a database.</refpurpose>
+		<refpurpose>Initialises a connection instances and establishes a connection to a database.</refpurpose>
 	</refnamediv>
 	<refsynopsisdiv>
 		<methodsynopsis>
-			<modifier>+</modifier>
-			<type>id</type><methodname>connectionWithURL:</methodname><methodparam><type>NSURL *</type><parameter>url</parameter></methodparam>
+			<modifier>-</modifier>
+			<type>id</type><methodname>initWithURL:</methodname><methodparam><type>NSURL *</type><parameter>url</parameter></methodparam>
 			<methodparam>
 				<modifier>options:</modifier><type>NSDictionary *</type><parameter>options</parameter>
 			</methodparam>
@@ -18,8 +18,8 @@
 			</methodparam>
 		</methodsynopsis>
 		<methodsynopsis>
-			<modifier>+</modifier>
-			<type>id</type><methodname>connectionWithURLString:</methodname><methodparam><type>NSString *</type><parameter>url</parameter></methodparam>
+			<modifier>-</modifier>
+			<type>id</type><methodname>initWithURLString:</methodname><methodparam><type>NSString *</type><parameter>url</parameter></methodparam>
 			<methodparam>
 				<modifier>options:</modifier><type>NSDictionary *</type><parameter>options</parameter>
 			</methodparam>
@@ -92,7 +92,7 @@
 		<title>Return value</title>
 		<para>
 			Upon success, <methodname>connectionWithURL:options:status:</methodname>
-			returns a connection instance.
+			returns an initialised connection instance.
 		</para>
 		<para>
 			Upon failure, <literal>nil</literal> shall be returned, and if
@@ -105,8 +105,7 @@
 	<refsection>
 		<title>Discussion</title>
 		<para>
-			Establishes a database connection given an <classname>NSURL</classname> and adds
-			it to the autorelease pool.
+			Initialises a connection instance and establishes a database connection given a URL.
 		</para>
 		<para>
 			The instance returned by a successful call to this method will be
@@ -114,13 +113,51 @@
 			of the specified <parameter>url</parameter>. Applications should not
 			generally need to be written with specific awareness of this, although
 			developers should be aware that the instance returned will never be
-			an instance of <classname>NGDBConnection</classname> itself.
+			an instance of <classname>NGDBConnection</classname> itself. Therefore,
+			it is important that developers use the result of this method call,
+			rather than assuming that the instance returned by <methodname>alloc</methodname>
+			is valid provided this method returns successfully.
+		</para>
+		<para>
+			In other words, rather than performing the following:
+		</para>
+		<programlisting xml:space="preserve"><classname>NGDBConnection</classname> *<varname>db</varname>;
+<classname>NSError</classname> *<varname>error</varname> = <literal>NULL</literal>;
+
+<varname>db</varname> = [<classname>NGDBConnection</classname> <methodname>alloc</methodname>];
+if(![<varname>db</varname> <methodname>initWithURLString:</methodname><literal>@"sqlite:///Users/me/example.db"</literal> options:<literal>nil</literal> status:&amp;<varname>error</varname>])
+{
+	<lineannotation>/* Error */</lineannotation>
+}
+<lineannotation>/* Success */</lineannotation>
+		</programlisting>
+		<para>
+			Applications should instead perform the following:
+		</para>
+		<programlisting xml:space="preserve"><classname>NGDBConnection</classname> *<varname>db</varname>;
+<classname>NSError</classname> *<varname>error</varname> = <literal>NULL</literal>;
+
+<varname>db</varname> = [<classname>NGDBConnection</classname> <methodname>alloc</methodname>];
+if(!(<varname>db</varname> = [<varname>db</varname> <methodname>initWithURLString:</methodname><literal>@"sqlite:///Users/me/example.db"</literal> options:<literal>nil</literal> status:&amp;<varname>error</varname>]))
+{
+	<lineannotation>/* Error */</lineannotation>
+}
+<lineannotation>/* Success */</lineannotation>
+		</programlisting>
+		<para>
+			More preferable is the usual Cocoa convention of assigning an
+			instance variable by storing the result of an  <methodname>init…</methodname>
+			call on the result of an <methodname>alloc</methodname>, which will
+			obviously have the same, correct, effect.
 		</para>
 		<para>
 			It is not recommended that applications frequently establish connections
 			to databases by creating autoreleased instances when database access
 			is required, because there are no guarantees that establishing a
-			connection will be an efficient operation.
+			connection will be an efficient operation. However, if for some reason
+			an autoreleased instance is desired, the
+			<methodname><html:a href="connectionWithURL.xml">connectionWithURL:options:status:</html:a></methodname>
+			class method is provided for this purpose.
 		</para>
 		<para>
 			Similarly, note that calling this method may cause name resolution to occur
@@ -133,11 +170,11 @@
 	<refsection>
 		<title>Example</title>
 		<example>
-			<title><html:a href="connectionWithURL.m">Establishing a database connection with connectionWithURL:options:status:</html:a></title>
+			<title><html:a href="initWithURL.m">Establishing a database connection with initWithURL:options:status:</html:a></title>
 			<programlisting xml:space="preserve"><classname>NGDBConnection</classname> *<varname>db</varname>;
 <classname>NSError</classname> *<varname>error</varname> = <literal>NULL</literal>;
 
-if(!(<varname>db</varname> = [<classname>NGDBConnection</classname> <methodname>connectionWithURL:</methodname>[<classname>NSURL</classname> <methodname>URLWithString:</methodname><literal>@"sqlite:///Users/me/example.db"</literal>] options:<literal>nil</literal> status:&amp;<varname>error</varname>]))
+if(!(<varname>db</varname> = [[<classname>NGDBConnection</classname> <methodname>alloc</methodname>] <methodname>initWithURL:</methodname>[<classname>NSURL</classname> <methodname>URLWithString:</methodname><literal>@"sqlite:///Users/me/example.db"</literal>] options:<literal>nil</literal> status:&amp;<varname>error</varname>]]))
 {
 	<function>NSLog</function>(<literal>@"Error establishing database connection: %@"</literal>, <varname>error</varname>);
 	[<varname>error</varname> <methodname>release</methodname>];
@@ -145,14 +182,17 @@ if(!(<varname>db</varname> = [<classname>NGDBConnection</classname> <methodname>
 }
 if([<varname>db</varname> <methodname>rowForQuery:</methodname><literal>@"SELECT [id] FROM {users} WHERE [name] = ?"</literal> status:&amp;<varname>error</varname>, <literal>@"johnsmith"</literal>, <literal>nil</literal>])
 {
+	[<varname>db</varname> <methodname>release</methodname>];
 	return <literal>1</literal>;
 }
 if(<varname>error</varname>)
 {
 	<function>NSLog</function>(<literal>@"Error executing query: %@"</literal>, <varname>error</varname>);
 	[<varname>error</varname> <methodname>release</methodname>];
+	[<varname>db</varname> <methodname>release</methodname>];
 	return <literal>-1</literal>;
 }
+[<varname>db</varname> <methodname>release</methodname>];
 return <literal>0</literal>;
 </programlisting>
 		</example>
@@ -177,7 +217,7 @@ return <literal>0</literal>;
 		<title>See also</title>
 		<itemizedlist>
 			<listitem>
-				<methodname><html:a href="initWithURL.xml">initWithURL:options:status:</html:a></methodname>
+				<methodname><html:a href="connectionWithURL.xml">connectionWithURL:options:status:</html:a></methodname>
 			</listitem>
 		</itemizedlist>
 	</refsection>

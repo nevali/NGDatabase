@@ -186,7 +186,7 @@ programlisting {
 	font-size: 110%;
 	display: block;
 	white-space: pre;
-	overflow: scroll;
+	overflow: auto;
 }
 
 programlisting methodname, programlisting literal, programlisting parameter,
@@ -195,13 +195,18 @@ programlisting varname, programlisting function {
 	font-size: 100%;
 }
 
+programlisting lineannotation {
+	color: #666;
+	font-style: italic;
+}
+
 /* example */
 
 example {
 	display: block;
 	background: #eee;
 	border: solid #ccc 1px;
-	overflow: scroll;
+	overflow: auto;
 }
 
 example > title {

@@ -472,6 +472,9 @@
 		CDF90A4A102714AE00240ACD /* NGDBError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBError.h; sourceTree = "<group>"; };
 		CDF90A4C1027152A00240ACD /* NGDBResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBResultSet.h; sourceTree = "<group>"; };
 		CDF90A4E1027156C00240ACD /* NGDBConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBConnection.m; sourceTree = "<group>"; };
+		CDFF18A71030786D0069F8E0 /* connectionWithURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionWithURL.m; sourceTree = "<group>"; };
+		CDFF18AA103079780069F8E0 /* initWithURL.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = initWithURL.xml; sourceTree = "<group>"; };
+		CDFF18AB10307CDE0069F8E0 /* initWithURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = initWithURL.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -563,6 +566,9 @@
 				CDC96370102EEFA600E75F75 /* index.html */,
 				CDC963F2102F1FD200E75F75 /* index.xml */,
 				CD352F711030066500A04E72 /* overview.xml */,
+				CDFF18A71030786D0069F8E0 /* connectionWithURL.m */,
+				CDFF18AA103079780069F8E0 /* initWithURL.xml */,
+				CDFF18AB10307CDE0069F8E0 /* initWithURL.m */,
 			);
 			path = NGDBConnection;
 			sourceTree = "<group>";
