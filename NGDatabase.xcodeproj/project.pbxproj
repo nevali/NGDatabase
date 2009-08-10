@@ -28,7 +28,7 @@
 		CD726AB1102C4C2400EB1637 /* NGSQLiteConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = CD726AAF102C4C2400EB1637 /* NGSQLiteConnection.m */; };
 		CD726ABA102C5D3E00EB1637 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CD726AB9102C5D3E00EB1637 /* libsqlite3.dylib */; };
 		CD726ACE102C611900EB1637 /* NGSQLiteResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = CD726ACD102C611900EB1637 /* NGSQLiteResultSet.m */; };
-		CDC96367102ED79500E75F75 /* connectionWithURL_options_status.xml in Resources */ = {isa = PBXBuildFile; fileRef = CDC96366102ED79500E75F75 /* connectionWithURL_options_status.xml */; };
+		CDC96367102ED79500E75F75 /* connectionWithURL.xml in Resources */ = {isa = PBXBuildFile; fileRef = CDC96366102ED79500E75F75 /* connectionWithURL.xml */; };
 		CDC96369102EDBD600E75F75 /* dbook.css in Resources */ = {isa = PBXBuildFile; fileRef = CDC96368102EDBD600E75F75 /* dbook.css */; };
 		CDC9636F102EEE9E00E75F75 /* toc.css in Resources */ = {isa = PBXBuildFile; fileRef = CDC9636E102EEE9E00E75F75 /* toc.css */; };
 		CDC96371102EEFA600E75F75 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = CDC96370102EEFA600E75F75 /* index.html */; };
@@ -274,13 +274,12 @@
 		CD726AAF102C4C2400EB1637 /* NGSQLiteConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSQLiteConnection.m; sourceTree = "<group>"; };
 		CD726AB9102C5D3E00EB1637 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		CD726ACD102C611900EB1637 /* NGSQLiteResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSQLiteResultSet.m; sourceTree = "<group>"; };
-		CDC96366102ED79500E75F75 /* connectionWithURL_options_status.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = connectionWithURL_options_status.xml; sourceTree = "<group>"; };
+		CDC96366102ED79500E75F75 /* connectionWithURL.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = connectionWithURL.xml; sourceTree = "<group>"; };
 		CDC96368102EDBD600E75F75 /* dbook.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = dbook.css; sourceTree = "<group>"; };
 		CDC9636E102EEE9E00E75F75 /* toc.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = toc.css; sourceTree = "<group>"; };
 		CDC96370102EEFA600E75F75 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; path = index.html; sourceTree = "<group>"; };
 		CDC96372102EF00400E75F75 /* doc.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = doc.css; sourceTree = "<group>"; };
 		CDC963F2102F1FD200E75F75 /* index.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = index.xml; sourceTree = "<group>"; };
-		CDC96494102F43F300E75F75 /* connectionWithURLString_options_status.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = connectionWithURLString_options_status.xml; sourceTree = "<group>"; };
 		CDC964C2102F50FB00E75F75 /* NGDBSharedManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGDBSharedManager.h; sourceTree = "<group>"; };
 		CDC964C7102F518A00E75F75 /* NGDBSharedManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGDBSharedManager.m; sourceTree = "<group>"; };
 		CDD2A757102B85C300D00011 /* MySQL.dbplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySQL.dbplugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -559,10 +558,9 @@
 		CDC96365102ED76000E75F75 /* NGDBConnection */ = {
 			isa = PBXGroup;
 			children = (
-				CDC96366102ED79500E75F75 /* connectionWithURL_options_status.xml */,
+				CDC96366102ED79500E75F75 /* connectionWithURL.xml */,
 				CDC96370102EEFA600E75F75 /* index.html */,
 				CDC963F2102F1FD200E75F75 /* index.xml */,
-				CDC96494102F43F300E75F75 /* connectionWithURLString_options_status.xml */,
 			);
 			path = NGDBConnection;
 			sourceTree = "<group>";
@@ -1070,7 +1068,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
-				CDC96367102ED79500E75F75 /* connectionWithURL_options_status.xml in Resources */,
+				CDC96367102ED79500E75F75 /* connectionWithURL.xml in Resources */,
 				CDC96369102EDBD600E75F75 /* dbook.css in Resources */,
 				CDC9636F102EEE9E00E75F75 /* toc.css in Resources */,
 				CDC96371102EEFA600E75F75 /* index.html in Resources */,

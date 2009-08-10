@@ -17,6 +17,16 @@
 				<modifier>status:</modifier><type>NSError **</type><parameter>status</parameter>
 			</methodparam>
 		</methodsynopsis>
+		<methodsynopsis>
+			<modifier>+</modifier>
+			<type>id</type><methodname>connectionWithURLString:</methodname><methodparam><type>NSString *</type><parameter>url</parameter></methodparam>
+			<methodparam>
+				<modifier>options:</modifier><type>NSDictionary *</type><parameter>options</parameter>
+			</methodparam>
+			<methodparam>
+				<modifier>status:</modifier><type>NSError **</type><parameter>status</parameter>
+			</methodparam>
+		</methodsynopsis>
 	</refsynopsisdiv>
 	
 	<refsection>
@@ -26,8 +36,14 @@
 				<term><parameter>url</parameter></term>
 				<listitem>
 					<para>
-						An <classname>NSURL</classname> instance representing the
+						For <methodname>connectionWithURL:options:status:</methodname>, 
+						an <classname>NSURL</classname> instance representing the
 						location of the database to connect to.
+					</para>
+					<para>
+						For <methodname>connectionWithURLString:options:status:</methodname>, 
+						a string containing the location of the database to
+						connect to, formatted as a URL.
 					</para>
 				</listitem>
 			</varlistentry>
@@ -161,13 +177,7 @@ return 0;
 		<title>See also</title>
 		<itemizedlist>
 			<listitem>
-				<methodname><html:a href="connectionWithURLString_options_status.xml">connectionWithURLString:options:status:</html:a></methodname>
-			</listitem>
-			<listitem>
 				<methodname><html:a href="initWithURL_options_status.xml">initWithURL:options:status:</html:a></methodname>
-			</listitem>
-			<listitem>
-				<methodname><html:a href="initWithURLString_options_status.xml">initWithURLString:options:status:</html:a></methodname>
 			</listitem>
 		</itemizedlist>
 	</refsection>

@@ -11,20 +11,20 @@
 	<rdf:Description about="#class-methods"><dc:title>Class Methods</dc:title></rdf:Description>
 	<rdf:Seq id="class-methods">
 		<rdf:li>
-			<rdf:Description><dc:title><html:a href="connectionWithURL_options_status.xml">connectionWithURL:options:status:</html:a></dc:title></rdf:Description>
+			<rdf:Description><dc:title><html:a href="connectionWithURL.xml">connectionWithURL:options:status:</html:a></dc:title></rdf:Description>
 		</rdf:li>
 		<rdf:li>
-			<rdf:Description><dc:title><html:a href="connectionWithURLString_options_status.xml">connectionWithURLString:options:status:</html:a></dc:title></rdf:Description>
+			<rdf:Description><dc:title><html:a href="connectionWithURL.xml">connectionWithURLString:options:status:</html:a></dc:title></rdf:Description>
 		</rdf:li>
 	</rdf:Seq>
 
 	<rdf:Description about="#instance-methods"><dc:title>Instance Methods</dc:title></rdf:Description>
 	<rdf:Seq id="instance-methods">
 		<rdf:li>
-			<rdf:Description><dc:title><html:a href="initWithURL_options_status.xml">initWithURL:options:status:</html:a></dc:title></rdf:Description>
+			<rdf:Description><dc:title><html:a href="initWithURL.xml">initWithURL:options:status:</html:a></dc:title></rdf:Description>
 		</rdf:li>
 		<rdf:li>
-			<rdf:Description><dc:title><html:a href="initWithURLString_options_status.xml">initWithURLString:options:status:</html:a></dc:title></rdf:Description>
+			<rdf:Description><dc:title><html:a href="initWithURL.xml">initWithURLString:options:status:</html:a></dc:title></rdf:Description>
 		</rdf:li>
 		<rdf:li>
 			<rdf:Description><dc:title><html:a href="executeSQL_status.xml">executeSQL:status:, ...</html:a></dc:title></rdf:Description>
