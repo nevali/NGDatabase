@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/css" href="../dbook.css" ?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook V5.0//EN" "http://www.oasis-open.org/docbook/xml/5.0/docbook.dtd">
+<article xmlns="http://docbook.org/ns/docbook" xmlns:html="http://www.w3.org/1999/xhtml">
+	<articleinfo>
+		<title>NGDBConnection Class Reference</title>
+		<author>
+			<firstname>Mo</firstname>
+			<lastname>McRoberts</lastname>
+			<affiliation>
+				<address>
+					<email>mo.mcroberts@nexgenta.com</email>
+				</address>
+			</affiliation>
+		</author>
+		<copyright>
+			<year>2009</year>
+			<holder>Mo McRoberts</holder>
+		</copyright>
+	</articleinfo>
+	
+	<section role="availability">
+		<variablelist>
+			<varlistentry>
+				<term>Inherits from</term>
+				<listitem>
+					<para><classname>NSObject</classname></para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Framework</term>
+				<listitem>
+					<para><filename>NGDatabase.framework</filename></para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Declared in</term>
+				<listitem>
+					<para><filename>NGDatabase.h</filename></para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>Availability</term>
+				<listitem>
+					<para>NGDatabase 1.0.0 and later</para>
+				</listitem>
+			</varlistentry>
+			
+		</variablelist>
+	</section>
+	
+	<section>
+		<title>Introduction</title>
+		<para>
+			The <classname>NGDBConnection</classname> class represents a connection
+			to a database server (or, depending upon the type of database, a file
+			or set of files on a local storage volume).
+		</para>
+		<para>
+			Connections are established with <methodname><html:a href="connectionWithURL.xml">connectionWithURL:options:status:</html:a></methodname>
+			or <methodname><html:a href="initWithURL.xml">initWithURL:options:status:</html:a></methodname>,
+			which return an instance of a class defined by the driver for the type
+			of database being connected to. The <propertyname>scheme</propertyname>
+			of the specified URL determines which driver to use.
+		</para>
+		<para>
+			Once a connection has been established, methods are available to
+			add, modify, delete and perform queries upon data.
+		</para>
+		<para>
+			Although <classname>NGDBConnection</classname> is primarily targeted
+			at SQL databases, most operations are suitable for use as an interface
+			to a different kind of database, such as an LDAP server (although one
+			would not submit arbitary SQL queries to an LDAP database).
+		</para>
+	</section>
+</article>

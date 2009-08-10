@@ -58,7 +58,7 @@
 						required.
 					</para>
 					<para>
-						See the description of <methodname><html:a href="initWithURL_options_status.xml">initWithURL:options:status</html:a></methodname>
+						See the description of <methodname><html:a href="initWithURL.xml">initWithURL:options:status</html:a></methodname>
 						for further information on the <parameter>options</parameter>
 						parameter.
 					</para>
@@ -169,7 +169,7 @@ return 0;
 	<refsection>
 		<title>Availability</title>
 		<para>
-			Available in NGDBConnection 1.0.0 and later.
+			Available in NGDatabase 1.0.0 and later.
 		</para>
 	</refsection>
 	
@@ -177,7 +177,7 @@ return 0;
 		<title>See also</title>
 		<itemizedlist>
 			<listitem>
-				<methodname><html:a href="initWithURL_options_status.xml">initWithURL:options:status:</html:a></methodname>
+				<methodname><html:a href="initWithURL.xml">initWithURL:options:status:</html:a></methodname>
 			</listitem>
 		</itemizedlist>
 	</refsection>

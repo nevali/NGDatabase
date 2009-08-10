@@ -270,6 +270,7 @@
 		32DBCF5E0370ADEE00C91783 /* p_ngdatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = p_ngdatabase.h; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* NGDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NGDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD352F711030066500A04E72 /* overview.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = overview.xml; sourceTree = "<group>"; };
 		CD726AAE102C4C2400EB1637 /* NGSQLiteConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGSQLiteConnection.h; sourceTree = "<group>"; };
 		CD726AAF102C4C2400EB1637 /* NGSQLiteConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGSQLiteConnection.m; sourceTree = "<group>"; };
 		CD726AB9102C5D3E00EB1637 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -561,6 +562,7 @@
 				CDC96366102ED79500E75F75 /* connectionWithURL.xml */,
 				CDC96370102EEFA600E75F75 /* index.html */,
 				CDC963F2102F1FD200E75F75 /* index.xml */,
+				CD352F711030066500A04E72 /* overview.xml */,
 			);
 			path = NGDBConnection;
 			sourceTree = "<group>";
