@@ -3,7 +3,7 @@
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V5.0//EN" "http://www.oasis-open.org/docbook/xml/5.0/docbook.dtd">
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:html="http://www.w3.org/1999/xhtml">
 	<refnamediv>
-		<refname>connectionWithURL:options:status:</refname>
+		<refname>initWithURL:options:status:</refname>
 		<refpurpose>Initialises a connection instances and establishes a connection to a database.</refpurpose>
 	</refnamediv>
 	<refsynopsisdiv>
