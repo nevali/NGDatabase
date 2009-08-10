@@ -140,7 +140,7 @@ refsynopsisdiv > methodsynopsis parameter {
 refsection > title {
 	display: block;
 	font-weight: bold;
-	font-size: 100%;
+	font-size: 110%;
 	margin: 0.75em 0 0.75em 0;
 }
 
@@ -149,13 +149,21 @@ refsection > title {
 article > section > title, sect1 > title {
 	display: block;
 	font-weight: bold;
+	font-size: 110%;
+	margin: 0.75em 0 0.75em 0;
+}
+
+article > section > section > title, sect2 > title {
+	display: block;
+	font-weight: bold;
 	font-size: 100%;
 	margin: 0.75em 0 0.75em 0;
+	color: #666;
 }
 
 /* variablelist */
 
-variablelist > varlistentry {
+variablelist > varlistentry, variablelist > varlistentry > term {
 	display: block;
 }
 

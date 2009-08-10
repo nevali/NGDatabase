@@ -36,7 +36,7 @@
 			<varlistentry>
 				<term>Declared in</term>
 				<listitem>
-					<para><filename>NGDatabase.h</filename></para>
+					<para><filename><html:a href="http://github.com/nevali/NGDatabase/blob/master/NGDatabase.h">NGDatabase.h</html:a></filename> (defined in <filename><html:a href="http://github.com/nevali/NGDatabase/blob/master/NGDBConnection.h">NGDBConnection.h</html:a></filename>)</para>
 				</listitem>
 			</varlistentry>
 			<varlistentry>
@@ -74,4 +74,204 @@
 			would not submit arbitary SQL queries to an LDAP database).
 		</para>
 	</section>
+	
+	<section>
+		<title>Class methods</title>
+		
+		<section>
+			<title>Establishing a connection</title>
+			<variablelist>
+				<varlistentry>
+					<term><methodname><html:a href="connectionWithURL.xml">connectionWithURL:options:status:</html:a></methodname></term>
+					<term><methodname><html:a href="connectionWithURL.xml">connectionWithURLString:options:status:</html:a></methodname></term>
+					<listitem>
+						<para>Returns an autoreleased instance representing a connection.</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</section>
+	</section>
+	
+	<section>
+		<title>Instance methods</title>
+		
+		<section>
+			<title>Establishing a connection</title>
+			<variablelist>
+				<varlistentry>
+					<term><methodname><html:a href="initWithURL.xml">initWithURL:options:status:</html:a></methodname></term>
+					<term><methodname><html:a href="initWithURL.xml">initWithURLString:options:status:</html:a></methodname></term>
+					<listitem>
+						<para>Initialises an instance and establishes a connection.</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</section>
+		
+		<section>
+			<title>Executing queries</title>
+			<variablelist>
+				<varlistentry>
+					<term><methodname><html:a href="executeSQL.xml">executeSQL:withArray:status:</html:a></methodname></term>
+					<term><methodname><html:a href="executeSQL.xml">executeSQL:status:, …</html:a></methodname></term>
+					<listitem>
+						<para>Executes a SQL statement which is not expected to return a result-set.</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term><methodname><html:a href="query.xml">query:withArray:status:</html:a></methodname></term>
+					<term><methodname><html:a href="query.xml">query:status:, …</html:a></methodname></term>
+					<listitem>
+						<para>
+							Executes a SQL statement and returns an 
+							<classname><html:a href="../NGDBResultSet/">NGDBResultSet</html:a></classname> instance
+							representing the result-set.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="prepare.xml">prepare:status:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Creates an <classname><html:a href="../NGDBStatement/">NGDBStatement</html:a></classname> instance
+							representing a query which can be executed multiple 
+							times with differing sets of parameters.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="rowForQuery.xml">rowForQuery:withArray:status:</html:a></methodname></term>
+					<term><methodname><html:a href="rowForQuery.xml">rowForQuery:status:, …</html:a></methodname></term>
+					<listitem>
+						<para>
+							Executes the given query returning the first row of the
+							result-set as an <classname>NSDictionary</classname>
+							instance.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="rowsForQuery.xml">rowsForQuery:withArray:status:</html:a></methodname></term>
+					<term><methodname><html:a href="rowsForQuery.xml">rowsForQuery:status:, …</html:a></methodname></term>
+					<listitem>
+						<para>
+							Executes the given query returning the each row of the
+							result-set (as <classname>NSDictionary</classname>
+							instances) contained within an <classname>NSArray</classname>
+							instance.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="columnForQuery.xml">columnForQuery:withArray:status:</html:a></methodname></term>
+					<term><methodname><html:a href="columnForQuery.xml">columnForQuery:status:, …</html:a></methodname></term>
+					<listitem>
+						<para>
+							Executes the given query returning an <classname>NSArray</classname>
+							instance containing the values from first column in
+							each of the rows of the result-set.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="dictForQuery.xml">dictForQuery:withArray:status:</html:a></methodname></term>
+					<term><methodname><html:a href="dictForQuery.xml">dictForQuery:status:, …</html:a></methodname></term>
+					<listitem>
+						<para>
+							Executes the given query returning an <classname>NSDictionary</classname>
+							instance containing all of the rows of the result-set,
+							with the first column used as the key for each entry
+							and the remaining columns the value.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="valueForQuery.xml">valueForQuery:withArray:status:</html:a></methodname></term>
+					<term><methodname><html:a href="valueForQuery.xml">valueForQuery:status:, …</html:a></methodname></term>
+					<listitem>
+						<para>
+							Executes the given query returning the value contained
+							within the first column of the first row of the
+							result-set.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</section>
+			
+		<section>
+			<title>Creating, modifying and deleting data</title>
+			<variablelist>
+			
+				<varlistentry>
+					<term><methodname><html:a href="insertInto.xml">insertInto:values:status:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Inserts a set of values into a table.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="insertInto.xml">update:values:constraints:status:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Replaces data in a table with the supplied values,
+							optionally according to a set of constraints.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="deleteFrom.xml">deleteFrom:constraints:status:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Removes data from a table optionally according to a set of constraints.
+						</para>
+					</listitem>
+				</varlistentry>
+
+			</variablelist>
+		</section>
+		
+		<section>
+			<title>Transactions</title>
+			<variablelist>
+			
+				<varlistentry>
+					<term><methodname><html:a href="begin.xml">begin:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Begins a transaction.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="commit.xml">commit:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Commits (completes) a transaction.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term><methodname><html:a href="rollback.xml">rollback:</html:a></methodname></term>
+					<listitem>
+						<para>
+							Rolls back (discards) a transaction.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</section>
+	</section>
+	
 </article>
